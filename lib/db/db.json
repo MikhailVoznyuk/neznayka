@@ -1,1 +1,10 @@
-{"categories":[{"id":0,"title":"Безопасность","rel":"security"},{"id":1,"title":"Математика","rel":"mathematics"},{"id":2,"title":"Биология","rel":"biology"},{"id":3,"title":"Инфораматика","rel":"informatics"}],"articles":[{"id":0,"category":1,"title":"Первый пост","description":"Описание статьи 1","content":"Содержание статьи 1"},{"id":1,"category":2,"title":"Второй пост","description":"Описание статьи 2","content":"Содержание статьи 2"},{"id":2,"category":3,"title":"Третий пост","description":"Описание статьи 3","content":"Содержание статьи 3"},{"id":3,"category":0,"title":"Четвертый пост","description":"Описание статьи 4","content":"Содержание статьи 4"},{"id":4,"category":0,"title":"Пятый пост","description":"Описание статьи 5","content":"Содержание статьи 5"},{"id":5,"category":1,"title":"Шестой пост","description":"Описание статьи 6","content":"Содержание статьи 6"}]}
+{"categories":
+     [{"id":0,"title":"Безопасность","rel":"security"},{"id":1,"title":"Математика","rel":"mathematics"},{"id":2,"title":"Биология","rel":"biology"},{"id":3,"title":"Инфораматика","rel":"informatics"}],
+ "articles":
+    [
+        {"id":0,"category":1,"title":"Первый пост","description":"Описание статьи 1","content": [{"type": 0, "content": "Содержание статьи 1"}]},
+        {"id":1,"category":2,"title":"Второй пост","description":"Описание статьи 2","content":[{"type": 0, "content": "Содержание статьи 2"}]},
+        {"id":2,"category":3,"title":"Третий пост","description":"Описание статьи 3","content":[{"type": 0, "content": "Содержание статьи 3"}]},
+        {"id":3,"category":0,"title":"Четвертый пост","description":"Описание статьи 4","content":[{"type": 0, "content": "Содержание статьи 4"}]},
+        {"id":4,"category":0,"title":"Пятый пост","description":"Описание статьи 5","content":[{"type": 0, "content": "Содержание статьи 5"}]},
+        {"id":5,"category":1,"title":"Шестой пост","description":"Описание статьи 6","content":[{"type": 0, "content": "Содержание статьи 6"}]}]}
