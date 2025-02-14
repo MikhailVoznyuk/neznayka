@@ -10,8 +10,6 @@ export default async function Page({params}) {
             <div>
                 <h3>{article.title}</h3>
                 <h5>{article.description}</h5>
-                <p>{article.content}</p>
-
             </div>
         </main>
     )
