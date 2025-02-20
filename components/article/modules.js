@@ -9,6 +9,7 @@ export function EditSection() {
         </div>
     )
 }
+
 export default function TextBlock({textContent, isDev}) {
     if (isDev) {
         return (
@@ -26,3 +27,39 @@ export default function TextBlock({textContent, isDev}) {
         
     }
 }
+
+export function ImageBlock({imgUrl, isDev}) {
+    if (isDev) {
+        return (
+            <div className={styles.imageBlock}>
+                <EditSection></EditSection>
+                <img src={imgUrl}></img>
+            </div>
+        ) 
+    } else {
+        return (
+            <div className={styles.imageBlock}>
+                <img src={imgUrl}></img>
+            </div>
+        )
+    }
+}
+
+export function VideoBlock({vidioUrl, isDev}) {
+    if (isDev) {
+        return (
+            <div className={styles.videoBlock}>
+                <EditSection></EditSection>
+                <video src={vidioUrl}>
+                </video>
+            </div>
+        )
+    } else {
+        return (
+            <div className={styles.videoBlock}>
+                <video src={vidioUrl}></video>
+            </div>
+        )
+    }
+}
+
