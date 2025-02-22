@@ -2,20 +2,234 @@
     display: grid;
     max-width: 960px;
     grid-template-columns: 1fr 1fr 1fr;
-    column-gap: 20px;
-    row-gap: 20px;
+    column-gap: 30px;
+    row-gap: 30px;
 }
 
 .sheet {
-    
+    position: relative;
     border-radius: 20px;
-    display: flex;
-    align-items: end;
+    
     width: 300px;
     height: 300px;
     background-color: green;
-    padding: 20px;
+
     color: #FFF;
     text-transform: uppercase;
+    overflow: hidden;
+    transition: 0.5s ease;
+}
+
+.sheetTitleContainer {
+    position: relative;
+    max-width: 250px;
+    width: auto;
+   
+    height: auto;
+    border-radius: 20px 0 20px 0;
+    z-index: 2;
+}
+
+.sheetTitleContainer h3 {
+    font-size: 18px;
+    padding: 16px;
+    color: #FFF;
+    word-spacing: -4px;
+}
+
+.gradient {
+    position: absolute;
+    top: 0; 
+    left: 0;
+    width: 100%; 
+    height: 100%;
+    z-index: 1;
+}
+
+.sheetImage {
+    position: absolute;
+    bottom: -52px;
+    right: -40px;
+    
+    z-index: 0;
+    background-size: contain;
+    background-repeat: no-repeat;
+    transition: 0.5s ease;
+}
+
+.sheet:hover {
+    transform: scale(1.06);
+    transition: 0.5s ease;
+}
+
+.sheet:hover .sheetImage {
+    transform: scale(1.06);
+    bottom: -40px;
+    right: -30px;
+}
+
+.quizStatic {
+    position: relative;
+    width: 800px;
+    height: 250px;
+    background-color: #3EC947;
+    border-radius: 20px;
+    padding: 30px;
+    display: flex;
+    overflow: hidden;
+    transition: 0.5s ease;
+}
+
+
+.quizStaticContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 400px;
+    height: 190px;
+    font-size: 28px;
+
+}
+
+.quizStaticContent h5 {
+    color: #44474F;
+}
+
+.quizStaticContent button {
+    position: relative;
+    width: 190px;
+   
+    height: 44px;
+    font-size: 24px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    border: none;
+    background-color: #FF9742;
+    border-radius: 13px;
+    color: #FFF;
+    padding-left: 20px;
+}
+
+
+
+
+.quizStaticContent .btnContent {
+    width: 160px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.quizStaticContent .btnArrow {
+    background-image: url('/arrow_white.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 30px;
+    height: 20px;
+
+}
+
+.quizStaticBackground {
+    position: absolute;
+    bottom: 0;
+    right: 10px;
+    background-image: url('/quiz_static.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 500px;
+    height: 155px;
+}
+
+/* Окно квиза */
+
+.quizWindow {
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+    transition: 0.5s ease;
+
+}
+
+.quizQuestionContainer {
+    position: relative;
+    display: flex;
+}
+
+.quizQuestion {
+    display: flex;
+    color:#44474F;
+    flex-basis: 500px;
+    flex-shrink: 0;
+    flex-grow: 0;
+    width: 500px;
+}
+
+.quizQuestion h5 {
+    font-size: 24px;
+}
+
+.questionBody {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 14px;
+}
+.quizQuestion button {
+    position: relative;
+    top: 0;
+    background-color: #FF9742;
+    color: #FFF;
+    font-size: 24px;
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid #FF9742;
+    transition: 0.3s ease;
+}
+
+.quizQuestion button:hover {
+    top: -5px;
+    border: 2px solid #FFF;
+    transitioN: 0.3s ease;
+}
+
+.quizCharacter {
+    position: absolute;
+    width: 390px;
+    height: 370px;
+    background-image: url('/fox.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    bottom: -98px;
+    left: 10px;
+}
+
+.questionTitleContainer {
+    position: relative;
+    background: #D9D9D9;
+    width:fit-content;
+    height: fit-content;
+    padding: 16px;
+    border-radius: 20px;
+    font-size: 22px;
+    top: 60px;
+}
+
+.questionTitleContainer span {
+    position: absolute;
+    top: calc(100% - 4px);
+    left: 160px;
+    display: block;
+    width: 38px;
+    height: 20px;
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    background-color: #D9D9D9;
+
+}
+
+.questionTitleContainer h5 {
+    font-size: 22px;
 }
 

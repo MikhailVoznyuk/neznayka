@@ -60,3 +60,12 @@ export default async function saveBlock(formData, pageId) {
     return element;
 }
 
+export async function getCategories() {
+    const db = new DataBase();
+    return await db.getCategories();
+}
+
+export async function getQuizQuestions() {
+    const db = new DataBase();
+    return await db.getQuizQuestions();
+}

@@ -1,1 +1,32 @@
-{"categories":[{"id":0,"title":"Безопасность","rel":"security"},{"id":1,"title":"Математика","rel":"mathematics"},{"id":2,"title":"Биология","rel":"biology"},{"id":3,"title":"Инфораматика","rel":"informatics"}],"articles":[{"id":0,"category":1,"title":"Первый пост","description":"Описание статьи 1","content":[{"id":0,"type":0,"content":"Текстовый блок 1"}]},{"id":1,"category":2,"title":"Второй пост","description":"Описание статьи 2","content":[{"type":0,"content":"Текстовый блок 1","id":0},{"type":0,"content":"Текстовый блок 2","id":1},{"type":0,"content":"Текстовый блок 2","id":2},{"type":0,"content":"Текстовый блок 3","id":3},{"type":0,"content":"Текстовый блок 4","id":4}]},{"id":2,"category":3,"title":"Третий пост","description":"Описание статьи 3","content":[{"id":0,"type":0,"content":"Содержание статьи 3"}]},{"id":3,"category":0,"title":"Четвертый пост","description":"Описание статьи 4","content":[{"id":0,"type":0,"content":"Содержание статьи 4"}]},{"id":4,"category":0,"title":"Пятый пост","description":"Описание статьи 5","content":[{"id":0,"type":0,"content":"Содержание статьи 5"}]},{"id":5,"category":1,"title":"Шестой пост","description":"Описание статьи 6","content":[{"id":0,"type":0,"content":"Содержание статьи 6"}]}]}
+{"categories":[
+{"id":0,"title":"Безопасность на дороге","rel":"trafic_laws", "backgroundColor": "#F4A733", "titleColor": "#4F5564", "image": "/categories/crossroad.png"},
+{"id":1,"title":"Социальная безопасность","rel":"social", "backgroundColor": "#62B8C5", "titleColor": "#2A6DA4", "image": "/categories/town.png"},
+{"id":2,"title":"Безопасность на природе","rel":"nature", "backgroundColor": "#B2A945", "titleColor": "#1E3A28", "image": "/categories/forest.png"},
+{"id":3,"title":"Пожарная безопасность","rel":"fire_safety", "backgroundColor": "#D3DED5", "titleColor": "#D13538", "image": "/categories/firetruck.png"},
+{"id":4,"title":"Информационная безопасность","rel":"cyber", "backgroundColor": "#385871", "titleColor": "#172740", "image": "/categories/computer.png"},
+{"id":5,"title":"Бытовая безопасность","rel":"household", "backgroundColor": "#7B6A6C", "titleColor": "#F6823B", "image": "/categories/room.png"}],
+"articles":[{"id":0,"category":1,"title":"Первый пост","description":"Описание статьи 1","content":[{"id":0,"type":0,"content":"Текстовый блок 1"}]},
+{"id":1,"category":2,"title":"Второй пост","description":"Описание статьи 2","content":[{"type":0,"content":"Текстовый блок 1","id":0},
+{"type":0,"content":"Текстовый блок 2","id":1},{"type":0,"content":"Текстовый блок 2","id":2},
+{"type":0,"content":"Текстовый блок 3","id":3},{"type":0,"content":"Текстовый блок 4","id":4},
+{"type":0,"content":"safgassfgasg","id":5}]},{"id":2,"category":3,"title":"Третий пост","description":"Описание статьи 3","content":[{"id":0,"type":0,"content":"Содержание статьи 3"}]},
+{"id":3,"category":0,"title":"Четвертый пост","description":"Описание статьи 4","content":[{"id":0,"type":0,"content":"Содержание статьи 4"}]},
+{"id":4,"category":0,"title":"Пятый пост","description":"Описание статьи 5","content":[{"id":0,"type":0,"content":"Содержание статьи 5"}]},
+{"id":5,"category":1,"title":"Шестой пост","description":"Описание статьи 6","content":[{"id":0,"type":0,"content":"Содержание статьи 6"}]}],
+"quizQuestions": [
+    {"id": 0, "question": "Какой ваш любимый цвет",
+    "answers": [{"id": 0, "content": "красный"}, {"id": 1, "content": "желтый"}, {"id": 2, "content": "зеленый"}, {"id": 3, "content": "синий"}],
+    "correctAnswer": 1},
+    {"id": 1, "question": "Сколько вам лет",
+    "answers": [{"id": 0, "content": "10+"}, {"id": 1, "content": "20+"}, {"id": 2, "content": "30+"}, {"id": 3, "content": "40+"}],
+    "correctAnswer": 2},
+    {"id": 2, "question": "В каком городе вы живите?",
+    "answers": [{"id": 0, "content": "Москва"}, {"id": 1, "content": "Казань"}, {"id": 2, "content": "Питер"}, {"id": 3, "content": "Минск"}],
+    "correctAnswer": 1},
+    {"id": 3, "question": "Тебе нравится учится в Тимке?",
+    "answers": [{"id": 0, "content": "Да"}, {"id": 1, "content": "Очень"}, {"id": 2, "content": "Невероятно"}, {"id": 3, "content": "Это лучший вуз в мире"}],
+    "correctAnswer": 3},
+    {"id": 4, "question": "Сколько будет 2 + 2",
+    "answers": [{"id": 0, "content": "-124"}, {"id": 1, "content": "4"}, {"id": 2, "content": "5"}, {"id": 3, "content": "3.5"}],
+    "correctAnswer": 3}
+]}

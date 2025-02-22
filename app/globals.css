@@ -49,7 +49,7 @@ main {
 
 .container {
   display: flex;
-  width: 100vw;
+  width: 100%;
   padding: 40px;
 }
 
@@ -83,4 +83,43 @@ main {
 
 .flex-column {
   flex-direction: column;
+}
+
+.headerContainer {
+  width: 100%;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.primaryHeader {
+  width: 1000px;
+  height: 70px;;
+  background-color: #3EC947;
+  border-radius: 30px;
+  color: #4F5564;
+  word-spacing: -6px;
+}
+
+.primaryHeader h1 {
+font-size: 30px;
+}
+
+.primaryNav {
+  width: 390px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.primaryNav a {
+  padding: 10px;
+  border-radius: 20px;
+  transition: 0.3s ease;
+}
+
+.primaryNav a:hover {
+  background-color: #FF9742;
+  color: #FFF;
+  transition: 0.3s ease;
 }
