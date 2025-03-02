@@ -72,9 +72,10 @@
     position: relative;
     width: 800px;
     height: 250px;
-    background-color: #3EC947;
+    background-color: #2E4E80;
     border-radius: 20px;
     padding: 30px;
+    padding-right: 20px;
     display: flex;
     overflow: hidden;
     transition: 0.5s ease;
@@ -92,7 +93,7 @@
 }
 
 .quizStaticContent h5 {
-    color: #44474F;
+    color: #FFF
 }
 
 .quizStaticContent button {
@@ -109,6 +110,13 @@
     border-radius: 13px;
     color: #FFF;
     padding-left: 20px;
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.25);
+    transition: 0.3s ease;
+}
+
+.quizStaticContent button:hover {
+    transform: scale(1.05);
+    transition: 0.3s ease;
 }
 
 
@@ -142,12 +150,45 @@
     height: 155px;
 }
 
+.quizSheetsContainer {
+    width: 284px;
+    height:190px;
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 10px;
+    column-gap: 16px;
+}
+
+.quizSheetsContainer .quizSheet {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 84px;
+    height: 84px;
+    background-color: #D9D9D9;
+    border-radius: 10px;
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+.quizSheetImage {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    top: 8px;
+    
+    background-repeat: no-repeat;
+    background-size: contain;
+    
+}
+
 /* Окно квиза */
 
 .quizWindow {
     position: relative;
     height: 100%;
-    overflow: hidden;
+    width: 100%;
+    
     transition: 0.5s ease;
 
 }
@@ -155,15 +196,22 @@
 .quizQuestionContainer {
     position: relative;
     display: flex;
+    width: 300px; 
+    padding: 8px 0;  
+    overflow: hidden;
 }
 
 .quizQuestion {
+    position: relative;
     display: flex;
     color:#44474F;
-    flex-basis: 500px;
+    flex-basis: 300px;
     flex-shrink: 0;
     flex-grow: 0;
-    width: 500px;
+    width: 300px;
+    left: 0;
+    justify-content: center;
+    transition: 0.5s ease;
 }
 
 .quizQuestion h5 {
@@ -174,6 +222,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: center;
     gap: 14px;
 }
 .quizQuestion button {
@@ -181,18 +230,21 @@
     top: 0;
     background-color: #FF9742;
     color: #FFF;
-    font-size: 24px;
+    font-size: 18px;
+    width: 280px;
+    height: 74px;
     border: none;
     padding: 10px;
     border-radius: 10px;
     border: 2px solid #FF9742;
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.25);
     transition: 0.3s ease;
 }
 
 .quizQuestion button:hover {
-    top: -5px;
+    transform: scale(1.03);
     border: 2px solid #FFF;
-    transitioN: 0.3s ease;
+    transitioN: 0.2s ease;
 }
 
 .quizCharacter {
@@ -211,25 +263,185 @@
     background: #D9D9D9;
     width:fit-content;
     height: fit-content;
+    max-width: 340px;
     padding: 16px;
+    top: 8px;
     border-radius: 20px;
-    font-size: 22px;
-    top: 60px;
+    font-size: 18px;
+    word-spacing: -8px;
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.25)
 }
 
 .questionTitleContainer span {
     position: absolute;
-    top: calc(100% - 4px);
-    left: 160px;
+    
+    left: -12px;
+    top: calc(50% - 18px);
     display: block;
-    width: 38px;
-    height: 20px;
-    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    width: 20px;
+    height: 36px;
+    clip-path: polygon(0 50%, 100% 0, 100% 100%);
+    
     background-color: #D9D9D9;
+    
 
 }
 
 .questionTitleContainer h5 {
-    font-size: 22px;
+    font-size: 18px;
 }
 
+.stageContainer {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.quizWindowHeader {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    width: 100%;
+    height:44px;
+    margin-bottom: 23px;
+}
+
+.quizCloseBtn {
+    position: absolute;
+    top: 30px;
+    right: 20px;
+    width: 42px;
+    height: 42px;
+    background-color:#FD6B53;
+    border: none;
+    border-radius: 50%;
+    margin-right: 10px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.25));
+    z-index: 1;
+}
+
+.btnLine {
+    position: absolute;
+    width: 28px;
+    height: 3px;
+    top: calc(50% - 1.5px);
+    left: calc(50% - 14px);
+    background-color: #FFF;
+    border-radius: 5px;
+}
+.questionImage {
+    position: absolute;
+    left: 20px;
+    width: 300px;
+    height: 300px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    transition: 0.6s ease;
+    filter: drop-shadow(0 6px 6px rgba(0, 0, 0, 0.3))
+
+}
+
+.quizResultContainer {
+    position: absolute;
+    top: calc(100% + 120px);
+    width: 310px;
+    height: 80px;
+    color: #FFF;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FF9742;
+    border-radius: 20px;
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.25);
+    transition: 0.3s ease;
+}
+
+.quizResultContentContainer {
+    position: relative;
+    border-radius: 20px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-basis: 300px;
+    flex-shrink: 0;
+    flex-grow: 0;
+}
+
+.quizResultContentContainer .progressBar {
+    position: relative;
+    height: 93%;
+    width: 44px;
+    left: 36px;
+    border-radius: 20px;
+    background: linear-gradient(#5EE551 0%, #FBFB11 50%, #E43135 100%);
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+/* QuizBar */
+
+.quizBar {
+    position: relative;
+    height: 30px;
+   
+}
+
+.quizBarStage {
+    position: absolute;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #D9D9D9;
+    z-index: 1;
+    transition: 0.5s ease;
+}
+
+.quizBarLine {
+    position: absolute;
+    width: 44px;
+    height: 6px;
+    top: 11.5px;
+    left: 0;
+    background-color: #D9D9D9;
+    z-index: 0;
+    transition: 0.5s ease;
+}
+
+.quizButtonWrong {
+    background-color: #D13538 !important;
+    border-color: #D13538 !important;
+    transition: 0.6s ease;
+    animation-name: wrongButton;
+    animation-duration: 0.6s;
+    animation-iteration-count: 1;
+}
+
+.quizButtonCorrect {
+    background-color: #3EC947 !important;
+    border-color: #3EC947 !important;
+    transition: 0.3s;
+}
+
+@keyframes soar {
+   
+    50% {
+        transform: translate(0px, 14px);
+    }
+}
+
+@keyframes wrongButton {
+    33% {
+        transform: rotate(3deg);
+    }
+    66% {
+        transform: rotate(-3deg);
+    }
+    100% {
+        transform: rotate(0deg) scale(1.03);
+    }
+}

@@ -1,0 +1,59 @@
+.sideNoticeWrapper {
+    position: absolute;
+}
+
+.sideNotice {
+    position: relative;
+    width: fit-content;
+    height: fit-content;
+}
+.sideNoticeText {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-wrap: nowrap;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.sideNoticeParticle {
+    position: absolute;
+    width: 12px;
+    height: 16px;
+    left: -8px;
+    top: calc(50% - 8px);
+    clip-path: polygon(0 50%, 100% 0, 100% 100%);
+}
+
+.sideNoticeParticleRight {
+    transform: rotate(180deg);
+    left: calc(100% - 4px);
+}
+
+/* ModalWidnow */
+
+.modalWindowWrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    z-index: -1;
+    transition: 0.5s ease;
+    overflow: hidden;
+
+}
+
+.modalWindowContainer {
+    position: relative;
+    width: 80%;
+    height: 80%;
+    background-color: #FFF;
+    border-radius: 30px;
+}
+

@@ -69,6 +69,10 @@ main {
   justify-content: start;
 }
 
+.justify-between {
+  justify-content: space-between;
+}
+
 .justify-end {
   justify-content: end;
 }
