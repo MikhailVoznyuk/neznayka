@@ -127,3 +127,22 @@ font-size: 30px;
   color: #FFF;
   transition: 0.3s ease;
 }
+
+.pageContentWrapper {
+  position: relative;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.section-header {
+  padding: 20px 0;
+}
+
+.section-header h2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 24px;
+  color: #44474F;
+}

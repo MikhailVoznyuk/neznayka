@@ -1,18 +1,19 @@
 "use client"
 
-import React from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import styles from "./page.module.css";
 import Link from "next/link";
 
 import HandlerButton from "@/components/button";
 import { Rubik_Mono_One } from "next/font/google";
-import { getCategories, getQuizQuestions } from "@/components/server/pageEditor";
+import { getCategories, getQuizQuestions, getAllFirstArticlesRels } from "@/components/server/pageEditor";
 import TestButton from "@/components/buttons";
 import SideNotice from "@/components/sidenotice";
 import ModalWindow from "@/components/modalWindow";
 import modalContext from "./modalContext";
 import { UpdateWindowState } from "./modalContext";
+import LoadingPlug from "@/components/loadingPlug";
 
 const RubicMonoOne = Rubik_Mono_One({
   weight: '400',
@@ -59,7 +60,7 @@ function Quiz(qestions, curQestion, categories) {
   for (let i = 0; i < count; i++) {
     quizBarSections.push(i);
   }
-  console.log(quizResultScore)
+
     return (
       
       <div className={styles.quizWindow}>
@@ -135,16 +136,16 @@ function Quiz(qestions, curQestion, categories) {
                                 style={{left: `${-300 * stage}px`, transition: `${0.15 + answersCounter}s ease`}}
                                 ifCorrectHandler={() => {
                                   if (lastQuestionAttended == stage) {
-                                    console.log('yes')
+                           
                                     setMistakesCounter(mistakesCounter + 1);
                                   }
                                   setTimeout(() => {
                                     
-                                    console.log(mistakesCounter);
+                                  
                                     if (stage == count - 2) {
                                       const userScore = Math.trunc((count - 1 - mistakesCounter) / (count - 1)* 100);
                                       let quizResultText = null;
-                                      console.log('rating', userScore, count, mistakesCounter)
+                                     
                                       if (userScore == 100) {
                                         quizResultText = "Так держать! Ты не допустил ни одной ошибки! Нащи уроки и учебные материалы помогут тебе поддерживать и повышать свой уровень знаний!"
                                       } else if (50 <= userScore && userScore < 100) {
@@ -222,26 +223,30 @@ function Quiz(qestions, curQestion, categories) {
 
       </div>
     )
-  }
+}
 
-function QuizStatic() {
-  const [quizState, setQuizState] = React.useState(false);
-  let modalWindowState = React.useContext(modalContext);
- 
-  let quizBlock = null;
-  let quizBlockModal = (  
-    <div className={styles.quizStatic} style={quizState ? {height: '510px'} : {height: '250px'}}>
-      <button className={styles.quizCloseBtn} onClick={() => setQuizState(false)}>
-        <span className={styles.btnLine} style={{transform: "rotate(45deg)"}}></span>
-        <span className={styles.btnLine} style={{transform: "rotate(-45deg)"}}></span>
-      </button>
-      <Quiz></Quiz>
-        
-    </div>
+function QuizBlockModal({offsetY, modalState, modalBodyState}) {
+  
+  const modalWindowContext = React.useContext(modalContext)
+
+  return (
+  <div className={styles.quizStatic} style={{height: '510px'}}>
+    <button className={styles.quizCloseBtn} onClick={() => {
+        setModalWindowState(UpdateWindowState({state: false, setState : modalWindowContext.setState, scrollTop:offsetY, windowContent: <QuizBlockModal offsetY={0}/>}));
+      }}>
+      <span className={styles.btnLine} style={{transform: "rotate(45deg)"}}></span>
+      <span className={styles.btnLine} style={{transform: "rotate(-45deg)"}}></span>
+    </button>
+    <Quiz></Quiz> 
+  </div>
   )
-  if (quizState == false) {
-    quizBlock = (
-      <div className={[styles.quizStatic, RubicMonoOne.className, 'flex justify-between'].join(' ')}>
+}
+
+function QuizStatic({modalWindowState, setModalWindowState, setModalWindowContent}) {
+
+
+  return (
+    <div className={[styles.quizStatic, RubicMonoOne.className, 'flex justify-between'].join(' ')} style={modalWindowState.state ? {opacity: 0} : {}}>
         <div className={styles.quizStaticContent}>
           <h5>Пройдите 5-минутную викторину и проверьте свои знания!</h5>
           <HandlerButton text={<div className={styles.btnContent}>
@@ -249,91 +254,108 @@ function QuizStatic() {
                 <span className={styles.btnArrow}></span>
               </div>}
             eventHandler={() => {
-              setQuizState(true); 
-              UpdateWindowState({curContext: modalWindowState, newState : true, scrollTop: document.documentElement.scrollTop, backgoundContainerNeeded:false, content: quizBlockModal}) 
+              setModalWindowState(UpdateWindowState({prevContext: modalWindowState, state: true, scrollTop: document.documentElement.scrollTop}));
+              const offsetY = document.documentElement.scrollTop;
+              
+              setModalWindowContent((
+                <div className={styles.quizStatic} style={{height: '510px'}}>
+                  <button className={styles.quizCloseBtn} onClick={() => {
+                      
+                      console.log(offsetY);
+                      setModalWindowState(UpdateWindowState({prevContext: modalWindowState, state:false, scrollTop: offsetY}));
+                    }}>
+                    <span className={styles.btnLine} style={{transform: "rotate(45deg)"}}></span>
+                    <span className={styles.btnLine} style={{transform: "rotate(-45deg)"}}></span>
+                  </button>
+                  <Quiz></Quiz> 
+                </div>
+              ))
             }}
           >
           </HandlerButton>
+        
         </div>
         <div className={styles.quizSheetsContainer}>
           <div className={styles.quizSheet} style={{backgroundColor: "#FF8F34"}}>
-            <div className={styles.quizSheetImage} style={{backgroundImage: `url('svetofor_mini.png`}}>
-
-            </div>
+            <Image className={styles.quizSheetImage} style={{top: "8px"}} src='/svetofor_mini.png' alt="quiz icon" width={70} height={70}></Image>
           </div>
           <div className={styles.quizSheet} style={{backgroundColor: "#47B0EE"}}>
-            <div className={styles.quizSheetImage} style={{backgroundImage: `url('notebook_mini.png')`, top: "10.5px"}}>
-
-            </div>
+            <Image className={styles.quizSheetImage} style={{top: "8px"}} src="/notebook_mini.png" alt="quiz icon" width={70} height={70}></Image>
           </div>
           <div className={styles.quizSheet} style={{backgroundColor: "#4C9B77"}}>
-            <div className={styles.quizSheetImage} style={{backgroundImage: `url('fire_mini.png'`}}>
-
-            </div>
+            <Image className={styles.quizSheetImage} style={{top: "6px", left: '6px'}} src="/fire_mini.png" alt="quiz icon" width={70} height={70}></Image>
           </div>
           <div className={styles.quizSheet} style={{backgroundColor: "#FF6064"}}>
-            <div className={styles.quizSheetImage} style={{backgroundImage: `url('firetrack_mini.png')`, top: "12px"}}>
-
-            </div>
+    
+            <Image className={styles.quizSheetImage} style={{top: "12px"}} src="/firetrack_mini.png" alt="quiz icon" width={70} height={70}></Image>
+          
           </div>
           <div className={styles.quizSheet} style={{backgroundColor: "#63B8C5"}}>
-            <div className={styles.quizSheetImage} style={{backgroundImage: `url('bus_stop_mini.png')`}}>
-
-            </div>
+            
+            <Image className={styles.quizSheetImage} style={{top: "8px"}} src="/bus_stop_mini.png" alt="quiz icon" width={70} height={70}></Image>
+          
           </div>
           <div className={styles.quizSheet} style={{backgroundColor: "#FF9064"}}>
-            <div className={styles.quizSheetImage} style={{backgroundImage: `url('oven_mini.png')`, top: "12px"}}>
-
-            </div>
+            <Image className={styles.quizSheetImage} style={{top: "12px"}} src="/oven_mini.png" alt="quiz icon" width={70} height={70}></Image>
           </div>
         </div>
       </div>
-    )
-  } else {
-    quizBlock = (  
-      <div className={styles.quizStatic} style={quizState ? {height: '510px'} : {height: '250px'}}>
-        <button className={styles.quizCloseBtn} onClick={() => setQuizState(false)}>
-          <span className={styles.btnLine} style={{transform: "rotate(45deg)"}}></span>
-          <span className={styles.btnLine} style={{transform: "rotate(-45deg)"}}></span>
-        </button>
-        <Quiz></Quiz>
-          
-      </div>
-    )
-  }
-  return quizBlock;
+  );
 }
 export default function Page() {
-  const [categories, setCategories] = React.useState([])
-  const [modalWindowState, setModalWindowState] = React.useState(false);
+  const [categories, setCategories] = React.useState(null);
+  const [articlesPaths, setArticlesPaths] = React.useState(null);
+  const [modalWindowState, setModalWindowState] = React.useState(React.useContext(modalContext));
+  const [modalWindowContent, setModalWindowContent] = React.useState((<div></div>))
 
   React.useEffect(() => {
-    getCategories().then(e => setCategories(e))}, [])
-  return (
-    <div>
+    let loadedArticlesPaths;
+    getCategories().then(categories => {
+      setCategories(categories);
+    });
+    getAllFirstArticlesRels().then(allFirstArticlesRels => setArticlesPaths(allFirstArticlesRels))
+    }, []);
+  React.useEffect(() => {
+    window.scroll(0, modalWindowState.scrollTop);
+  })
+  console.log("modalStatus", modalWindowState)
+  let pageContent;
+  if (categories != null &&  articlesPaths != null) {
+    pageContent = (
       <main>
-        
         <div className="container justify-center">
-          
           <div className={styles.sheetsContainer}>
-          {categories.map((cat) => ( 
-            <CategoryCard key={cat.id} rel={cat.rel} title={cat.title} backgroundColor={cat.backgroundColor} titleBackground={cat.titleColor} image={cat.image}></CategoryCard>
-              /*<Link href={`/categories/${cat.rel}`} className={styles.sheet} key={cat.id}
-              >
-                {cat.title}
-              </Link>*/
+            {categories.map((cat) => {
               
-            ))}    
-          </div>
-            
-            
+              let categoryContentPath = articlesPaths[cat.rel] ? articlesPaths[cat.rel] : '/';
+              return (
+                <CategoryCard key={cat.id} rel={categoryContentPath} title={cat.title} backgroundColor={cat.backgroundColor} titleBackground={cat.titleColor} image={cat.image}></CategoryCard>
+                /*<Link href={`/categories/${cat.rel}`} className={styles.sheet} key={cat.id}
+                >
+                  {cat.title}
+                </Link>*/
+              )
+            })}    
+          </div>  
         </div>
         <div className="container justify-center">
-          <QuizStatic></QuizStatic> 
+          <QuizStatic modalWindowState={modalWindowState} setModalWindowState={setModalWindowState} setModalWindowContent={setModalWindowContent}></QuizStatic>
         </div>
+        <HandlerButton eventHandler={() => {
+          
+          setModalWindowState(UpdateWindowState({prevContext: modalWindowState, state: true, scrollTop: document.documentElement.scrollTop}))
+          }} text={"Открыть модалку"}></HandlerButton>
+        <ModalWindow windowState={modalWindowState.state} backgroundContainerNeeded={false}>
+          {modalWindowContent}
+        </ModalWindow>
       </main>
-      
-      <HandlerButton eventHandler={() => setModalWindowState(true)} text={"Открыть модалку"}></HandlerButton>
-    </div>
+    )
+  } else {
+    pageContent = (
+     <LoadingPlug></LoadingPlug>
+    )
+  }
+  return (
+   pageContent
   );
 }

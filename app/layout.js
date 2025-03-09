@@ -1,6 +1,6 @@
 "use client"
 
-import React from "react";
+import React, { useEffect } from "react";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Rubik_Mono_One } from "next/font/google";
 import "./globals.css";
@@ -29,13 +29,8 @@ const RubicMonoOne = Rubik_Mono_One({
 
 export default function RootLayout({ children }) {
 
-  const [modalWindowState, setModalWindowState] = React.useState({
-    state: false,
-    scrollTop: 0,
-    backgoundContainerNeeded: true
-  });
+  const [modalWindowState, setModalWindowState] = React.useState(React.useContext(modalContext));
 
-  console.log(modalWindowState)
   return (
     <html lang="en">
       <head>
@@ -44,7 +39,7 @@ export default function RootLayout({ children }) {
       </head>
       
         <body>
-          <div className="pageContentWrapper"> 
+          <div className="pageContentWrapper" style={modalWindowState.state ? {position: 'fixed', top: `-${modalWindowState.scrollTop}px`} : {}}> 
             <div className={['headerContainer', RubicMonoOne.className].join(' ')}>
               <header className="primaryHeader">
                 <div className="logo">
@@ -58,15 +53,11 @@ export default function RootLayout({ children }) {
                   </nav>
               </header>
             </div>
-            <modalContext.Provider value={{
-            state: false,
-            scrollTop: 0,
-            backgoundContainerNeeded: true,
-            setState: setModalWindowState
-            }}>
+            <modalContext.Provider value={
+              Object.assign(modalWindowState, {setState: setModalWindowState})
+            }>
               {children}
             </modalContext.Provider>
-            <ModalWindow windowState={modalWindowState.state} windowContent={modalWindowState.windowContent}></ModalWindow>
           </div>
           
          

@@ -176,9 +176,8 @@
     width: 70px;
     height: 70px;
     top: 8px;
-    
-    background-repeat: no-repeat;
-    background-size: contain;
+    filter: drop-shadow(0 3px 3px rgba(0, 0, 0, 0.3) )
+
     
 }
 
@@ -313,11 +312,18 @@
     width: 42px;
     height: 42px;
     background-color:#FD6B53;
-    border: none;
+    border: 2px #FD6B53 solid;
     border-radius: 50%;
     margin-right: 10px;
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.25));
     z-index: 1;
+    transition: 0.3s;
+}
+
+.quizCloseBtn:hover {
+    transform: scale(1.1) rotate(180deg);
+    border-color: #FFF;
+    transition: 0.3s ease;
 }
 
 .btnLine {
@@ -430,7 +436,7 @@
 @keyframes soar {
    
     50% {
-        transform: translate(0px, 14px);
+        transform: translate(0px, 14px) scale(0.96);
     }
 }
 

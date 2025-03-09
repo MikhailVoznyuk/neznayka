@@ -36,6 +36,7 @@ export default function Page({params}) {
                         setComponents(components.concat(newComponent));
                         setBlockType(null);
                         }}>
+                        <input type='text' name="title" placeholder='Введите название блока'></input>
                         <input type="hidden" value="0" name="type"></input>
                         <textarea name="text"></textarea>
                         <button type="submit">Сохранить</button>
@@ -50,6 +51,7 @@ export default function Page({params}) {
                         setComponents(components.concat(newComponent));
                         setBlockType(null);
                     }}>
+                        <input type='text' name="title" placeholder='Введите название блока'></input>
                         <input type='hidden' name='type' value='1'></input>
                         <input type='file' name='image'></input>
                         <button type='submit'>Сохранить</button>
@@ -64,8 +66,9 @@ export default function Page({params}) {
                         setComponents(components.concat(newComponent));
                         setBlockType(null);
                     }}>
-                        <input type='hidden'></input>
-                        <input type='file'></input>
+                        <input type='text' name="title" placeholder='Введите название блока'></input>
+                        <input type='hidden' name='type' value='2'></input>
+                        <input type='file' name='video'></input>
                         <button type='submit'>Сохранить</button>
                     </form>
                 </div>

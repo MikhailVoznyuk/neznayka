@@ -33,7 +33,6 @@ export default async function Page({params}) {
             <div className="container justify-center">
 
             <div className="flex flex-column align-center">
-
                 {articles.map((article) => (
                     <div className={styles.articlePreview} key={article.id}>
                         <h3>{article.title}</h3>
@@ -42,10 +41,7 @@ export default async function Page({params}) {
                     </div>
                 ))}
             </div>
-            <div className="row">
-           
-    
-            </div>
+     
            
             
             
