@@ -8,7 +8,7 @@ import saveBlock from '@/components/server/pageEditor'
 import { usePathname } from 'next/navigation';
 import {getArticleById} from '@/components/server/pageEditor';
 import CreateBlockButton from '@/components/CreateBlockButton';
-import getBlock from '@/components/article/loadPageElements';
+import PageRender from '@/components/componentRender';
 
 
 
@@ -83,17 +83,17 @@ export default function Page({params}) {
             setComponents(e.content);
     });
     }, []);
-    function handleClick() {
-        setComponents(components.concat(getBlock(count)));
-        setCount(count + 1);
-    }
-
+    const componentsRender = new PageRender(true);
     return (
         <main>
             <div>
                 {components.map((item) => {
                     console.log(item.content);
-                    return getBlock(item, true)
+                    return (
+                    <div key={item.id}>
+                        {componentsRender.renderComponent(item)}
+                    </div>
+                    )
                 })}
                 {PageEditWindow(blockType, +route)}
             </div>

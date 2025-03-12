@@ -1,0 +1,94 @@
+.articleBlockContainer {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+   
+}
+
+.articleBlockTitle {
+    width: 80%;
+    margin-bottom: 20px;
+}
+
+.articleBlockTitle h5 {
+    font-size: 22px;
+    text-align: center;
+    color: #44474F;
+    word-spacing: -0.3em;
+}
+
+.articleBlockContent {
+    font-size: 18px;
+} 
+
+.particle {
+    position: absolute;
+}
+
+.articleTextContent {
+    width: calc(90vw - 30px * 2);
+    color: #44474F;
+}
+.articleVideoContent {
+    margin-top: 6px;
+    height: 60vh;
+    border-radius: 30px;
+}
+
+.articleBlockContent {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.articleBlockButtonContainer {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+}
+.articleBlockButton {
+    color: #FFF;
+    padding: 10px;
+    font-size: 18px;
+    border: none;
+    border-radius: 20px;
+    background-color: #3EC947;
+    border: #3EC947 3px solid;
+    word-spacing: -0.3em;
+    box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.25);
+    transition: 0.3s ease;
+}
+
+.articleBlockButton:hover {
+    border: #FFF 3px solid;
+    transform: scale(1.08);
+    transition: 0.3s ease;
+}
+
+/* Modal gallery */
+
+
+
+
+.modalGallery {
+    position: relative;
+    width: 55vw;
+    height: 62vh;
+    margin-top: 10px;
+}
+
+.gallerySlider {
+    width: 100%;
+    height: calc(62vh) !important;
+}
+
+.gallerySlider img {
+    border-radius: 30px;
+    width: 100%;
+    height: calc(62vh - 40px);
+}

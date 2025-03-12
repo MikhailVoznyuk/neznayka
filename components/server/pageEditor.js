@@ -47,11 +47,11 @@ export default async function saveBlock(formData, pageId) {
         const file = formData.get('video');
         const buffer = Buffer.from(await file.arrayBuffer());
         const currentTimestamp = Date.now();
-        let fileName = process.cwd() + 'public/videos/' + currentTimestamp + file.name.replaceAll(' ', '_');
+        let fileName = process.cwd() + '/public/videos/' + currentTimestamp + file.name.replaceAll(' ', '_');
         await writeFile(fileName, 
             buffer
         )
-        fileName = 'public/videos/' + currentTimestamp + file.name.replaceAll(' ', '_');
+        fileName = '/videos/' + currentTimestamp + file.name.replaceAll(' ', '_');
         block = {
             type: 2,
             title: formData.get('title'),

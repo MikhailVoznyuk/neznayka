@@ -42,12 +42,15 @@ export default function Page() {
         });
         getCategoryArticleRels(articleContent.category).then(categoryRels => setArticleNavRels(categoryRels));
         setArticleContent(articleContent);
-        
+        if (modalWindowState.scrollTop != 0) {
+            setModalWindowState(UpdateWindowState({prevContext: modalWindowState, state: false, scrollTop: 0}))
+        }
     });
    }, []);
    React.useEffect(() => {
-    console.log(modalWindowState.scrollTop)
-    window.scroll(0, modalWindowState.scrollTop)
+    console.log(modalWindowState.scrollTop);
+    window.scroll(0, modalWindowState.scrollTop);
+    
    })
    console.log(modalWindowState);
    let pageContent;
@@ -69,7 +72,7 @@ export default function Page() {
             </div>
             
             <div className = "container justify-center">
-                <div className={styles.ArticlesContainer}>
+                <div className={styles.articlesContainer}>
                     {articleContent?.content?.map(block => (
                         <div  key={block.id} className={[styles.articleCardWrapper, RubicMonoOne.className].join(' ')}
                             onClick={() => {
@@ -77,13 +80,12 @@ export default function Page() {
                                 const articleContentBlock = pageRender.renderComponent(block);
                                 const offsetY = document.documentElement.scrollTop
                                 const modalContentBlock = (
-                                    <ArticleModalContentBlock pageState={modalWindowState} setPageState={setModalWindowState} scrollTop={offsetY}>
+                                    <ArticleModalContentBlock pageState={modalWindowState} setPageState={setModalWindowState} setModalWindowContent={setModalWindowContent} scrollTop={offsetY}>
                                         {articleContentBlock}
                                     </ArticleModalContentBlock>
-                                )
-                                
-                                setModalWindowContent(modalContentBlock);
-                                setModalWindowState({prevContext: modalWindowState, state: true, scrollTop: offsetY})
+                                )  
+                                setModalWindowState(UpdateWindowState({prevContext: modalWindowState, state: true, scrollTop: offsetY}));
+                                setModalWindowContent(modalContentBlock);     
                             }}>
 
                             <ArticleContentBlock
@@ -96,7 +98,7 @@ export default function Page() {
                     ))}
                 </div>
             </div>
-            <ModalWindow windowState={modalWindowState.state}>
+            <ModalWindow windowState={modalWindowState.state} backgroundContainerColor={'#FFF0C9'}>
                     {modalWindowContent}
             </ModalWindow>
         </main>

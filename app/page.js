@@ -345,7 +345,7 @@ export default function Page() {
           
           setModalWindowState(UpdateWindowState({prevContext: modalWindowState, state: true, scrollTop: document.documentElement.scrollTop}))
           }} text={"Открыть модалку"}></HandlerButton>
-        <ModalWindow windowState={modalWindowState.state} backgroundContainerNeeded={false}>
+        <ModalWindow windowState={modalWindowState.state}>
           {modalWindowContent}
         </ModalWindow>
       </main>

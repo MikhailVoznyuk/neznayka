@@ -1,7 +1,9 @@
 .articlesContainer {
-    display: grid;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;;
     max-width: 960px;
     grid-template-columns: repeat(5, 1fr);
     column-gap: 30px;
-    row-gap: 30px;
+    row-gap: 10px;
 }
