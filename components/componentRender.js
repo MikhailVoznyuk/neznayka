@@ -1,12 +1,25 @@
 import ArticleBlock from "./article/modules";
 
 export default class PageRender {
-    constructor(isDev) {
+    constructor({isDev, categoryContent}) {
         this.isDev = isDev;
+        this.categoryContent = categoryContent;
     }
-    renderComponent(component) {
+    renderComponent({articleId, component, modalWindowState, setModalWindowState, setModalWindowContent, offsetY, completedBlocks, setCompletedBlocks}) {
         return (
-            <ArticleBlock component={component} isDev={this.isDev}></ArticleBlock>
+            <ArticleBlock
+                articleId={articleId}
+                modalWindowState={modalWindowState} 
+                component={component} 
+                categoryContent = {this.categoryContent}
+                isDev={this.isDev}
+                setModalWindowState={setModalWindowState} 
+                setModalWindowContent={setModalWindowContent} 
+                offsetY={offsetY}
+                completedBlocks={completedBlocks}
+                setCompletedBlocks={setCompletedBlocks}
+                >  
+            </ArticleBlock>
         )
     }
 }

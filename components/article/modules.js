@@ -1,8 +1,12 @@
+import React from 'react';
 import styles from './component.module.css'
 import RubikMonoOne from '../fonts/rubikMonoOne'
 import { RubikBold } from '../fonts/rubikMonoOne';
 import Image from 'next/image';
 import ModalGallery from './modalGallery';
+import ModalQuiz from './modalQuiz';
+import { UpdateWindowState } from '@/app/modalContext';
+import { addCompletedBlock } from '../server/cookies/cookiesStorage';
 
 export function EditSection() {
     return (
@@ -14,7 +18,12 @@ export function EditSection() {
     )
 }
 
-export default function ArticleBlock({component, isDev}) {
+export default function ArticleBlock({articleId, component, isDev, categoryContent, modalWindowState, setModalWindowState, setModalWindowContent, offsetY, completedBlocks, setCompletedBlocks}) {
+    const [isDone, setIsDone] = React.useState(false);
+    console.log('module', offsetY)
+    if (isDone) {
+        
+    }
     let componentContent = null;
     let confirmButtonMessage;
     if (component.type == 0) {
@@ -27,9 +36,11 @@ export default function ArticleBlock({component, isDev}) {
     } else if (component.type == 2) {
         componentContent = (<video className={styles.articleVideoContent} controls={true} src={component.content}></video>);
         confirmButtonMessage = 'Я посмотрел';
-    } else {
-        componentContent = (<div>В разработке</div>);
+    } else if (component.type == 3) {
+        componentContent = (<ModalQuiz quizContent={component} categoryContent={categoryContent} modalWindowState={modalWindowState} setModalWindowContent={setModalWindowContent} setModalWindowState={setModalWindowState} offsetY={offsetY}/>);
         confirmButtonMessage = 'Я посмотрел';
+    } else {
+        componentContent = (<div>В разработке</div>)
     }
     if (isDev) {
         return (
@@ -41,15 +52,38 @@ export default function ArticleBlock({component, isDev}) {
     } else {
         return (
             <div key={component.id} className={styles.articleBlockContainer}>
-                <div className={[styles.articleBlockTitle, RubikMonoOne.className].join(' ')}>
+                {component.type != 3 ?
+                ( <div className={[styles.articleBlockTitle, RubikMonoOne.className].join(' ')}>
                     <h5>{component.title}</h5>
-                </div>
-                <div className={styles.articleBlockContent}>
+                </div>) :  null
+                }
+               
+                <div className={styles.articleBlockContent} style={component.type == 3 ? {
+                    marginBottom: 0
+                } :
+                {}}>
                     {componentContent}
                 </div>
-                <div className={styles.articleBlockButtonContainer}>
-                    <button className={[styles.articleBlockButton, RubikMonoOne.className].join(' ')}>{confirmButtonMessage}</button>
-                </div>
+                {component.type != 3 ? (
+                     <div className={styles.articleBlockButtonContainer}>
+                        <button 
+                            className={[styles.articleBlockButton, RubikMonoOne.className].join(' ')}
+                            onClick={() => {
+                                setCompletedBlocks(completedBlocks.add(component.id));
+                                addCompletedBlock(articleId, component.id);
+                                setModalWindowState(UpdateWindowState({
+                                    prevContext: modalWindowState,
+                                    state: false,
+                                    scrollTop: offsetY, 
+                                }));
+                                setTimeout(() => {
+                                    setModalWindowContent((<div></div>))
+                                }, 500);
+                            }}>{confirmButtonMessage}</button>
+                    </div>
+                    ) : null
+                }
+               
                 
     
                 <div className={styles.particle} style={{top: '-30px', left: '10px'}}>

@@ -13,6 +13,7 @@ import { UpdateWindowState } from '@/app/modalContext';
 import ModalWindow from '@/components/modalWindow';
 import PageRender from '@/components/componentRender';
 import ArticleModalContentBlock from '@/components/articleModalContentBlock';
+import getArticleProgress, {addCompletedBlock} from '@/components/server/cookies/cookiesStorage';
 
 const RubicMonoOne = Rubik_Mono_One({
     weight: '400',
@@ -21,18 +22,14 @@ const RubicMonoOne = Rubik_Mono_One({
 
 
 export default function Page() {
-    function ModalContent({offsetY}) {
-        const modalContext = React.useContext(modalWindowContext);
-        return (
-            <button onClick={() => setModalWindowState(UpdateWindowState({state: false, scrollTop: offsetY, setState: modalContext.setState}))}>Закрыть</button>
-        )
-    }
    const [articleContent, setArticleContent] = React.useState(null);
    const [articlesNavRels, setArticleNavRels] = React.useState(null);
    const [currentCategory, setCurrentCategory] = React.useState(null);
    const [modalWindowState, setModalWindowState] = React.useState(React.useContext(modalWindowContext));
-   const [modalWindowContent, setModalWindowContent] = React.useState((<div></div>))
+   const [modalWindowContent, setModalWindowContent] = React.useState(null);
+   const [completedBlocks, setCompletedBlocks] = React.useState(new Set());
    const articleRel = usePathname().split('/').at(-1);
+
    React.useEffect(() => {
 
     getArticleByRel(articleRel).then((articleContent) => {
@@ -42,6 +39,7 @@ export default function Page() {
         });
         getCategoryArticleRels(articleContent.category).then(categoryRels => setArticleNavRels(categoryRels));
         setArticleContent(articleContent);
+        getArticleProgress(articleContent.id).then((blocks => setCompletedBlocks(blocks)));
         if (modalWindowState.scrollTop != 0) {
             setModalWindowState(UpdateWindowState({prevContext: modalWindowState, state: false, scrollTop: 0}))
         }
@@ -52,7 +50,7 @@ export default function Page() {
     window.scroll(0, modalWindowState.scrollTop);
     
    })
-   console.log(modalWindowState);
+   console.log('cookies', completedBlocks);
    let pageContent;
    if (articleContent != null && articlesNavRels != null && currentCategory != null) {
     pageContent = (
@@ -67,7 +65,6 @@ export default function Page() {
                     currentArticleRel={articleRel}
                     articleSettings={articleContent}
                 >
-    
                 </ArticleNav>
             </div>
             
@@ -76,9 +73,20 @@ export default function Page() {
                     {articleContent?.content?.map(block => (
                         <div  key={block.id} className={[styles.articleCardWrapper, RubicMonoOne.className].join(' ')}
                             onClick={() => {
-                                const pageRender = new PageRender(false);
-                                const articleContentBlock = pageRender.renderComponent(block);
-                                const offsetY = document.documentElement.scrollTop
+                                const pageRender = new PageRender({categoryContent: currentCategory, isDev: false});
+                                const offsetY = document.documentElement.scrollTop;
+                                const articleContentBlock = pageRender.renderComponent(
+                                    {
+                                     articleId: articleContent.id,
+                                     component: block, 
+                                     modalWindowState: modalWindowState, 
+                                     setModalWindowState:setModalWindowState,
+                                     setModalWindowContent:setModalWindowContent, 
+                                     offsetY:offsetY, 
+                                     completedBlocks: completedBlocks,
+                                     setCompletedBlocks: setCompletedBlocks,
+                                    });
+                               
                                 const modalContentBlock = (
                                     <ArticleModalContentBlock pageState={modalWindowState} setPageState={setModalWindowState} setModalWindowContent={setModalWindowContent} scrollTop={offsetY}>
                                         {articleContentBlock}
@@ -87,11 +95,10 @@ export default function Page() {
                                 setModalWindowState(UpdateWindowState({prevContext: modalWindowState, state: true, scrollTop: offsetY}));
                                 setModalWindowContent(modalContentBlock);     
                             }}>
-
                             <ArticleContentBlock
                                 title = {block.title} 
                                 articleBlockType={block.type} 
-                                backgroundColor={articleContent.pageColors.contentCard}>
+                                backgroundColor={(completedBlocks.has(block.id)) ? '#52CD61' : articleContent.pageColors.contentCard}>
                             </ArticleContentBlock>
                         </div>
                         

@@ -10,6 +10,7 @@
 }
 
 .articleBlockTitle {
+    position: relative;
     width: 80%;
     margin-bottom: 20px;
 }
@@ -22,6 +23,7 @@
 }
 
 .articleBlockContent {
+    position: relative;
     font-size: 18px;
 } 
 
@@ -91,4 +93,312 @@
     border-radius: 30px;
     width: 100%;
     height: calc(62vh - 40px);
+}
+
+/* Modal Quiz */ 
+
+.quizWindow {
+    position: relative;
+    height: 450px;
+    width: 800px;
+    transition: 0.5s ease;
+    margin-top: 20px;
+
+}
+
+.quizQuestionContainer {
+    position: relative;
+    display: flex;
+    width: 300px; 
+    padding: 8px 0;  
+    overflow: hidden;
+}
+
+.quizQuestion {
+    position: relative;
+    display: flex;
+    color:#44474F;
+    flex-basis: 300px;
+    flex-shrink: 0;
+    flex-grow: 0;
+    width: 300px;
+    left: 0;
+    justify-content: center;
+    transition: 0.5s ease;
+}
+
+.quizQuestion h5 {
+    font-size: 24px;
+}
+
+.questionBody {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 14px;
+}
+.quizQuestion button {
+    position: relative;
+    top: 0;
+    background-color: #FF9742;
+    color: #FFF;
+    font-size: 18px;
+    width: 280px;
+    height: 74px;
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid #FF9742;
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.25);
+    transition: 0.3s ease;
+}
+
+.quizQuestion button:hover {
+    transform: scale(1.03);
+    border: 2px solid #FFF;
+    transitioN: 0.2s ease;
+}
+
+.quizCharacter {
+    position: absolute;
+    width: 390px;
+    height: 370px;
+    background-image: url('/fox.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    bottom: -98px;
+    left: 10px;
+}
+
+.questionTitleContainer {
+    position: relative;
+    background: #D9D9D9;
+    width:fit-content;
+    height: fit-content;
+    max-width: 340px;
+    padding: 16px;
+    top: 8px;
+    border-radius: 20px;
+    font-size: 18px;
+    word-spacing: -8px;
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.25)
+}
+
+.questionTitleContainer span {
+    position: absolute;
+    
+    left: -12px;
+    top: calc(50% - 18px);
+    display: block;
+    width: 20px;
+    height: 36px;
+    clip-path: polygon(0 50%, 100% 0, 100% 100%);
+    
+    background-color: #D9D9D9;
+    
+
+}
+
+.questionTitleContainer h5 {
+    font-size: 18px;
+}
+
+.stageContainer {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.quizWindowHeader {
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    width: 100%;
+    height:44px;
+    margin-bottom: 14px;
+    margin-top: -22px;
+    margin-bottom: 18px;
+}
+
+.quizCloseBtn {
+    position: absolute;
+    top: 30px;
+    right: 20px;
+    width: 42px;
+    height: 42px;
+    background-color:#FD6B53;
+    border: 2px #FD6B53 solid;
+    border-radius: 50%;
+    margin-right: 10px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.25));
+    z-index: 1;
+    transition: 0.3s;
+}
+
+.quizCloseBtn:hover {
+    transform: scale(1.1) rotate(180deg);
+    border-color: #FFF;
+    transition: 0.3s ease;
+}
+
+.btnLine {
+    position: absolute;
+    width: 28px;
+    height: 3px;
+    top: calc(50% - 1.5px);
+    left: calc(50% - 14px);
+    background-color: #FFF;
+    border-radius: 5px;
+}
+.questionImage {
+    position: absolute;
+    left: 20px;
+    width: 300px;
+    height: 300px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    transform: translateY(0);
+    transition: 0.3s ease;
+    filter: drop-shadow(0 6px 6px rgba(0, 0, 0, 0.3));
+    z-index: -1;
+
+}
+
+.quizResultContainer {
+    position: absolute;
+    top: 290px;
+    width: 310px;
+    height: 80px;
+    color: #FFF;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FF9742;
+    border-radius: 20px;
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.25);
+    opacity: 0;
+    z-index: -1;
+    transform: translateY(0);
+    transition: 0.3s ease;
+}
+
+.quizResultContentContainer {
+    position: relative;
+    border-radius: 20px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-basis: 300px;
+    flex-shrink: 0;
+    flex-grow: 0;
+}
+
+.quizResultContentContainer .progressBar {
+    position: relative;
+    height: 93%;
+    width: 44px;
+    left: 36px;
+    border-radius: 20px;
+    background: linear-gradient(#5EE551 0%, #FBFB11 50%, #E43135 100%);
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+/* QuizBar */
+
+.quizBar {
+    position: relative;
+    height: 30px;
+   
+}
+
+.quizBarStage {
+    position: absolute;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #D9D9D9;
+    z-index: 1;
+    transition: 0.5s ease;
+}
+
+.quizBarLine {
+    position: absolute;
+    width: 44px;
+    height: 6px;
+    top: 11.5px;
+    left: 0;
+    background-color: #D9D9D9;
+    z-index: 0;
+    transition: 0.5s ease;
+}
+
+.quizButtonWrong {
+    background-color: #D13538 !important;
+    border-color: #D13538 !important;
+    transition: 0.6s ease;
+    animation-name: wrongButton;
+    animation-duration: 0.6s;
+    animation-iteration-count: 1;
+}
+
+.quizButtonCorrect {
+    background-color: #3EC947 !important;
+    border-color: #3EC947 !important;
+    transition: 0.3s;
+}
+
+@keyframes soar {
+   
+    50% {
+        transform: translate(0px, 10px) scale(0.96);
+    }
+}
+
+@keyframes wrongButton {
+    33% {
+        transform: rotate(3deg);
+    }
+    66% {
+        transform: rotate(-3deg);
+    }
+    100% {
+        transform: rotate(0deg) scale(1.03);
+    }
+}
+
+.quizConfirmButtonContainer {
+    position: absolute;
+    bottom: 0;
+    left: calc(50% - 120px);
+    z-index: -1;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: 0.3s ease;
+}
+.quizConfirmButton {
+    
+    color: #FFF;
+    font-size: 18px;
+    width: 240px;
+    padding: 10px;
+    background-color: #5EE551;
+    border: 3px #5EE551 solid;
+    border-radius: 20px;
+    word-spacing: -0.3em;
+    box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.25);
+    transition: 0.3s ease;
+    
+}
+
+.quizConfirmButton:hover {
+    border: #FFF 3px solid;
+    transform: scale(1.08);
+    transition: 0.3s ease;
 }

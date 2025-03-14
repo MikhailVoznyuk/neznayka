@@ -38,7 +38,6 @@ function Quiz(qestions, curQestion, categories) {
   
   const [stage, setStage] = React.useState(0);
   const [mistakesCounter, setMistakesCounter] = React.useState(0);
-  const [totalAnswersCounter, setTotalAnswersCounter] = React.useState(0);
   const [quizQuestions, setQuizQuestions] = React.useState([]);
   const [quizCategories, setQuizCategories] = React.useState([]);
   const [currentCategory, setCurrentCategory] = React.useState(null);
