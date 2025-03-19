@@ -14,6 +14,8 @@ import ModalWindow from "@/components/modalWindow";
 import modalContext from "./modalContext";
 import { UpdateWindowState } from "./modalContext";
 import LoadingPlug from "@/components/loadingPlug";
+import BookBlock from "@/components/bookBlock";
+import StepsBlock from "@/components/userStepsBlock";
 
 const RubicMonoOne = Rubik_Mono_One({
   weight: '400',
@@ -32,7 +34,6 @@ function CategoryCard({rel, title, image, backgroundColor, titleBackground}) {
     </Link>
   )
 }
-
 
 function Quiz(qestions, curQestion, categories) {
   
@@ -242,8 +243,6 @@ function QuizBlockModal({offsetY, modalState, modalBodyState}) {
 }
 
 function QuizStatic({modalWindowState, setModalWindowState, setModalWindowContent}) {
-
-
   return (
     <div className={[styles.quizStatic, RubicMonoOne.className, 'flex justify-between'].join(' ')} style={modalWindowState.state ? {opacity: 0} : {}}>
         <div className={styles.quizStaticContent}>
@@ -322,6 +321,24 @@ export default function Page() {
   if (categories != null &&  articlesPaths != null) {
     pageContent = (
       <main>
+        <div className="container justify-center">
+          <BookBlock/>
+        </div>
+        <div className={["container justify-center section-title", RubicMonoOne.className].join(' ')}>
+          <h3>Как это работает</h3>
+        </div>
+        <div className="container justify-center">
+          <StepsBlock
+            steps={[
+              {id: 0, title: "Играй", description: "Бросай кубик и делай ходы, выполняя задания поля, на которое ты пришел!", animation: "/animation/dice.lottie", animationStyle: {top: '-8px'}},
+              {id: 1, title: "Учись", description: "Если ты не знаешь, как ответить на вопрос поля, то открывай этот справочник и переходи к соотвуствующему уроку!", animation: "/animation/book.lottie"},
+              {id: 2, title: "Проверяй знания", description: "В конце каждого урока тебя ждет тест, чтобы ты оценил, насколько хорошо понял тему. Также ты можешь пройти викторину из случайных вопросов, чтобы оценить свои знания сразу по всем категориям!", animation: "/animation/arrow.lottie"},
+            ]}
+          />
+        </div>
+        <div className={["container justify-center section-title", RubicMonoOne.className].join(' ')}>
+          <h3>Выбери категорию</h3>
+        </div>
         <div className="container justify-center">
           <div className={styles.sheetsContainer}>
             {categories.map((cat) => {

@@ -281,6 +281,348 @@
     border-radius: 5px;
 }
 
+.previewBook {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 946px;
+    height: 492px;
+    flex-basis: 956px;
+    flex-grow: 0;
+    flex-shrink: 0;
+    margin: 10px;
+}
+
+.bookPageCover {
+    position: relative;
+    width: 476px;
+    height: 512px;
+    background-color: #2E4E80;
+    border-radius: 14px;
+    box-shadow: 0 0px 10px 4px rgba(0, 0, 0, 0.25);
+}
+
+.bookPage {
+    position: absolute;
+    top: 8px;
+    width: 439px;
+    height: 496px;
+    background-color: #FFF0C9;
+    border-radius: 14px;
+    box-shadow: 2px 0 2px 0 rgba(0, 0, 0, 0.25);
+}
+
+.bookPageContent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.bookTitle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 310px;
+    height: 190px;
+    padding: 20px;
+    background-color: #FF9742;
+    border-radius: 10px;
+    box-shadow: 4px 4px 0 0 rgba(0, 0, 0, 0.25);
+    margin-top: 30px;
+    margin-bottom: 24px;
+}
+
+.bookPreviewCards {
+    display: flex;
+    width: 300px;
+    height: 130px;
+    flex-basis: 120px;
+    flex-shrink: 0;
+    flex-grow: 0;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    row-gap: 12px;
+    column-gap: 12px;
+    margin-bottom: 50px;
+
+}
+
+.bookPreviewCard {
+    width: 66px;
+    height: 66px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    box-shadow: 3px 3px 0 0 rgba(0, 0, 0, 0.25);
+}
+
+.bookPreviewCard img {
+   position: relative;
+   filter: drop-shadow(2px 2px 1px  rgba(0, 0, 0, 0.25)); 
+}
+
+.bookButtonContainer {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+.bookButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFF;
+    font-size: 20px;
+    padding: 8px 12px;
+    background-color: #FF9742;
+    border-radius: 14px;
+    border: 2px solid #FF9742;
+    box-shadow: 3px 3px 0 0 rgba(0, 0, 0, 0.25);
+    transition: 0.3s ease;
+}
+
+.bookButton span {
+    margin-right: 6px;
+}
+
+.bookButton img {
+    position: relative;
+    top: -1px;
+    transition: 0.3s ease;
+}
+
+.bookButton:hover img {
+    transform: translateX(4px);
+    transition: 0.3s ease;
+}
+
+.bookButton:hover {
+    transform: scale(1.08);
+    transition: 0.3s ease;
+    border-color: #FFF;
+}
+
+.bookTitle {
+    color: #FFF;
+}
+
+.bookTitle h3 {
+    font-size: 24px;
+    text-align: center;
+}
+
+.bookTitle span {
+    width: 80%;
+    height: 4px;
+    background-color: #FFF;
+    border-radius: 2px;
+}
+
+.bookTitle p {
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.bookRivets {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: absolute;
+    left: calc(50% - 39px);
+    width: 78px;
+    height: 100%;
+    padding: 40px 0;
+
+}
+
+.bookRivet {
+   
+    position: relative;
+    display: flex;
+    width: 78px;
+    justify-content: space-between;
+}
+.bookRivetPuncture {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #FFF;
+}
+
+.bookRivet img {
+    position: absolute;
+    left: calc(50% - 35px);
+    top: calc(50% - 28px);
+    width: 70px;
+}
+
+.bookPageSection {
+    display: flex;
+    width: 100%;
+    padding: 20px 10px 20px 40px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bookPageSection img {
+    filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.25))
+}
+.bookArticle {
+    width: 190px;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    row-gap: 12px;
+    column-gap: 12px;
+}
+
+.bookArticle span {
+    width: 100%;
+    height: 5px;
+    background-color: #62656F;
+    border-radius: 5px;
+}
+
+.bookPageTitle {
+    align-items: center;
+    flex-direction: column;
+    row-gap: 10px;
+    column-gap: 10px;
+    padding-bottom: 0px;
+    padding-top: 0;
+}
+.bookPageTitle span {
+    width: 60%;
+    height: 6px;
+    background-color: #FF9742;
+    border-radius: 6px;
+}
+
+.bookPage .textBlock {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    column-gap: 10px;
+    background-color: #FF9742;
+    padding: 20px;
+    border-radius: 14px;
+    margin: -34px 0;
+}
+
+.bookPage .textBlock span {
+    width: 100%;
+    height: 6px;
+    background-color: #FFF;
+    border-radius: 14px;
+
+}
+
+.bookParticle {
+    position: absolute;
+    left: calc(100% - 120px);
+    bottom: 0;
+    animation: levitation;
+    animation-duration: 8s;
+    animation-iteration-count: infinite;
+}
+
+/* Step Block */
+
+.stepsBlock {
+    position: relative;
+    width: 680px;
+    padding-left: 70px;
+    box-sizing: border-box;
+    margin-bottom: -60px;
+}
+
+.stepBlock {
+    color: #FFF;
+    position: relative;
+    display: flex;;
+    width: 610px;
+    background-color: #2E4E80;
+    border-radius: 20px;
+    margin-bottom: 60px;
+    box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+.stepBlockColumn {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+.stepBlockTitle {
+    width: fit-content;
+    padding: 10px 30px;
+    background-color: #FF9742;
+    border-radius: 20px 0 20px 0;
+    box-shadow: 4px 4px 0 0 rgba(0, 0, 0, 0.25);
+
+}
+
+.stepBlockTitle h4 {
+    font-size: 28px;
+    font-weight: 600;
+    word-spacing: -0.6rem;
+}
+
+.stepBlockColumn p {
+    font-size: 22px;
+    padding: 20px 30px 30px 30px;
+}
+
+.lottieAnimationWrapper {
+    position: relative;
+    left: -70px;
+    top: 20px;
+    width: 158%;
+    height: 180px;
+  
+}
+
+.stepBlockParticle {
+    position: absolute;
+    left: -26px;
+    top: calc(50% - 30px);
+    width: 40px;
+    height:60px;
+    background-color: #2E4E80;
+    clip-path: polygon(0 50%, 100% 0, 100% 100%);
+}
+
+.stepBlockNumber {
+    color: #FFF;
+    font-size: 24px;
+    position: absolute; 
+    left: -80px;
+    top: calc(50% - 21px);
+    display: flex;
+    align-items: center;
+    justify-content: center;;
+    width: 42px;
+    height: 42px;
+    background-color:#FF9742;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.scoreLine {
+    position: absolute;
+    top: 98px;
+    left: 6px;
+}
+
+
 @keyframes loadingPlug {
     0% {
         transform: translateY(0);
@@ -291,3 +633,16 @@
     }
 }
 
+@keyframes levitation {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    50% {
+        transform: translate(-10px, -30px) scale(1.1);
+    }
+
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+}

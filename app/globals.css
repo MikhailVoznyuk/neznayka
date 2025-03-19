@@ -199,3 +199,8 @@ font-size: 30px;
   left: 2px;
 }
 
+.section-title {
+  font-size: 28px;
+  color: #44474F;
+  padding: 40px
+}
