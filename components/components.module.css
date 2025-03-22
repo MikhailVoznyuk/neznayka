@@ -89,10 +89,17 @@
     margin-bottom: 20px;
     border: none;
     transition: 0.3s ease;
+    cursor: pointer;
 }
+
 
 .articleContentBlockContainer:hover {
     transform: translateY(-14px);
+    transition: 0.3s ease;
+}
+
+.articleContentBlockContainer:hover .articleContentBlock {
+    background-color: var(--article-block-hover-color) !important;
     transition: 0.3s ease;
 }
 
@@ -103,10 +110,25 @@
     align-items: center;
     justify-content: center;
     color: #44474F;
+    
+}
+
+.articleBlockImage  {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+.articleBlockImage img {
+    position: relative;
+    filter: drop-shadow(0 4px 3px rgba(0, 0, 0, 0.25));
 }
 
 .articleBlockTitleContainer h5 {
-    text-align: center;;
+    text-align: center;
+    cursor: pointer;
 }
 
 .blockStatusContainer {

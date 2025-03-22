@@ -69,7 +69,7 @@ export default function Page() {
             </div>
             
             <div className = "container justify-center">
-                <div className={styles.articlesContainer}>
+                <div className={styles.articlesContainer} style={{'--article-block-hover-color': articleContent.pageColors.navLinkActive}}>
                     {articleContent?.content?.map(block => (
                         <div  key={block.id} className={[styles.articleCardWrapper, RubicMonoOne.className].join(' ')}
                             onClick={() => {
