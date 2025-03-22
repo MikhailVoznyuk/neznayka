@@ -14,12 +14,12 @@ export default function ArticleNav({navRels, currentDirectory, currentArticleRel
     console.log('relId', currentRelInd)
     return (
         <div className={styles.articleNavContainer}>
-                <div className={styles.articleNav}>
+                <div className={styles.articleNav} style={{'--nav-hover-color': articleSettings.pageColors.navLinkActive + 'B3'}}>
                     {navRels.map(rel => {
                         let articleItem;
                         if (rel.rel == currentArticleRel) {
                             articleItem = (
-                                <div className={styles.articleNavItemWrapper}  key = {rel.id}>
+                                <div className={styles.articleNavItemWrapper} style={{backgroundColor: articleSettings.pageColors.navLink}} key = {rel.id}>
                                     <div className={styles.articleNavItemActiveTitle} style={{backgroundColor: articleSettings.pageColors.navLinkActive}}>
                                         <h5 className={RubicMonoOne.className}>{articleSettings.title}</h5>
                                         <span className={styles.navItemTitleParticle} style={{backgroundColor: articleSettings.pageColors.navLinkActive}}></span>
@@ -27,14 +27,10 @@ export default function ArticleNav({navRels, currentDirectory, currentArticleRel
                                     <Link 
                                         className={styles.articleNavItem} 
                                         href={'/' + [currentDirectory, rel.rel].join('/')} 
-                                        style = {(rel.rel == currentArticleRel) ? 
-                                            {
+                                        style = {{
                                                 backgroundColor: articleSettings.pageColors.navLinkActive,
-                                                zIndex: 2 
-                                            } : 
-                                            {
-                                                backgroundColor: articleSettings.pageColors.navLink
-                                            }
+                                                zIndex: 3
+                                            } 
                                         }
                                     >
                                         <Image src={rel.icon} width={70} height={70} alt="Article navigation icon"></Image>
@@ -43,19 +39,10 @@ export default function ArticleNav({navRels, currentDirectory, currentArticleRel
                             )
                         } else {
                             articleItem = (
-                                <div className={styles.articleNavItemWrapper}  key = {rel.id}>
+                                <div className={styles.articleNavItemWrapper} style={{backgroundColor: articleSettings.pageColors.navLink}}  key = {rel.id}>
                                     <Link 
-                                        className={styles.articleNavItem} 
+                                        className={[styles.articleNavItem, styles.articleNavItemSecondary].join(' ')} 
                                         href={'/' + [currentDirectory, rel.rel].join('/')} 
-                                        style = {(rel.rel == currentArticleRel) ? 
-                                            {
-                                                backgroundColor: articleSettings.pageColors.navLinkActive,
-                                                zIndex: 2 
-                                            } : 
-                                            {
-                                                backgroundColor: articleSettings.pageColors.navLink
-                                            }
-                                        }
                                     >
                                         <Image src={rel.icon} width={70} height={70} alt="Article navigation icon"></Image>
                                     </Link>

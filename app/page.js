@@ -379,6 +379,9 @@ export default function Page() {
         <div className="container justify-center" id={'test'}>
           <QuizStatic modalWindowState={modalWindowState} setModalWindowState={setModalWindowState} setModalWindowContent={setModalWindowContent}></QuizStatic>
         </div>
+        <ModalWindow windowState={modalWindowState.state}>
+           {modalWindowContent}
+         </ModalWindow>
       </main>
     )
     
