@@ -76,6 +76,7 @@
 }
 
 .articleContentBlock {
+    position: relative;
     width: 200px;
     height: 200px;
     flex-basis: 200px;
@@ -101,8 +102,20 @@
     text-align: center;;
 }
 
+.blockStatusContainer {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 44px;
+    height: 44px;
+    background-color: #FFF;
+    border-radius: 16px 0 20px 0
+}
 
+.blockStatusContainer img {
+    position: relative;
 
+}
 /* Article Navigation */
 
 .articleNav {
@@ -214,17 +227,21 @@
 
 .loadingPlugContainer {
     position: fixed;
+    top: 0;
     width: 100vw;
-    height: 60vh;
+    height: 120vh;
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: #FFF;
 }
 
 .loadingPlug {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
+    top: -120px;
     width: 200px;
     height: 30px;
 }
@@ -534,6 +551,17 @@
     animation-iteration-count: infinite;
 }
 
+.bookMark {
+    position: absolute;
+    left: 87%;
+    top: 0;
+    width: 30px;
+    height: 60px;
+    background-color: #E43135;
+    clip-path: polygon(0 0, 0 100%, 50% calc(100% - 10px), 100% 100%, 100% 0);
+    
+}
+
 /* Step Block */
 
 .stepsBlock {
@@ -621,7 +649,6 @@
     top: 98px;
     left: 6px;
 }
-
 
 @keyframes loadingPlug {
     0% {

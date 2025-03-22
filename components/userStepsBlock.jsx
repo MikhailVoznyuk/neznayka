@@ -32,9 +32,7 @@ export default function StepsBlock({steps}) {
                         </div>
                         <div className={styles.stepBlockParticle}></div>
                         <span className={styles.stepBlockNumber}>{step.id + 1}</span>
-                       
                     </div>
-                    
                 )
             })}
              <Image className={styles.scoreLine} src='/lines_dashed_blue.svg' width={10} height={560} alt=''></Image>

@@ -96,9 +96,13 @@ export default function Page() {
                                 setModalWindowContent(modalContentBlock);     
                             }}>
                             <ArticleContentBlock
+                                isCompleted={(completedBlocks.has(block.id)) ? true : false}
                                 title = {block.title} 
                                 articleBlockType={block.type} 
-                                backgroundColor={(completedBlocks.has(block.id)) ? '#52CD61' : articleContent.pageColors.contentCard}>
+                                backgroundColor={(completedBlocks.has(block.id)) ? '#52CD61' : articleContent.pageColors.contentCard}
+                                statusImage = {(completedBlocks.has(block.id) ? '/icons/target.svg' : '/icons/clock.svg')}
+                            >
+                                
                             </ArticleContentBlock>
                         </div>
                         

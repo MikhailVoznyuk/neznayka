@@ -5,11 +5,12 @@ import styles from './component.module.css';
 import RubikMonoOne from "../fonts/rubikMonoOne";
 import Image from "next/image";
 import { UpdateWindowState } from "@/app/modalContext";
+import { addCompletedBlock } from "../server/cookies/cookiesStorage";
 
 
 
-export default function ModalQuiz({quizContent, categoryContent, modalWindowState, setModalWindowState, setModalWindowContent, offsetY}) {
-  
+export default function ModalQuiz({articleId, quizContent, categoryContent, modalWindowState, setModalWindowState, setModalWindowContent, offsetY, completedBlocks, setCompletedBlocks}) {
+    console.log(completedBlocks, setCompletedBlocks)
     const [stage, setStage] = React.useState(0);
     const [mistakesCounter, setMistakesCounter] = React.useState(0);
     const [totalAnswersCounter, setTotalAnswersCounter] = React.useState(0);
@@ -84,12 +85,15 @@ export default function ModalQuiz({quizContent, categoryContent, modalWindowStat
               <button 
                 className={[styles.quizConfirmButton, RubikMonoOne.className].join(' ')}
                 onClick={() => {
-                  setModalWindowState({
+                  console.log(quizContent.id)
+                  setCompletedBlocks(completedBlocks.add(quizContent.id));
+                  addCompletedBlock(articleId, quizContent.id);
+                  setModalWindowState(UpdateWindowState({
                     prevContext: modalWindowState,
                     state: false,
                     scrollTop: offsetY
-                  })
-                  setTimeout(() => setModalWindowContent(null), 500)
+                  }));
+                  setTimeout(() => setModalWindowContent(null), 500);
                 }}>Закончить тест</button>
             </div>
             <div className={styles.quizQuestionContainer}>

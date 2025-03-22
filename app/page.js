@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import Image from "next/image";
 import styles from "./page.module.css";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 import HandlerButton from "@/components/button";
 import { Rubik_Mono_One } from "next/font/google";
@@ -304,17 +305,38 @@ export default function Page() {
   const [categories, setCategories] = React.useState(null);
   const [articlesPaths, setArticlesPaths] = React.useState(null);
   const [modalWindowState, setModalWindowState] = React.useState(React.useContext(modalContext));
-  const [modalWindowContent, setModalWindowContent] = React.useState((<div></div>))
-
+  const [modalWindowContent, setModalWindowContent] = React.useState((<div></div>));
+  const [isAnchorReached, setIsAnchorReached] = React.useState(false);
+ 
   React.useEffect(() => {
     let loadedArticlesPaths;
     getCategories().then(categories => {
       setCategories(categories);
     });
-    getAllFirstArticlesRels().then(allFirstArticlesRels => setArticlesPaths(allFirstArticlesRels))
+    getAllFirstArticlesRels().then(allFirstArticlesRels => setArticlesPaths(allFirstArticlesRels));
+    if (modalWindowState.scrollTop != 0) {
+      setModalWindowState(UpdateWindowState({prevContext: modalWindowState, state: false, scrollTop: 0}))
+    }
     }, []);
   React.useEffect(() => {
-    window.scroll(0, modalWindowState.scrollTop);
+    console.log(document.documentElement.scrollTop, modalWindowState);
+    if (modalWindowState.scrollTop != 0) {
+      window.scroll(0, modalWindowState.scrollTop);
+    }
+  
+    
+  })
+  React.useEffect(() => {
+    const route = window.location.hash;
+    console.log('hash', route)
+    if (route.startsWith("#") && !isAnchorReached && categories != null &&  articlesPaths != null) {
+      
+      const element = document.querySelector(route);
+      console.log('YEEEEEEEEEES', element.getBoundingClientRect().top);
+      setTimeout(() =>  element.scrollIntoView({behavior: 'smooth'}), 0)
+     
+      setIsAnchorReached(true);
+    }
   })
   console.log("modalStatus", modalWindowState)
   let pageContent;
@@ -324,7 +346,7 @@ export default function Page() {
         <div className="container justify-center">
           <BookBlock/>
         </div>
-        <div className={["container justify-center section-title", RubicMonoOne.className].join(' ')}>
+        <div className={["container justify-center section-title", RubicMonoOne.className].join(' ')}  id={'how-it-works'}>
           <h3>Как это работает</h3>
         </div>
         <div className="container justify-center">
@@ -336,7 +358,7 @@ export default function Page() {
             ]}
           />
         </div>
-        <div className={["container justify-center section-title", RubicMonoOne.className].join(' ')}>
+        <div className={["container justify-center section-title", RubicMonoOne.className].join(' ')} id={'categories'}>
           <h3>Выбери категорию</h3>
         </div>
         <div className="container justify-center">
@@ -354,18 +376,12 @@ export default function Page() {
             })}    
           </div>  
         </div>
-        <div className="container justify-center">
+        <div className="container justify-center" id={'test'}>
           <QuizStatic modalWindowState={modalWindowState} setModalWindowState={setModalWindowState} setModalWindowContent={setModalWindowContent}></QuizStatic>
         </div>
-        <HandlerButton eventHandler={() => {
-          
-          setModalWindowState(UpdateWindowState({prevContext: modalWindowState, state: true, scrollTop: document.documentElement.scrollTop}))
-          }} text={"Открыть модалку"}></HandlerButton>
-        <ModalWindow windowState={modalWindowState.state}>
-          {modalWindowContent}
-        </ModalWindow>
       </main>
     )
+    
   } else {
     pageContent = (
      <LoadingPlug></LoadingPlug>

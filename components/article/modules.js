@@ -37,7 +37,7 @@ export default function ArticleBlock({articleId, component, isDev, categoryConte
         componentContent = (<video className={styles.articleVideoContent} controls={true} src={component.content}></video>);
         confirmButtonMessage = 'Я посмотрел';
     } else if (component.type == 3) {
-        componentContent = (<ModalQuiz quizContent={component} categoryContent={categoryContent} modalWindowState={modalWindowState} setModalWindowContent={setModalWindowContent} setModalWindowState={setModalWindowState} offsetY={offsetY}/>);
+        componentContent = (<ModalQuiz articleId={articleId} quizContent={component} categoryContent={categoryContent} modalWindowState={modalWindowState} setModalWindowContent={setModalWindowContent} setModalWindowState={setModalWindowState} offsetY={offsetY} completedBlocks={completedBlocks} setCompletedBlocks={setCompletedBlocks}/>);
         confirmButtonMessage = 'Я посмотрел';
     } else {
         componentContent = (<div>В разработке</div>)

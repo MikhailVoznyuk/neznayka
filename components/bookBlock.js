@@ -75,7 +75,12 @@ export default function BookBlock() {
                         </div>
                     </div>
                     <div className={styles.bookButtonContaiener}>
-                        <button className={[styles.bookButton, RubikMonoOne.className].join(' ')}>
+                        <button className={[styles.bookButton, RubikMonoOne.className].join(' ')} onClick={(event) => {
+                            const element = document.querySelector('#how-it-works');
+                            if (element) {
+                                element.scrollIntoView({behavior: 'smooth'});
+                            }
+                        }}>
                             <span>Начать</span>
                             <Image src="/arrow_white.png" alt="" width={20} height={17}></Image>
                         </button>
@@ -109,6 +114,9 @@ export default function BookBlock() {
                     <div className={styles.bookPageSection}>
                         <Image src='/firetrack_mini.png' width={136} height={136} alt='' style={{transform: 'scaleX(-1)'}}></Image>
                         <BookArticle linesCount={6}/>
+                    </div>
+                    <div className={styles.bookMark}>
+                        
                     </div>
                 </div>
                 
