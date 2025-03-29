@@ -103,8 +103,8 @@ main {
 }
 .primaryHeader {
   position: fixed;
-  
-  width: 1000px;
+  top: 10px;
+  width: calc(100vw - 20px);
   height: 70px;;
   background-color: #FFF0C9;
   border: #2E4E80 4px solid;
@@ -328,6 +328,94 @@ font-size: 30px;
   margin-top: 14px;
 }
 
+.primary-header-nav-btn-mobile {
+  position: relative;
+  height: 20px;
+  width: 30px;
+  border: none;
+
+  background-color: inherit;
+}
+
+.primary-header-nav-btn-mobile span {
+  left: 0;
+  position: absolute;
+  display: block;
+  background-color: #2E4E80;
+  width: 30px;
+  height: 3px;
+  border-radius: 4px;
+  transition: 0.3s ease;
+}
+
+.primary-header-nav-btn-mobile span:nth-child(1) {
+  top: -2px;
+}
+
+.primary-header-nav-btn-mobile span:nth-child(2) {
+  top: calc(50% - 2px);
+}
+.primary-header-nav-btn-mobile span:nth-child(3) {
+  top: calc(50% - 2px);
+}
+.primary-header-nav-btn-mobile span:nth-child(4) {
+  top: calc(99.9% - 2px);
+}
+
+.primary-header-nav-btn-mobile.active span:nth-child(1) {
+  left: 50%;
+  top: calc(50% - 2px);
+  width: 0;
+  transition: 0.3s ease;
+}
+
+.primary-header-nav-btn-mobile.active span:nth-child(2) {
+  background-color: #FF9742;
+  width: 32px;
+  transform: rotate(45deg);
+  transition: 0.3s ease;
+}
+.primary-header-nav-btn-mobile.active span:nth-child(3) {
+  background-color: #FF9742;
+  width: 32px;
+  transform: rotate(-45deg);
+  transition: 0.3s ease;
+}
+.primary-header-nav-btn-mobile.active span:nth-child(4) {
+  left: 50%;
+  top: calc(50% - 2px);
+  width: 0;
+  transition: 0.3s ease;
+}
+
+.nav-container-mob {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+.nav-link-mob {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 220px;
+  height: 50px;
+  background-color: #fff0c9;
+  border: 3px solid #2E4E80;
+  border-radius: 30px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25)
+}
+
+.nav-link-mob span {
+  font-size: 18px;
+  color: #2E4E80;
+  margin-left: 6px;
+  margin-bottom: -2px;
+  word-spacing: -0.5rem;
+}
+.nav-link-mob img {
+  position: relative;
+}
 @media screen and (max-width: 589px) {
   .primary-footer-content {
     flex-direction: column;
@@ -337,5 +425,21 @@ font-size: 30px;
     align-items: center;
     text-align: center;
     order: 3
+  }
+
+  .container {
+    padding: 4px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  main {
+    padding: 4px;
+  }
+}
+
+@media screen and (max-width: 1010px) {
+  .primaryHeader {
+    height: 60px;
   }
 }

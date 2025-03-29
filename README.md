@@ -37,6 +37,11 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 ## Деплой и обновление на NGINX
 
+1. Загрузить по последнему коммиту
+```bash
+git stash push --include-untracked
+pull git@github.com:MikhailVoznyuk/neznayka.git
+```
 
 1. Перезапустить Nginx командой 
 
@@ -44,8 +49,8 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 systemctl restart nginx
 ```
 
-2. Запустить компандой
+2. Запустить командой
 
 ```bash
-pm2 start npm --name neznayka start
+pm2 start ecosystem.config.js
 ```

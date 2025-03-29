@@ -1,13 +1,15 @@
 .sheetsContainer {
-    display: grid;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     max-width: 960px;
-    grid-template-columns: 1fr 1fr 1fr;
     column-gap: 30px;
     row-gap: 30px;
 }
 
 .sheet {
     position: relative;
+    display: block;
     border-radius: 20px;
     
     width: 300px;
@@ -433,6 +435,18 @@
     transition: 0.3s;
 }
 
+/* Category Slider */
+
+.categorySliderSlide {
+    display: flex !important;
+    justify-content: center;
+}
+
+.categorySlider {
+    height: 350px;
+}
+
+
 @keyframes soar {
    
     50% {
@@ -449,5 +463,11 @@
     }
     100% {
         transform: rotate(0deg) scale(1.03);
+    }
+}
+
+@media screen and (max-width: 589px) {
+    .sheet:hover {
+        transform: none;
     }
 }

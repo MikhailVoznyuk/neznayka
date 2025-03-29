@@ -10,7 +10,9 @@ import Link from "next/link";
 import Image from "next/image";
 import ModalWindow from "@/components/modalWindow";
 import modalWindowContext from "./modalContext";
+import { UpdateWindowState } from "./modalContext";
 import { RubikBold } from "@/components/fonts/rubikMonoOne";
+import RubikMonoOne from "@/components/fonts/rubikMonoOne";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,8 +36,22 @@ export default function RootLayout({ children }) {
   const [modalWindowState, setModalWindowState] = React.useState(React.useContext(modalContext));
   const [scrollPos, setScrollPos] = React.useState(0);
   const [isNavOpened, setIsNavOpened] = React.useState(true);
+  const [windowWidth, setWindowWidth] = React.useState(null);
+  const [modalWindowContent, setModalWindowContent] = React.useState(null);
+  const [isMobNavOpened, setIsMobNavOpened] = React.useState(
+    {
+      prevContext: {},
+      state: false, 
+      scrollTop: 0
+    }
+  )
   React.useEffect(() => {
+    setWindowWidth(window.innerWidth);
+    window.addEventListener('resize', () => {
+      setWindowWidth(window.innerWidth);
+    })
     window.addEventListener('scroll', (event) => {
+      
       const scrollTop = event.target.scrollingElement.scrollTop;
       if (scrollTop > scrollPos + 60) {
         setIsNavOpened(false);
@@ -45,8 +61,28 @@ export default function RootLayout({ children }) {
         setScrollPos(scrollTop);
       }
     })
+    
   })
+  React.useEffect(() => {
+    console.log('yes sir', modalWindowState.scrollTop);
+    if (typeof(isMobNavOpened.scrollTop) == 'string' && isMobNavOpened.scrollTop.startsWith('#')) {
+      const element = document.querySelector(isMobNavOpened.scrollTop);
+      console.log('ДА БЛЯТЬ', element)
+      if (element) {
+        console.log(true)
+        element.scrollIntoView({behavior: 'smooth'});
+        setIsMobNavOpened({isMobNavOpened, state: false, scrollTop: 0})
+      }
+    } else {
+      if (isMobNavOpened.scrollTop != 0) {
+        console.log('yes', isMobNavOpened.scrollTop)
+        window.scroll(0, isMobNavOpened.scrollTop)
+        setIsMobNavOpened(Object.assign(isMobNavOpened, {scrollTop: 0}))
+      } 
 
+    }
+    }, 
+    [modalWindowState, isMobNavOpened]);
 
   return (
     <html lang="en">
@@ -56,9 +92,10 @@ export default function RootLayout({ children }) {
       </head>
       
         <body>
-          <div className="pageContentWrapper" style={modalWindowState.state ? {position: 'fixed', top: `-${modalWindowState.scrollTop}px`} : {}} id={'top'}> 
+          <div className="pageContentWrapper" style={modalWindowState.state ? {position: 'fixed', top: `-${modalWindowState.scrollTop}px`} : (isMobNavOpened.state) ? {position: 'fixed', top: `-${isMobNavOpened.scrollTop}px`} : {}} id={'top'}> 
             <div className={['headerContainer', RubicMonoOne.className].join(' ')}>
-              <header className="primaryHeader" style={isNavOpened ? null : {transform: 'translateY(-100px)'}}>
+              {(windowWidth > 1010) ? 
+                <header className="primaryHeader" style={Object.assign(isNavOpened ? {} : {transform: 'translateY(-100px)'}, (modalWindowState) ? {zIndex: 11}: {})}>
                 <Link href='/' className="logo">
                   <Image src={'/logo.svg'} width={205} height={47} alt=''/>
                 </Link>
@@ -107,7 +144,138 @@ export default function RootLayout({ children }) {
                       <span className="nav-link-particle"></span>
                     </Link>
                   </nav>
-              </header>
+                </header> : 
+                <header className="primaryHeader" style={Object.assign(isNavOpened ? {} : {transform: 'translateY(-100px)'}, (modalWindowState) ? {zIndex: 11}: {})}>
+                  <Link href='/' className="logo">
+                    <Image src={'/logo.svg'} width={150} height={40} alt=''/>
+                  </Link>
+                  <button className={['primary-header-nav-btn-mobile', (isMobNavOpened.state) ? 'active' : ''].join(' ')} onClick={() => {
+                      if (!isMobNavOpened.state) {
+                        console.log('Открыто')
+                        setIsMobNavOpened (
+                          {
+                            state: true,
+                            prevContext: isMobNavOpened,
+                            scrollTop: document.documentElement.scrollTop
+                          }
+                        )
+                        setModalWindowContent(
+                          (
+                            <div className={'nav-container-mob'}>
+                              <Link className={'nav-link-mob'} href='/#test' onClick={(event) => 
+                                {
+                                  const element = document.querySelector('#test');
+                                  setIsMobNavOpened (
+                                  
+                                    {
+                                      prevContext: isMobNavOpened,
+                                      state: false,
+                                      scrollTop: '#test'
+                                    }
+                                    
+                                  )
+                                  if (element) {
+                                    event.preventDefault();
+                                  }
+                                }}
+                              >
+                                <Image style={{top: '-2px'}} src='/icons/quiz.svg' width={27} height={27} alt=''></Image>
+                                <span className={RubicMonoOne.className}>Викторина</span>
+                              </Link>
+                              <Link className={'nav-link-mob'} href='/#categories' onClick={(event) => 
+                                {     
+                                  const element = document.querySelector('#test');
+                                  setIsMobNavOpened (
+                                  
+                                    {
+                                      prevContext: isMobNavOpened,
+                                      state: false,
+                                      scrollTop: '#categories'
+                                    }
+                                    
+                                  )
+                                  
+                                  if (element) {
+                                    event.preventDefault();
+                                    
+                                  }
+                                }}
+                              >
+                                <Image style={{top: '0px'}} src='/icons/category.svg' width={23} height={23} alt=''></Image>
+                                <span className={RubicMonoOne.className}>Категории</span>
+                              </Link>
+                              <Link className={'nav-link-mob'} href='/about' onClick={(event) => 
+                                {
+                                  const element = document.querySelector('#about');
+                                  setIsMobNavOpened (
+                                  
+                                    {
+                                      prevContext: isMobNavOpened,
+                                      state: false,
+                                      scrollTop: '#about'
+                                    }
+                                    
+                                  )
+                                  if (element) {
+                                    console.log('prevented')
+                                    event.preventDefault();
+                                    
+                                  }
+                                }}
+                              >
+                                <Image style={{top: '1px'}} src='/icons/about.svg' width={25} height={25} alt=''></Image>
+                                <span className={RubicMonoOne.className}>О нас</span>
+                              </Link>
+                              <Link className={'nav-link-mob'} href='/contacts' onClick={(event) => 
+                                {
+                                 
+                                  const element = document.querySelector('#contacts');
+                                  setIsMobNavOpened (
+                                  
+                                    {
+                                      prevContext: isMobNavOpened,
+                                      state: false,
+                                      scrollTop: '#contacts'
+                                    }
+                                    
+                                  )
+                                  if (element) {
+                                    event.preventDefault();
+                                    
+                                  }
+                                }}
+                              >
+                                <Image style={{top: '-0.5px'}} src='/icons/contacts.svg' width={25} height={25} alt=''></Image>
+                                <span className={RubicMonoOne.className}>Контакты</span>
+                              </Link>
+                            </div>
+                          )
+                        )
+                        setIsNavOpened(true)
+                      } else {
+
+                        console.log('Закрыто')
+                        setIsMobNavOpened (
+                          {
+                            state: false,
+                            prevContext: isMobNavOpened,
+                            scrollTop: isMobNavOpened.scrollTop
+                          }
+                        )
+                        setModalWindowContent(null);
+                        setIsNavOpened(true)
+                      }
+                      
+                 
+                  }}>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </button>
+                  
+                </header>
+              }
             </div>
             <modalContext.Provider value={
               Object.assign(modalWindowState, {setState: setModalWindowState})
@@ -175,7 +343,9 @@ export default function RootLayout({ children }) {
                 <span>© Выживай-ка 2025.</span>
               </div>
             </footer>
-         
+            <ModalWindow windowState={isMobNavOpened.state} containerStyle={{position: 'fixed', top: '50px', transform: "translateY(0px)"}}>
+              {modalWindowContent}
+            </ModalWindow>
           </div>
          
           

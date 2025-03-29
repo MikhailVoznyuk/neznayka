@@ -2,14 +2,15 @@ import React from "react";
 import styles from "./components.module.css"
 import modalWindowContext from "@/app/modalContext";
 import { UpdateWindowState } from "@/app/modalContext";
-export default function ModalWindow({windowState, backgroundContainerColor=null, children})  {
+export default function ModalWindow({windowState, backgroundContainerColor=null, containerStyle={}, children})  {
     const [modalWindowState, setModalWindowState] = React.useState(false);
-    let windowContainerStyle = {};
+    let windowContainerStyle = containerStyle;
     if (windowState !=  modalWindowState) {
         setModalWindowState(windowState);
     }
     if (modalWindowState) {
         windowContainerStyle.transform = "translateY(0)";
+        windowContainerStyle.height = 'fit-content'
     }
     if (backgroundContainerColor) {
         windowContainerStyle.backgroundColor = backgroundContainerColor;

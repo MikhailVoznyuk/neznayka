@@ -16,7 +16,15 @@ import modalContext from "./modalContext";
 import { UpdateWindowState } from "./modalContext";
 import LoadingPlug from "@/components/loadingPlug";
 import BookBlock from "@/components/bookBlock";
+import { BookBlockMobile } from "@/components/bookBlock";
 import StepsBlock from "@/components/userStepsBlock";
+
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination, EffectCreative, Navigation} from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+
 
 const RubicMonoOne = Rubik_Mono_One({
   weight: '400',
@@ -307,8 +315,13 @@ export default function Page() {
   const [modalWindowState, setModalWindowState] = React.useState(React.useContext(modalContext));
   const [modalWindowContent, setModalWindowContent] = React.useState((<div></div>));
   const [isAnchorReached, setIsAnchorReached] = React.useState(false);
+  const [windowWidth, setWindowWidth] = React.useState(1920);
+
  
   React.useEffect(() => {
+    addEventListener('resize', () => {
+      setWindowWidth(window.innerWidth);
+    })
     let loadedArticlesPaths;
     getCategories().then(categories => {
       setCategories(categories);
@@ -320,31 +333,36 @@ export default function Page() {
     }, []);
   React.useEffect(() => {
     console.log(document.documentElement.scrollTop, modalWindowState);
+    setWindowWidth(window.innerWidth);
     if (modalWindowState.scrollTop != 0) {
+      console.log('scroll', modalWindowState.scrollTop)
       window.scroll(0, modalWindowState.scrollTop);
+      
     }
   
     
   })
   React.useEffect(() => {
     const route = window.location.hash;
-    console.log('hash', route)
     if (route.startsWith("#") && !isAnchorReached && categories != null &&  articlesPaths != null) {
       
       const element = document.querySelector(route);
-      console.log('YEEEEEEEEEES', element.getBoundingClientRect().top);
       setTimeout(() =>  element.scrollIntoView({behavior: 'smooth'}), 0)
      
       setIsAnchorReached(true);
     }
   })
-  console.log("modalStatus", modalWindowState)
+  console.log('windowWidth', windowWidth)
   let pageContent;
   if (categories != null &&  articlesPaths != null) {
     pageContent = (
       <main>
         <div className="container justify-center">
-          <BookBlock/>
+          {(windowWidth >= 1070) ? 
+            <BookBlock/> : 
+            <BookBlockMobile/>
+          }
+    
         </div>
         <div className={["container justify-center section-title", RubicMonoOne.className].join(' ')}  id={'how-it-works'}>
           <h3>Как это работает</h3>
@@ -362,19 +380,63 @@ export default function Page() {
           <h3>Выбери категорию</h3>
         </div>
         <div className="container justify-center">
-          <div className={styles.sheetsContainer}>
-            {categories.map((cat) => {
-              
-              let categoryContentPath = articlesPaths[cat.rel] ? articlesPaths[cat.rel] : '/';
-              return (
-                <CategoryCard key={cat.id} rel={categoryContentPath} title={cat.title} backgroundColor={cat.backgroundColor} titleBackground={cat.titleColor} image={cat.image}></CategoryCard>
-                /*<Link href={`/categories/${cat.rel}`} className={styles.sheet} key={cat.id}
-                >
-                  {cat.title}
-                </Link>*/
-              )
-            })}    
-          </div>  
+          {
+            (windowWidth > 600) ? 
+            (
+              <div className={styles.sheetsContainer}>
+                {categories.map((cat) => {
+                  
+                  let categoryContentPath = articlesPaths[cat.rel] ? articlesPaths[cat.rel] : '/';
+                  return (
+                    <CategoryCard key={cat.id} rel={categoryContentPath} title={cat.title} backgroundColor={cat.backgroundColor} titleBackground={cat.titleColor} image={cat.image}></CategoryCard>
+                    /*<Link href={`/categories/${cat.rel}`} className={styles.sheet} key={cat.id}
+                    >
+                      {cat.title}
+                    </Link>*/
+                  )
+                })}    
+              </div>  
+            ) : 
+            <div className="container justify-center">
+              <Swiper
+                className={styles.categorySlider}  style={{"--swiper-pagination-color" : "#FF9742", "--swiper-pagination-bullet-size": "12px", "--swiper-pagination-bullet-inactive-color" : "#2e4e80", '--swiper-pagination-bullet-inactive-opacity': 0.2}}
+                spaceBetween={0}
+                slidesPerView={1}
+                navigation={{
+                  clickable: true,
+                  nextEl: '.gallery-swiper-button-next',
+                  prevEl: '.gallery-swiper-button-prev',
+                  disabledClass: 'gallery-swiper-button-disabled'
+                }}
+                pagination={{
+                  clickable: true
+                }}
+                
+                modules={[Pagination, EffectCreative, Navigation]}
+                effect={'creative'}
+                creativeEffect={{
+                    prev: {
+                      shadow: false,
+                      translate: [0, 0, -400],
+                    },
+                    next: {
+                      translate: ['100%', 0, 0],
+                    },
+                  }}>
+                {categories.map((cat) => {
+                  
+                  let categoryContentPath = articlesPaths[cat.rel] ? articlesPaths[cat.rel] : '/';
+                  return (
+                    <SwiperSlide key={cat.id} className={styles.categorySliderSlide} >
+                      <CategoryCard  rel={categoryContentPath} title={cat.title} backgroundColor={cat.backgroundColor} titleBackground={cat.titleColor} image={cat.image}></CategoryCard>
+                    </SwiperSlide>
+               
+                  )
+                })}    
+              </Swiper>
+            </div>
+          }
+          
         </div>
         <div className="container justify-center" id={'test'}>
           <QuizStatic modalWindowState={modalWindowState} setModalWindowState={setModalWindowState} setModalWindowContent={setModalWindowContent}></QuizStatic>

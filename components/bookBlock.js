@@ -44,6 +44,75 @@ function BookArticle({linesCount}) {
         </div>
     )
 }
+
+export function BookBlockMobile() {
+    return (
+        <div className={[styles.previewBook, styles.previewBookMobile].join(' ')}>
+            <div className={styles.bookPage} style={{top: '12px', left: '12px'}}></div>
+            <div className={styles.bookPage} style={{top: '8px', left: '8px'}}></div>
+            <div className={styles.bookPage} style={{top: '4px', left: '4px'}}></div>
+            <div className={styles.bookPageCover}>
+                <div className={styles.bookPageContent}>
+                    <div className={styles.bookRivetsContainer}>
+                        <div className={styles.bookRivet}>
+                            <span></span>
+                            <Image src={'/rivets_ver.svg'} height={43} width={26} alt=''/>
+                        </div>
+                        <div className={styles.bookRivet}>
+                            <span></span>
+                            <Image src={'/rivets_ver.svg'} height={43} width={26} alt=''/>
+                        </div>
+                        <div className={styles.bookRivet}>
+                            <span></span>
+                            <Image src={'/rivets_ver.svg'} height={43} width={26} alt=''/>
+                        </div>
+                        <div className={styles.bookRivet}>
+                            <span></span>
+                            <Image src={'/rivets_ver.svg'} height={43} width={26} alt=''/>
+                        </div>
+                    </div>
+                    <div className={styles.bookTitle}>
+                        <h3 className={RubikMonoOne.className}>Справочник по безопасности</h3>
+                        <span></span>
+                        <p className={RubikBold.className}>Узнай, какие опасности существуют в мире, и как их избежать!</p>
+                    </div>
+                    <div className={styles.bookPreviewCards}>
+                        <div className={styles.bookPreviewCard} style={{backgroundColor: '#D3DED5'}}>
+                            <Image src='categories/book_cards/fireSafer.svg' width={60} height={60} style={{top: '1.5px'}} alt=''></Image>
+                        </div>
+                        <div className={styles.bookPreviewCard} style={{backgroundColor: '#FF9064'}}>
+                            <Image src='categories/book_cards/oven.svg' width={50} height={50} style={{top: '2.5px'}} alt=''></Image>
+                        </div>
+                        <div className={styles.bookPreviewCard} style={{backgroundColor: '#FF8F34'}}>
+                            <Image src='categories/book_cards/svetophor.svg' width={52} height={52} style={{top: '0.5px'}} alt=''></Image>
+                        </div>
+                        <div className={styles.bookPreviewCard} style={{backgroundColor: '#63B8C5'}}>
+                            <Image src='categories/book_cards/anonim.svg' width={52} height={52} style={{top: '1px'}} alt=''></Image>
+                        </div>
+                        <div className={styles.bookPreviewCard} style={{backgroundColor: '#B2A945'}}>
+                            <Image src='categories/book_cards/forest.svg' width={60} height={60} alt=''></Image>
+                        </div>
+                        <div className={styles.bookPreviewCard} style={{backgroundColor: '#FF6064'}}>
+                            <Image src='categories/book_cards/matches.svg' width={56} height={56} alt='' style={{top: '1.5px'}}></Image>
+                        </div>
+                    </div>
+                    <div className={styles.bookButtonContaiener}>
+                        <button className={[styles.bookButton, RubikMonoOne.className].join(' ')} onClick={(event) => {
+                            const element = document.querySelector('#how-it-works');
+                            if (element) {
+                                element.scrollIntoView({behavior: 'smooth'});
+                            }
+                        }}>
+                            <span>Начать</span>
+                            <Image src="/arrow_white.png" alt="" width={20} height={17}></Image>
+                        </button>
+                    </div>
+                </div>         
+            </div>
+        </div>
+    )
+}
+
 export default function BookBlock() {
     return (
         <div className={styles.previewBook}>
@@ -126,3 +195,4 @@ export default function BookBlock() {
         </div>
     )
 }
+
