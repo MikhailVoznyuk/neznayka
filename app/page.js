@@ -18,6 +18,7 @@ import LoadingPlug from "@/components/loadingPlug";
 import BookBlock from "@/components/bookBlock";
 import { BookBlockMobile } from "@/components/bookBlock";
 import StepsBlock from "@/components/userStepsBlock";
+import { StepsBlockMobile } from "@/components/userStepsBlock";
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, EffectCreative, Navigation} from 'swiper/modules';
@@ -358,7 +359,7 @@ export default function Page() {
     pageContent = (
       <main>
         <div className="container justify-center">
-          {(windowWidth >= 1070) ? 
+          {(windowWidth >= 600) ? 
             <BookBlock/> : 
             <BookBlockMobile/>
           }
@@ -368,13 +369,23 @@ export default function Page() {
           <h3>Как это работает</h3>
         </div>
         <div className="container justify-center">
-          <StepsBlock
-            steps={[
-              {id: 0, title: "Играй", description: "Бросай кубик и делай ходы, выполняя задания поля, на которое ты пришел!", animation: "/animation/dice.lottie", animationStyle: {top: '-8px'}},
-              {id: 1, title: "Учись", description: "Если ты не знаешь, как ответить на вопрос поля, то открывай этот справочник и переходи к соотвуствующему уроку!", animation: "/animation/book.lottie"},
-              {id: 2, title: "Проверяй знания", description: "В конце каждого урока тебя ждет тест, чтобы ты оценил, насколько хорошо понял тему. Также ты можешь пройти викторину из случайных вопросов, чтобы оценить свои знания сразу по всем категориям!", animation: "/animation/arrow.lottie"},
-            ]}
-          />
+          {(windowWidth >= 700) ?
+            <StepsBlock
+              steps={[
+                {id: 0, title: "Играй", description: "Бросай кубик и делай ходы, выполняя задания поля, на которое ты пришел!", animation: "/animation/dice.lottie", animationStyle: {top: '-8px'}},
+                {id: 1, title: "Учись", description: "Если ты не знаешь, как ответить на вопрос поля, то открывай этот справочник и переходи к соотвуствующему уроку!", animation: "/animation/book.lottie"},
+                {id: 2, title: "Проверяй знания", description: "В конце каждого урока тебя ждет тест, чтобы ты оценил, насколько хорошо понял тему. Также ты можешь пройти викторину из случайных вопросов, чтобы оценить свои знания сразу по всем категориям!", animation: "/animation/arrow.lottie"},
+              ]}
+            /> : 
+            <StepsBlockMobile 
+              steps={[
+                {id: 0, title: "Играй", description: "Бросай кубик и делай ходы, выполняя задания поля, на которое ты пришел!", animation: "/animation/dice.lottie", animationStyle: {top: '-16px', marginBottom: '-20px'}},
+                {id: 1, title: "Учись", description: "Если ты не знаешь, как ответить на вопрос поля, то открывай этот справочник и переходи к соотвуствующему уроку!", animation: "/animation/book.lottie", animationStyle: {top: '-10px', marginBottom: '-50px'}},
+                {id: 2, title: "Проверяй знания", description: "В конце каждого урока тебя ждет тест, чтобы ты оценил, насколько хорошо понял тему. Также ты можешь пройти викторину из случайных вопросов, чтобы оценить свои знания сразу по всем категориям!", animation: "/animation/arrow.lottie", animationStyle: {marginBottom: '10px'}} ,
+              ]}
+            />
+          }
+          
         </div>
         <div className={["container justify-center section-title", RubicMonoOne.className].join(' ')} id={'categories'}>
           <h3>Выбери категорию</h3>

@@ -114,8 +114,12 @@ export function BookBlockMobile() {
 }
 
 export default function BookBlock() {
+    const [windowWidth, setWindowWidth] = React.useState(null);
+    React.useEffect(() => {
+        setWindowWidth(window.innerWidth);
+    })
     return (
-        <div className={styles.previewBook}>
+        <div className={styles.previewBook}  style={(windowWidth) <= 1070 ? {transform: `scale(${windowWidth / 1070})`, height: `${windowWidth / 1070 * 512}px`} : {} }>
             <div className={[styles.bookPageCover, styles.bookPageCoverLeft].join(' ')}>
                 <div className={styles.bookPageContent}>
                     <div className={styles.bookTitle}>
