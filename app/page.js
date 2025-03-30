@@ -54,6 +54,7 @@ function Quiz(qestions, curQestion, categories) {
   const [currentCategory, setCurrentCategory] = React.useState(null);
   const [lastQuestionAttended, setLastQuestionAtended] = React.useState(-1);
   const [quizResultScore, setQuizResultScore] = React.useState(null);
+  const [windowWidth, setWindowWidth] = React.useState(null)
   React.useEffect(() => {
     getQuizQuestions().then(e => {
       setQuizQuestions(e.concat({isLast: true})); 
@@ -64,6 +65,9 @@ function Quiz(qestions, curQestion, categories) {
   React.useEffect(() => {
     getCategories().then(e => setQuizCategories(e));
   }, [])
+  React.useEffect(() => {
+    setWindowWidth(window.innerWidth);
+  })
   const count = quizQuestions.length;
   let quizBarSections = [];
   let quizBarLines = [];
@@ -80,26 +84,26 @@ function Quiz(qestions, curQestion, categories) {
               let block = null;
               if (item < stage) {
                 block = (
-                  <span key={item} className={styles.quizBarStage} style={{left: `${item * 40 + item * 30}px`, backgroundColor: `#FF9742`, color: "#FFF"}}>
+                  <span key={item} className={styles.quizBarStage} style={(windowWidth >= 750) ? {left: `${item * 40 + item * 30}px`, backgroundColor: `#FF9742`, color: "#FFF"} : {left: `${item * 12 + item * 18}px`, backgroundColor: `#FF9742`, color: "#FFF"}}>
                     {item + 1}
                   </span>
                 )
               } else if (stage == count - 1 && item == count - 1) {
                 block = (
-                  <span key={item} className={styles.quizBarStage} style={{left: `${item * 40 + item * 30}px`, backgroundColor: `#FF9742`, color: "#FFF"}}>
+                  <span key={item} className={styles.quizBarStage} style={(windowWidth >= 750) ? {left: `${item * 40 + item * 30}px`, backgroundColor: `#FF9742`, color: "#FFF"} : {left: `${item * 12 + item * 18}px`,  backgroundColor: `#FF9742`, color: "#FFF"}}>
                     <Image src="/flags.svg" alt="Quiz final step icon" width={19} height={19}></Image>
                   </span>
                 )
               } else {
                 if (item == count - 1) {
                   block = (
-                    <span key={item} className={styles.quizBarStage} style={{left: `${item * 40 + item * 30}px`}}>
-                      <Image src="/flags.svg" alt="Quiz final step icon" width={19} height={19}></Image>
+                    <span key={item} className={styles.quizBarStage} style={(windowWidth >= 750) ? {left: `${item * 40 + item * 30}px`} : {left: `${item * 12 + item * 18}px`}}>
+                      <Image src="/flags.svg" alt="Quiz final step icon" width={(windowWidth >= 750) ? 19: 14} height={(windowWidth >= 750) ? 19: 14}></Image>
                     </span>
                   )
                 } else {
                   block = (
-                    <span key={item} className={styles.quizBarStage} style={{left: `${item * 40 + item * 30}px`}}>
+                    <span key={item} className={styles.quizBarStage} style={(windowWidth >= 750) ? {left: `${item * 40 + item * 30}px`} : {left: `${item * 12 + item * 18}px`}}>
                       {item + 1}
                     </span>
                   ) 
@@ -108,21 +112,21 @@ function Quiz(qestions, curQestion, categories) {
               return block;
               }
             )}
-            <span className={styles.quizBarLine} style={{width: `${30 * count + 40 * (count - 1) - 4}px`, left: "2px"}}></span>
-            <span className={styles.quizBarLine} style={{width: `${2 * stage + stage * 40 + stage * 27}px`, left: "28px", backgroundColor: "#FF9742"}}></span>
+            <span className={styles.quizBarLine} style={(windowWidth >= 750) ? {width: `${30 * count + 40 * (count - 1) - 4}px`, left: "2px"} : {width: `${16 * count + 12 * (count - 1) - 4}px`, left: "2px"} }></span>
+            <span className={styles.quizBarLine} style={(windowWidth >= 750) ? {width: `${2 * stage + stage * 40 + stage * 27}px`, left: "28px", backgroundColor: "#FF9742"} : {width: `${2 * stage + stage * 12 + stage * 13}px`, left: "18px", backgroundColor: "#FF9742"}}></span>
           
           </div>
         </div>
         
         <div className={styles.stageContainer}>
-          <div className={styles.questionTitleContainer}>
+          <div className={styles.questionTitleContainer} style = {quizResultScore != null && windowWidth < 750 ? {top: '100px'}  : {}}>
               <h5 className={RubicMonoOne.className}>{quizQuestions[stage]?.question}</h5>
               <span></span>
           </div>
-          <div className={[styles.quizResultContainer, RubicMonoOne.className].join(' ')} style={(quizResultScore != null) ? {top: '340px'} : {}}>
+          <div className={[styles.quizResultContainer, RubicMonoOne.className].join(' ')} style={(quizResultScore != null) ? ((windowWidth >= 750) ? {top: '340px'} : {top: '350px'}) : {}}>
             <p>Твой результат:<br></br>{quizResultScore} из 100 баллов</p>
           </div>
-          <div className={styles.quizQuestionContainer}>
+          <div className={styles.quizQuestionContainer} style={(quizResultScore != null && windowWidth < 750) ? {position: 'absolute', top: '20px'} : {}}>
           
             {quizQuestions.map(question => {
               if (!question.isLast) {
@@ -202,10 +206,10 @@ function Quiz(qestions, curQestion, categories) {
                 return (
                   <div key={quizQuestions.length} className={styles.quizResultContentContainer} style={{left: `${-300 * stage}px`, transition: `${0.15}s ease`}}>
                     <div className={styles.progressBar}></div>
-                    <SideNotice content={100} color={'#2B2B2B'} backgroundColor={'#D9D9D9'} customStyle={{top: "-6px", left:'232px'}} isReversed={false}></SideNotice>
-                    <SideNotice content={50} color={'#2B2B2B'} backgroundColor={'#D9D9D9'} customStyle={{top: `${(-6 + 300) / 2}px`, left:'232px'}} isReversed={false}></SideNotice>
-                    <SideNotice content={0} color={'#2B2B2B'} backgroundColor={'#D9D9D9'} customStyle={{top: "302px", left:'232px'}} isReversed={false}></SideNotice>
-                    <SideNotice content={'Ты здесь!'} color={'#FFF'} backgroundColor={'#ff9742'} customStyle={{top: `${302 - Math.trunc((6 + 302) * quizResultScore / 100)}px`, left:'0'}} isReversed={true}></SideNotice>
+                    <SideNotice content={100} color={'#2B2B2B'} backgroundColor={'#D9D9D9'} customStyle={(windowWidth >= 750) ? {top: "-6px", left:'232px'} : {top: "5px", left:'224px'}} isReversed={false}></SideNotice>
+                    <SideNotice content={50} color={'#2B2B2B'} backgroundColor={'#D9D9D9'} customStyle={(windowWidth >= 750) ? {top: `${(-6 + 300) / 2}px`, left:'232px'} : {top: '5px', left:`${(227) / 2 + 16}px`}} isReversed={false}></SideNotice>
+                    <SideNotice content={0} color={'#2B2B2B'} backgroundColor={'#D9D9D9'} customStyle={(windowWidth >= 750) ?  {top: "302px", left:'232px'} : {top: "5px", left:'41px'}} isReversed={false}></SideNotice>
+                    <SideNotice content={'Ты здесь!'} color={'#FFF'} backgroundColor={'#ff9742'} customStyle={(windowWidth >= 750) ? {top: `${302 - Math.trunc((6 + 302) * quizResultScore / 100)}px`, left:'0'} : {top: '70px', left: `${Math.trunc(50 + (200 * quizResultScore / 100) - 57)}px`}} isReversed={true}></SideNotice>
                   </div>
                 )
               }
@@ -215,21 +219,24 @@ function Quiz(qestions, curQestion, categories) {
             })}
           </div>
         </div>
-        {quizCategories.map(category => {
-                      
-          let questionImage = null;
-          if (currentCategory == category.id) {
+        {(windowWidth >= 750) ?
+          quizCategories.map(category => {
+                        
+            let questionImage = null;
+            if (currentCategory == category.id) {
 
-            questionImage = (
-              <div key={category.id} className={styles.questionImage} style={{backgroundImage: `url(${category.image})`, top: `${category.top}`, animationName: `${styles.soar}`, animationDuration: "5s", animationIterationCount: "infinite"}}></div>
-            );
-          } else {
-            questionImage = (
-              <div key={category.id} className={styles.questionImage} style={{backgroundImage: `url(${category.image})`, top: "120%"}}></div>
-            )
-          }
-          return questionImage;
-        })}
+              questionImage = (
+                <div key={category.id} className={styles.questionImage} style={{backgroundImage: `url(${category.image})`, top: `${category.top}`, animationName: `${styles.soar}`, animationDuration: "5s", animationIterationCount: "infinite"}}></div>
+              );
+            } else {
+              questionImage = (
+                <div key={category.id} className={styles.questionImage} style={{backgroundImage: `url(${category.image})`, top: "120%"}}></div>
+              )
+            }
+            return questionImage;
+          }) : 
+          null
+        }
 
       </div>
     )
@@ -253,10 +260,41 @@ function QuizBlockModal({offsetY, modalState, modalBodyState}) {
 }
 
 function QuizStatic({modalWindowState, setModalWindowState, setModalWindowContent}) {
+  const [windowWidth, setWindowWidth] = React.useState(null);
+  React.useEffect(() => {
+    setWindowWidth(window.innerWidth);
+  })
   return (
     <div className={[styles.quizStatic, RubicMonoOne.className, 'flex justify-between'].join(' ')} style={modalWindowState.state ? {opacity: 0} : {}}>
         <div className={styles.quizStaticContent}>
           <h5>Пройдите 5-минутную викторину и проверьте свои знания!</h5>
+          {(windowWidth < 856) ? 
+            <div className={styles.quizSheetsContainer}>
+            <div className={styles.quizSheet} style={{backgroundColor: "#FF8F34"}}>
+              <Image className={styles.quizSheetImage} style={{top: "7px"}} src='/svetofor_mini.png' alt="quiz icon" width={70} height={70}></Image>
+            </div>
+            <div className={styles.quizSheet} style={{backgroundColor: "#47B0EE"}}>
+              <Image className={styles.quizSheetImage} style={{top: "8px"}} src="/notebook_mini.png" alt="quiz icon" width={70} height={70}></Image>
+            </div>
+            <div className={styles.quizSheet} style={{backgroundColor: "#4C9B77"}}>
+              <Image className={styles.quizSheetImage} style={{top: "7px", left: '4px'}} src="/fire_mini.png" alt="quiz icon" width={70} height={70}></Image>
+            </div>
+            <div className={styles.quizSheet} style={{backgroundColor: "#FF6064"}}>
+      
+              <Image className={styles.quizSheetImage} style={{top: "9px"}} src="/firetrack_mini.png" alt="quiz icon" width={70} height={70}></Image>
+            
+            </div>
+            <div className={styles.quizSheet} style={{backgroundColor: "#63B8C5"}}>
+              
+              <Image className={styles.quizSheetImage} style={{top: "6.5px"}} src="/bus_stop_mini.png" alt="quiz icon" width={70} height={70}></Image>
+            
+            </div>
+            <div className={styles.quizSheet} style={{backgroundColor: "#FF9064"}}>
+              <Image className={styles.quizSheetImage} style={{top: "9px", left: "4.5px"}} src="/oven_mini.png" alt="quiz icon" width={70} height={70}></Image>
+            </div>
+            </div> : 
+            null
+          }
           <HandlerButton text={<div className={styles.btnContent}>
                 <span className={styles.btnText}>Начать</span>
                 <span className={styles.btnArrow}></span>
@@ -266,7 +304,7 @@ function QuizStatic({modalWindowState, setModalWindowState, setModalWindowConten
               const offsetY = document.documentElement.scrollTop;
               
               setModalWindowContent((
-                <div className={styles.quizStatic} style={{height: '510px'}}>
+                <div className={styles.quizStatic} style={windowWidth >= 750 ? {height: '510px'} : {height: '514px'}}>
                   <button className={styles.quizCloseBtn} onClick={() => {
                       
                       console.log(offsetY);
@@ -283,30 +321,33 @@ function QuizStatic({modalWindowState, setModalWindowState, setModalWindowConten
           </HandlerButton>
         
         </div>
-        <div className={styles.quizSheetsContainer}>
-          <div className={styles.quizSheet} style={{backgroundColor: "#FF8F34"}}>
-            <Image className={styles.quizSheetImage} style={{top: "8px"}} src='/svetofor_mini.png' alt="quiz icon" width={70} height={70}></Image>
-          </div>
-          <div className={styles.quizSheet} style={{backgroundColor: "#47B0EE"}}>
-            <Image className={styles.quizSheetImage} style={{top: "8px"}} src="/notebook_mini.png" alt="quiz icon" width={70} height={70}></Image>
-          </div>
-          <div className={styles.quizSheet} style={{backgroundColor: "#4C9B77"}}>
-            <Image className={styles.quizSheetImage} style={{top: "6px", left: '6px'}} src="/fire_mini.png" alt="quiz icon" width={70} height={70}></Image>
-          </div>
-          <div className={styles.quizSheet} style={{backgroundColor: "#FF6064"}}>
-    
-            <Image className={styles.quizSheetImage} style={{top: "12px"}} src="/firetrack_mini.png" alt="quiz icon" width={70} height={70}></Image>
-          
-          </div>
-          <div className={styles.quizSheet} style={{backgroundColor: "#63B8C5"}}>
+        {(windowWidth >= 856) ? 
+            <div className={styles.quizSheetsContainer}>
+            <div className={styles.quizSheet} style={{backgroundColor: "#FF8F34"}}>
+              <Image className={styles.quizSheetImage} style={{top: "8px"}} src='/svetofor_mini.png' alt="quiz icon" width={70} height={70}></Image>
+            </div>
+            <div className={styles.quizSheet} style={{backgroundColor: "#47B0EE"}}>
+              <Image className={styles.quizSheetImage} style={{top: "8px"}} src="/notebook_mini.png" alt="quiz icon" width={70} height={70}></Image>
+            </div>
+            <div className={styles.quizSheet} style={{backgroundColor: "#4C9B77"}}>
+              <Image className={styles.quizSheetImage} style={{top: "6px", left: '6px'}} src="/fire_mini.png" alt="quiz icon" width={70} height={70}></Image>
+            </div>
+            <div className={styles.quizSheet} style={{backgroundColor: "#FF6064"}}>
+      
+              <Image className={styles.quizSheetImage} style={{top: "12px"}} src="/firetrack_mini.png" alt="quiz icon" width={70} height={70}></Image>
             
-            <Image className={styles.quizSheetImage} style={{top: "8px"}} src="/bus_stop_mini.png" alt="quiz icon" width={70} height={70}></Image>
-          
-          </div>
-          <div className={styles.quizSheet} style={{backgroundColor: "#FF9064"}}>
-            <Image className={styles.quizSheetImage} style={{top: "12px"}} src="/oven_mini.png" alt="quiz icon" width={70} height={70}></Image>
-          </div>
-        </div>
+            </div>
+            <div className={styles.quizSheet} style={{backgroundColor: "#63B8C5"}}>
+              
+              <Image className={styles.quizSheetImage} style={{top: "8px"}} src="/bus_stop_mini.png" alt="quiz icon" width={70} height={70}></Image>
+            
+            </div>
+            <div className={styles.quizSheet} style={{backgroundColor: "#FF9064"}}>
+              <Image className={styles.quizSheetImage} style={{top: "12px"}} src="/oven_mini.png" alt="quiz icon" width={70} height={70}></Image>
+            </div>
+            </div> : 
+            null
+          }
       </div>
   );
 }
@@ -392,7 +433,7 @@ export default function Page() {
         </div>
         <div className="container justify-center">
           {
-            (windowWidth > 600) ? 
+            (windowWidth >= 750) ? 
             (
               <div className={styles.sheetsContainer}>
                 {categories.map((cat) => {

@@ -74,7 +74,7 @@ export default function RootLayout({ children }) {
         setIsMobNavOpened({isMobNavOpened, state: false, scrollTop: 0})
       }
     } else {
-      if (isMobNavOpened.scrollTop != 0) {
+      if (isMobNavOpened.scrollTop != 0 && isMobNavOpened.state == false) {
         console.log('yes', isMobNavOpened.scrollTop)
         window.scroll(0, isMobNavOpened.scrollTop)
         setIsMobNavOpened(Object.assign(isMobNavOpened, {scrollTop: 0}))

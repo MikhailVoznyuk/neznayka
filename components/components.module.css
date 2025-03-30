@@ -862,3 +862,22 @@
     }
 }
 
+@media screen and (max-width: 749px) {
+    .sideNoticeText {
+        font-size: 12px;
+        padding: 4px 6px;
+    }
+    .sideNoticeParticle {
+        width: 10px;
+        height: 18px;
+        left: calc(50% - 5px);
+        top: calc(100% - 9.5px);
+        transform: rotate(-90deg)
+    }
+
+    .sideNoticeParticle.sideNoticeParticleRight{
+        left: calc(50% - 5px);
+        top: calc(-9px);
+        transform: rotate(90deg)
+    }
+}
