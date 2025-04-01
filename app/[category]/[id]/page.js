@@ -109,7 +109,7 @@ export default function Page() {
                     ))}
                 </div>
             </div>
-            <ModalWindow windowState={modalWindowState.state} backgroundContainerColor={'#FFF0C9'}>
+            <ModalWindow windowState={modalWindowState.state} backgroundContainerColor={'#FFF0C9'} isArticle={true}>
                     {modalWindowContent}
             </ModalWindow>
         </main>

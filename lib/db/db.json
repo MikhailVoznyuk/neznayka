@@ -16,7 +16,7 @@
             "rel":"pedestrians",
             "title":"Правила для пешеходов",
             "description":"Правила дорожного движения",
-            "linkIcon":"/articles/fire_safety/extinguisher.png",
+            "linkIcon": "/articles/road/pedastrian.png",
             "content": [
                     {
                         "type":0,
@@ -141,7 +141,7 @@
             "rel":"cyclists",
             "title":"Правила для велосепедистов",
             "description":"Правила дорожного движения",
-            "linkIcon":"/articles/fire_safety/extinguisher.png",
+            "linkIcon":"/articles/road/bycicle.png",
             "content": [
                     {
                         "type":0,
@@ -266,7 +266,7 @@
             "rel":"yard",
             "title":"Правила во дворе",
             "description":"Правила дорожного движения",
-            "linkIcon":"/articles/fire_safety/extinguisher.png",
+            "linkIcon":"/articles/road/yard.png",
             "content": [
                     {
                         "type":0,
@@ -391,7 +391,7 @@
             "rel":"transport",
             "title":"Правила в транспортe",
             "description":"Правила дорожного движения",
-            "linkIcon":"/articles/fire_safety/extinguisher.png",
+            "linkIcon":"/articles/road/bus.png",
             "content": [
                     {
                         "type":0,
@@ -516,7 +516,7 @@
             "rel":"railway",
             "title":"Правила на железной дороге",
             "description":"Правила дорожного движения",
-            "linkIcon":"/articles/fire_safety/extinguisher.png",
+            "linkIcon":"/articles/road/train.png",
             "content": [
                     {
                         "type":0,
@@ -642,7 +642,7 @@
             "rel":"strangers",
             "title":"Незнакомцы",
             "description": "Социальная безопасность",
-            "linkIcon":"/articles/fire_safety/extinguisher.png",
+            "linkIcon":"/articles/social/stranger.png",
             "content": [
                 {
                     "type":0,
@@ -767,7 +767,7 @@
             "rel":"out",
             "title":"Двор, улица, транспорт",
             "description": "Социальная безопасность",
-            "linkIcon":"/articles/fire_safety/extinguisher.png",
+            "linkIcon":"/articles/social/yard.png",
             "content": [
                 {
                     "type":0,
@@ -892,7 +892,7 @@
             "rel":"in_transport",
             "title":"В транспорте",
             "description": "Социальная безопасность",
-            "linkIcon":"/articles/fire_safety/extinguisher.png",
+            "linkIcon":"/articles/social/bus.png",
             "content": [
                 {
                     "type":0,
@@ -1017,7 +1017,7 @@
             "rel":"fire_safety",
             "title":"Пожарная безопасность",
             "description": "Безопасность на природе",
-            "linkIcon":"/articles/fire_safety/extinguisher.png",
+            "linkIcon":"/articles/forest/fire.png",
             "content": [
                 {
                     "type":0,
@@ -1142,7 +1142,7 @@
             "rel":"wild_animals",
             "title":"Дикие животные",
             "description": "Безопасность на природе",
-            "linkIcon":"/articles/fire_safety/extinguisher.png",
+            "linkIcon":"/articles/forest/wolf.png",
             "content": [
                 {
                     "type":0,
@@ -1267,7 +1267,7 @@
             "rel":"insects",
             "title":"Насекомые",
             "description": "Безопасность на природе",
-            "linkIcon":"/articles/fire_safety/extinguisher.png",
+            "linkIcon":"/articles/forest/wasp.png",
             "content": [
                 {
                     "type":0,
@@ -1392,7 +1392,7 @@
             "rel":"plants_mushrooms",
             "title":"Растения и грибы",
             "description": "Безопасность на природе",
-            "linkIcon":"/articles/fire_safety/extinguisher.png",
+            "linkIcon":"/articles/forest/mushroom.png",
             "content": [
                 {
                     "type":0,
@@ -1705,7 +1705,7 @@
             "rel":"social_networks",
             "title":"Социальные сети",
             "description": "Информационная безопасность",
-            "linkIcon":"/articles/fire_safety/extinguisher.png",
+            "linkIcon":"/articles/info/social.png",
             "content": [
                 {
                     "type":0,
@@ -1830,7 +1830,7 @@
             "rel":"internet",
             "title":"Интернет",
             "description": "Информационная безопасность",
-            "linkIcon":"/articles/fire_safety/extinguisher.png",
+            "linkIcon":"/articles/info/web.png",
             "content": [
                 {
                     "type":0,
@@ -1955,7 +1955,7 @@
             "rel":"internet_strangers",
             "title":"Незнакомцы в интернете",
             "description": "Информационная безопасность",
-            "linkIcon":"/articles/fire_safety/extinguisher.png",
+            "linkIcon":"/articles/info/anonim.png",
             "content": [
                 {
                     "type":0,
@@ -2080,7 +2080,7 @@
             "rel":"incoming_calls",
             "title":"Входящие звонки",
             "description": "Информационная безопасность",
-            "linkIcon":"/articles/fire_safety/extinguisher.png",
+            "linkIcon":"/articles/info/phone_call.png",
             "content": [
                 {
                     "type":0,
@@ -2205,7 +2205,7 @@
             "rel":"appliances",
             "title":"Бытовая техника",
             "description": "Бытовая безопасность",
-            "linkIcon":"/articles/fire_safety/extinguisher.png",
+            "linkIcon":"/articles/home/washmachine.png",
             "content": [
                 {
                     "type":0,
@@ -2330,7 +2330,7 @@
             "rel":"chemicals",
             "title":"Бытовая химия",
             "description": "Бытовая безопасность",
-            "linkIcon":"/articles/fire_safety/extinguisher.png",
+            "linkIcon":"/articles/home/chemicals.png",
             "content": [
                 {
                     "type":0,
@@ -2455,7 +2455,7 @@
             "rel":"gadgets",
             "title":"Гаджеты",
             "description": "Бытовая безопасность",
-            "linkIcon":"/articles/fire_safety/extinguisher.png",
+            "linkIcon":"/articles/home/phone.png",
             "content": [
                 {
                     "type":0,
@@ -2580,7 +2580,7 @@
             "rel":"other",
             "title":"Другое",
             "description": "Бытовая безопасность",
-            "linkIcon":"/articles/fire_safety/extinguisher.png",
+            "linkIcon":"/articles/home/window.png",
             "content": [
                 {
                     "type":0,

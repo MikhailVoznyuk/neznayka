@@ -60,7 +60,10 @@ export default function RootLayout({ children }) {
         setIsNavOpened(true);
         setScrollPos(scrollTop);
       }
-    })
+    });
+    if (modalWindowState.state) {
+        setIsNavOpened(false);
+    }
     
   })
   React.useEffect(() => {
@@ -79,10 +82,12 @@ export default function RootLayout({ children }) {
         window.scroll(0, isMobNavOpened.scrollTop)
         setIsMobNavOpened(Object.assign(isMobNavOpened, {scrollTop: 0}))
       } 
+      
 
     }
     }, 
     [modalWindowState, isMobNavOpened]);
+
 
   return (
     <html lang="en">

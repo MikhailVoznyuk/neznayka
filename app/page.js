@@ -54,7 +54,7 @@ function Quiz(qestions, curQestion, categories) {
   const [currentCategory, setCurrentCategory] = React.useState(null);
   const [lastQuestionAttended, setLastQuestionAtended] = React.useState(-1);
   const [quizResultScore, setQuizResultScore] = React.useState(null);
-  const [windowWidth, setWindowWidth] = React.useState(null)
+  const [windowWidth, setWindowWidth] = React.useState(null);
   React.useEffect(() => {
     getQuizQuestions().then(e => {
       setQuizQuestions(e.concat({isLast: true})); 
@@ -67,7 +67,7 @@ function Quiz(qestions, curQestion, categories) {
   }, [])
   React.useEffect(() => {
     setWindowWidth(window.innerWidth);
-  })
+  });
   const count = quizQuestions.length;
   let quizBarSections = [];
   let quizBarLines = [];

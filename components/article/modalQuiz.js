@@ -18,10 +18,18 @@ export default function ModalQuiz({articleId, quizContent, categoryContent, moda
     const [category, setCategory] = React.useState({});
     const [lastQuestionAttended, setLastQuestionAtended] = React.useState(-1);
     const [quizResultScore, setQuizResultScore] = React.useState(null);
+    const [windowWidth, setWindowWidth] = React.useState(null);
+
     React.useEffect( () => {
         setQuizQuestions(quizContent.content.concat({isLast:true}));
         setCategory(categoryContent);
-    }, [])
+    }, []);
+
+    React.useEffect(() => {
+      setWindowWidth(window.innerWidth);
+    });
+
+    
     console.log(quizQuestions);
     const count = quizQuestions.length;
     let quizBarSections = [];
@@ -34,31 +42,31 @@ export default function ModalQuiz({articleId, quizContent, categoryContent, moda
         
         <div className={styles.quizWindow}>
           <div className={styles.quizWindowHeader}>
-            <div className={[styles.quizBar, RubikMonoOne.className].join(' ')} style={{width: `${30 * count + 40 * (count - 1)}px`}}>
+            <div className={[styles.quizBar, RubikMonoOne.className].join(' ')} style={(windowWidth >= 750) ? {width: `${30 * count + 40 * (count) - 4}px`} : {width: `${16 * count + 12 * (count) - 4}px`} }>
               {quizBarSections.map(item => {
                 let block = null;
                 if (item < stage) {
                   block = (
-                    <span key={item} className={styles.quizBarStage} style={{left: `${item * 40 + item * 30}px`, backgroundColor: `#FF9742`, color: "#FFF"}}>
+                    <span key={item} className={styles.quizBarStage} style={(windowWidth >= 750) ? {left: `${item * 40 + item * 30}px`, backgroundColor: `#FF9742`, color: "#FFF"} : {left: `${item * 12 + item * 18}px`, backgroundColor: `#FF9742`, color: "#FFF"}}>
                       {item + 1}
                     </span>
                   )
                 } else if (stage == count - 1 && item == count - 1) {
                   block = (
-                    <span key={item} className={styles.quizBarStage} style={{left: `${item * 40 + item * 30}px`, backgroundColor: `#FF9742`, color: "#FFF"}}>
+                    <span key={item} className={styles.quizBarStage} style={(windowWidth >= 750) ? {left: `${item * 40 + item * 30}px`, backgroundColor: `#FF9742`, color: "#FFF"} : {left: `${item * 12 + item * 18}px`,  backgroundColor: `#FF9742`, color: "#FFF"}}>
                       <Image src="/flags.svg" alt="Quiz final step icon" width={19} height={19}></Image>
                     </span>
                   )
                 } else {
                   if (item == count - 1) {
                     block = (
-                      <span key={item} className={styles.quizBarStage} style={{left: `${item * 40 + item * 30}px`}}>
-                        <Image src="/flags.svg" alt="Quiz final step icon" width={19} height={19}></Image>
+                      <span key={item} className={styles.quizBarStage} style={(windowWidth >= 750) ? {left: `${item * 40 + item * 30}px`} : {left: `${item * 12 + item * 18}px`}}>
+                        <Image src="/flags.svg" alt="Quiz final step icon" width={(windowWidth >= 750) ? 19: 14} height={(windowWidth >= 750) ? 19: 14}></Image>
                       </span>
                     )
                   } else {
                     block = (
-                      <span key={item} className={styles.quizBarStage} style={{left: `${item * 40 + item * 30}px`}}>
+                      <span key={item} className={styles.quizBarStage} style={(windowWidth >= 750) ? {left: `${item * 40 + item * 30}px`} : {left: `${item * 12 + item * 18}px`}}>
                         {item + 1}
                       </span>
                     ) 
@@ -67,20 +75,20 @@ export default function ModalQuiz({articleId, quizContent, categoryContent, moda
                 return block;
                 }
               )}
-              <span className={styles.quizBarLine} style={{width: `${30 * count + 40 * (count - 1) - 4}px`, left: "2px"}}></span>
-              <span className={styles.quizBarLine} style={{width: `${2 * stage + stage * 40 + stage * 27}px`, left: "28px", backgroundColor: "#FF9742"}}></span>
+              <span className={styles.quizBarLine} style={(windowWidth >= 750) ? {width: `${30 * count + 40 * (count - 1) - 4}px`, left: "2px"} : {width: `${16 * count + 12 * (count - 1) - 4}px`, left: "2px"} }></span>
+              <span className={styles.quizBarLine} style={(windowWidth >= 750) ? {width: `${2 * stage + stage * 40 + stage * 27}px`, left: "28px", backgroundColor: "#FF9742"} : {width: `${2 * stage + stage * 12 + stage * 13}px`, left: "18px", backgroundColor: "#FF9742"}}></span>
             
             </div>
-          </div>
+        </div>
           
           <div className={styles.stageContainer}>
-            <div className={styles.questionTitleContainer}>
-                <h5 className={RubikMonoOne.className}>{quizQuestions[stage]?.question}</h5>
-                <span></span>
-            </div>
-            <div className={[styles.quizResultContainer, RubikMonoOne.className].join(' ')} style={(quizResultScore != null) ? {opacity: 1, zIndex: 1} : {transform: 'translateY(30px)'}}>
-              <p>Твой результат:<br></br>{quizResultScore} из 100 баллов</p>
-            </div>
+          <div className={styles.questionTitleContainer} style = {quizResultScore != null && windowWidth < 750 ? {top: '100px'}  : {}}>
+              <h5 className={RubikMonoOne.className}>{quizQuestions[stage]?.question}</h5>
+              <span></span>
+          </div>
+          <div className={[styles.quizResultContainer, RubikMonoOne.className].join(' ')} style={(quizResultScore != null) ? ((windowWidth >= 750) ? {top: '330px',zIndex: 1, opacity: 1} : {top: '340px', zIndex: 1, opacity: 1}) : {}}>
+            <p>Твой результат:<br></br>{quizResultScore} из 100 баллов</p>
+          </div>
             <div className={styles.quizConfirmButtonContainer} style={(quizResultScore != null) ? {opacity: 1, zIndex: 1, transform: 'translateY(0)'} : {}}>
               <button 
                 className={[styles.quizConfirmButton, RubikMonoOne.className].join(' ')}
@@ -93,10 +101,10 @@ export default function ModalQuiz({articleId, quizContent, categoryContent, moda
                     state: false,
                     scrollTop: offsetY
                   }));
-                  setTimeout(() => setModalWindowContent(null), 500);
+                  setTimeout(() => setModalWindowContent(null), 500); 
                 }}>Закончить тест</button>
             </div>
-            <div className={styles.quizQuestionContainer}>
+            <div className={styles.quizQuestionContainer} style={(quizResultScore != null && windowWidth < 750) ? {position: 'absolute', top: '-4px'} : {}}>
             
               {quizQuestions.map(question => {
                 if (!question.isLast) {
@@ -176,10 +184,10 @@ export default function ModalQuiz({articleId, quizContent, categoryContent, moda
                   return (
                     <div key={quizQuestions.length} className={styles.quizResultContentContainer} style={{left: `${-300 * stage}px`, transition: `${0.15}s ease`}}>
                       <div className={styles.progressBar}></div>
-                      <SideNotice content={100} color={'#2B2B2B'} backgroundColor={'#D9D9D9'} customStyle={{top: "-6px", left:'232px'}} isReversed={false}></SideNotice>
-                      <SideNotice content={50} color={'#2B2B2B'} backgroundColor={'#D9D9D9'} customStyle={{top: `${(-6 + 300) / 2}px`, left:'232px'}} isReversed={false}></SideNotice>
-                      <SideNotice content={0} color={'#2B2B2B'} backgroundColor={'#D9D9D9'} customStyle={{top: "302px", left:'232px'}} isReversed={false}></SideNotice>
-                      <SideNotice content={'Ты здесь!'} color={'#FFF'} backgroundColor={'#ff9742'} customStyle={{top: `${302 - Math.trunc((6 + 302) * quizResultScore / 100)}px`, left:'0'}} isReversed={true}></SideNotice>
+                      <SideNotice content={100} color={'#2B2B2B'} backgroundColor={'#D9D9D9'} customStyle={(windowWidth >= 750) ? {top: "-6px", left:'232px'} : {top: "5px", left:'224px'}} isReversed={false}></SideNotice>
+                      <SideNotice content={50} color={'#2B2B2B'} backgroundColor={'#D9D9D9'} customStyle={(windowWidth >= 750) ? {top: `${(-6 + 300) / 2}px`, left:'232px'} : {top: '5px', left:`${(227) / 2 + 16}px`}} isReversed={false}></SideNotice>
+                      <SideNotice content={0} color={'#2B2B2B'} backgroundColor={'#D9D9D9'} customStyle={(windowWidth >= 750) ?  {top: "302px", left:'232px'} : {top: "5px", left:'41px'}} isReversed={false}></SideNotice>
+                      <SideNotice content={'Ты здесь!'} color={'#FFF'} backgroundColor={'#ff9742'} customStyle={(windowWidth >= 750) ? {top: `${302 - Math.trunc((6 + 302) * quizResultScore / 100)}px`, left:'0'} : {top: '70px', left: `${Math.trunc(50 + (200 * quizResultScore / 100) - 57)}px`}} isReversed={true}></SideNotice>
                     </div>
                   )
                 }
@@ -189,9 +197,10 @@ export default function ModalQuiz({articleId, quizContent, categoryContent, moda
               })}
             </div>
           </div>
-            {stage != count - 1 ? 
+            {(windowWidth >= 750) ? stage != count - 1 ? 
               (<div key={category.id} className={styles.questionImage} style={{backgroundImage: `url(${category.image})`, top: `calc(${category.top} - 4px)`, opacity: 1, animationName: `${styles.soar}`, animationDuration: "5s", animationIterationCount: "infinite"}}></div>)
               : (<div key={category.id} className={styles.questionImage} style={{backgroundImage: `url(${category.image})`, top: `calc(${category.top} -4px)`, transform: 'translateY(20px)', opacity: 0}}></div>)
+              : null
             } 
             
         </div>

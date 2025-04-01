@@ -20,6 +20,11 @@ export function EditSection() {
 
 export default function ArticleBlock({articleId, component, isDev, categoryContent, modalWindowState, setModalWindowState, setModalWindowContent, offsetY, completedBlocks, setCompletedBlocks}) {
     const [isDone, setIsDone] = React.useState(false);
+    const [windowWidth, setWindowWidth] = React.useState(null);
+    React.useEffect(() => {
+        setWindowWidth(window.innerWidth);
+        window.addEventListener('resize', () => setWindowWidth(window.innerWidth))
+    }, []);
     console.log('module', offsetY)
     if (isDone) {
         
@@ -86,11 +91,11 @@ export default function ArticleBlock({articleId, component, isDev, categoryConte
                
                 
     
-                <div className={styles.particle} style={{top: '-30px', left: '10px'}}>
-                    <Image src='/icons/notes.svg' width={80} height={49} alt={'Aricle Block Particle'}></Image>
+                <div className={styles.particle} style={(windowWidth >= 550) ? {top: '-30px', left: '10px'} : {top: '-10px', left: '-4px'} }>
+                    <Image src={(windowWidth >= 550) ? '/icons/notes.svg' : '/icons/notes_sm.svg'} width={(windowWidth >= 550) ? 80 : 60} height={(windowWidth >= 550) ?  Math.trunc(80 / 1.63265) : Math.trunc(60 / 1.63265)} alt={'Aricle Block Particle'}></Image>
                 </div>
-                <div className={styles.particle} style={{top: '10px', left: '-76.5px'}}>
-                    <Image src='/icons/rivets.svg' width={100} height={80} alt={'Aricle Block Particle'}></Image>
+                <div className={styles.particle} style={(windowWidth >= 550) ? {top: '10px', left: '-72px'} : {top: '10px', left: '-42.5px'}}>
+                    <Image src= '/icons/rivets.svg' width={(windowWidth >= 550) ? 90 : 70} height={(windowWidth >= 550) ? Math.trunc(90 / 1.25) : Math.trunc(70 / 1.25)}  alt={'Aricle Block Particle'}></Image>
                 </div>
             </div>
         )

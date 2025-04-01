@@ -29,7 +29,7 @@ export default function ModalGallery({galleryData}) {
   }, []);
   return (
     <div className={["pswp-gallery", styles.modalGallery].join(' ')} id={galleryID}>
-        <Swiper className={styles.gallerySlider} style={{"--swiper-pagination-color" : "#FF9742", "--swiper-pagination-bullet-size": "12px",}}
+        <Swiper className={styles.gallerySlider} style={{"--swiper-pagination-color" : "#FF9742", "--swiper-pagination-bullet-size": "12px","--swiper-pagination-bottom" : 0}}
           spaceBetween={30}
           slidesPerView={1}
           navigation={{
@@ -57,7 +57,7 @@ export default function ModalGallery({galleryData}) {
           {galleryData.content.map((imageRel, index) => {
             return (
               <SwiperSlide key={index} className={styles.gallerySlide}>
-                <a className={'flex justify-center'} href={imageRel} target='_blank'  rel="noreferrer">
+                <a className={'flex justify-center'} href={imageRel} target='_blank' rel="noreferrer">
                   <img src={imageRel}></img>
                 </a>
               </SwiperSlide>
