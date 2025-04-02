@@ -904,6 +904,26 @@
     .articleBlockTitleContainer {
         font-size: 14px;
     }
+
+    .articleNav {
+        margin-top: 80px;
+        margin-bottom: 30px;
+    }
+    .articleNavItemWrapper {
+        width: 74px;
+        height: 74px;
+    }
+
+    .articleNavItemWrapper h5 {
+        font-size: 14px;
+    }
+    .articleNavItemActiveTitle {
+        width: 190px;
+        bottom: 95px;
+    }
+    .navItemTitleParticle {
+        top: 92%;
+    }
 }
 
 @media screen and (max-width: 549px) {

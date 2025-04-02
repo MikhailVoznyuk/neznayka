@@ -11,29 +11,33 @@ const RubicMonoOne = Rubik_Mono_One({
 
 export default function ArticleNav({navRels, currentDirectory, currentArticleRel, articleSettings}) {
     const [currentRelInd, setCurrentRelInd] = React.useState(navRels.findIndex(item => item.rel == currentArticleRel));
-    console.log('relId', currentRelInd)
+    const [windowWidth, setWindowWidth] = React.useState(null);
+    React.useEffect(() => {
+        setWindowWidth(window.innerWidth);
+        window.addEventListener('resize', setWindowWidth(window.innerWidth));
+    })
     return (
         <div className={styles.articleNavContainer}>
                 <div className={styles.articleNav} style={{'--nav-hover-color': articleSettings.pageColors.navLinkActive + 'B3'}}>
-                    {navRels.map(rel => {
+                    {navRels.map((rel, ind) => {
                         let articleItem;
                         if (rel.rel == currentArticleRel) {
                             articleItem = (
                                 <div className={styles.articleNavItemWrapper} style={{backgroundColor: articleSettings.pageColors.navLink}} key = {rel.id}>
-                                    <div className={styles.articleNavItemActiveTitle} style={{backgroundColor: articleSettings.pageColors.navLinkActive}}>
+                                    <div className={styles.articleNavItemActiveTitle} style={{backgroundColor: articleSettings.pageColors.navLinkActive, left: ((ind == 0) ? '-6px' : (ind == navRels.length - 1) ? 'calc(100% - 184px)' : null)}}>
                                         <h5 className={RubicMonoOne.className}>{articleSettings.title}</h5>
-                                        <span className={styles.navItemTitleParticle} style={{backgroundColor: articleSettings.pageColors.navLinkActive}}></span>
+                                        <span className={styles.navItemTitleParticle} style={{backgroundColor: articleSettings.pageColors.navLinkActive, left: ((ind == 0) ? '27px' : (ind == navRels.length - 1) ? '132px' : null)}}></span>
                                     </div>
                                     <Link 
                                         className={styles.articleNavItem} 
                                         href={'/' + [currentDirectory, rel.rel].join('/')} 
                                         style = {{
                                                 backgroundColor: articleSettings.pageColors.navLinkActive,
-                                                zIndex: 3
+                                                zIndex: 3 
                                             } 
                                         }
                                     >
-                                        <Image src={rel.icon} width={70} height={70} alt="Article navigation icon"></Image>
+                                        <Image src={rel.icon} width={(windowWidth >= 498 ) ? 70 : 56} height={(windowWidth >= 498 ) ? 70 : 56} alt="Article navigation icon"></Image>
                                     </Link>
                                 </div>
                             )
@@ -44,7 +48,7 @@ export default function ArticleNav({navRels, currentDirectory, currentArticleRel
                                         className={[styles.articleNavItem, styles.articleNavItemSecondary].join(' ')} 
                                         href={'/' + [currentDirectory, rel.rel].join('/')} 
                                     >
-                                        <Image src={rel.icon} width={70} height={70} alt="Article navigation icon"></Image>
+                                        <Image src={rel.icon} width={(windowWidth >= 498 ) ? 70 : 56} height={(windowWidth >= 498 ) ? 70 : 56}  alt="Article navigation icon"></Image>
                                     </Link>
                                 </div>
                             )

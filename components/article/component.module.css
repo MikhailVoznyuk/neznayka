@@ -114,7 +114,7 @@
 .quizQuestionContainer {
     position: relative;
     display: flex;
-    width: 300px; 
+    width: 320px; 
     padding: 8px 0;  
     overflow: hidden;
 }
@@ -123,10 +123,10 @@
     position: relative;
     display: flex;
     color:#44474F;
-    flex-basis: 300px;
+    flex-basis: 320px;
     flex-shrink: 0;
     flex-grow: 0;
-    width: 300px;
+    width: 320px;
     left: 0;
     justify-content: center;
     transition: 0.5s ease;
@@ -148,11 +148,11 @@
     top: 0;
     background-color: #FF9742;
     color: #FFF;
-    font-size: 18px;
-    width: 280px;
-    height: 74px;
+    font-size: 14px;
+    width: 300px;
+    height: 80px;
     border: none;
-    padding: 10px;
+    padding: 6px;
     border-radius: 10px;
     border: 2px solid #FF9742;
     box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.25);
@@ -181,13 +181,14 @@
     background: #D9D9D9;
     width:fit-content;
     height: fit-content;
-    max-width: 340px;
+    max-width: 380px;
     padding: 16px;
     top: 8px;
     border-radius: 20px;
-    font-size: 18px;
+    font-size: 16px;
     word-spacing: -8px;
-    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.25)
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.25);
+    z-index: 1;
 }
 
 .questionTitleContainer span {
@@ -206,7 +207,7 @@
 }
 
 .questionTitleContainer h5 {
-    font-size: 18px;
+    font-size: 16px;
 }
 
 .stageContainer {
@@ -468,6 +469,16 @@
 }
 
 @media screen and (max-width: 749px) {
+    
+    .quizQuestion {
+        flex-basis: 300px;
+        width: 300px;
+    }
+
+    .quizQuestion button {
+        width: 280px;
+        height: 74px;
+    }
     .quizBarStage {
         width: 18px;
         height: 18px;
@@ -543,6 +554,14 @@
         height: 56px;
         font-size: 14px;
         padding: 2px;
+    }
+
+    .quizConfirmButtonContainer {
+        left: calc(50% - 105px);
+    }
+
+    .stageContainer {
+        height: 472px;
     }
 }
 @media screen and (max-width: 589px) {

@@ -418,6 +418,9 @@ font-size: 30px;
   position: relative;
 }
 @media screen and (max-width: 589px) {
+  .nav-container-mob {
+    margin: 20px;
+  }
   .primary-footer-content {
     flex-direction: column;
     align-items: center;
@@ -460,5 +463,11 @@ font-size: 30px;
 @media screen and (max-width: 1010px) {
   .primaryHeader {
     height: 60px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .headerContainer {
+    height: 100px;
   }
 }

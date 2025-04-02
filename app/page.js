@@ -45,7 +45,7 @@ function CategoryCard({rel, title, image, backgroundColor, titleBackground}) {
   )
 }
 
-function Quiz(qestions, curQestion, categories) {
+function Quiz({modalWindowState, setModalWindowState, setModalWindowContent, scrollTop}) {
   
   const [stage, setStage] = React.useState(0);
   const [mistakesCounter, setMistakesCounter] = React.useState(0);
@@ -68,6 +68,7 @@ function Quiz(qestions, curQestion, categories) {
   React.useEffect(() => {
     setWindowWidth(window.innerWidth);
   });
+  console.log(scrollTop)
   const count = quizQuestions.length;
   let quizBarSections = [];
   let quizBarLines = [];
@@ -123,8 +124,21 @@ function Quiz(qestions, curQestion, categories) {
               <h5 className={RubicMonoOne.className}>{quizQuestions[stage]?.question}</h5>
               <span></span>
           </div>
-          <div className={[styles.quizResultContainer, RubicMonoOne.className].join(' ')} style={(quizResultScore != null) ? ((windowWidth >= 750) ? {top: '340px'} : {top: '350px'}) : {}}>
+          <div className={[styles.quizResultContainer, RubicMonoOne.className].join(' ')} style={(quizResultScore != null) ? ((windowWidth >= 750) ? {top: '270px'} : {top: '350px'}) : {}}>
             <p>Твой результат:<br></br>{quizResultScore} из 100 баллов</p>
+          </div>
+          <div className={styles.quizConfirmButtonContainer} style={(quizResultScore != null) ? {opacity: 1, zIndex: 1, transform: 'translateY(0)'} : {}}>
+              <button 
+                className={[styles.quizConfirmButton, RubicMonoOne.className].join(' ')}
+                onClick={() => {
+                  
+                  setModalWindowState(UpdateWindowState({
+                    prevContext: modalWindowState,
+                    state: false,
+                    scrollTop: scrollTop
+                  }));
+                  setTimeout(() => setModalWindowContent(null), 500); 
+                }}>Закончить тест</button>
           </div>
           <div className={styles.quizQuestionContainer} style={(quizResultScore != null && windowWidth < 750) ? {position: 'absolute', top: '20px'} : {}}>
           
@@ -147,7 +161,7 @@ function Quiz(qestions, curQestion, categories) {
                                 basicClass={[RubicMonoOne.className]}
                                 ifCorrectClass={styles.quizButtonCorrect}
                                 ifWrongClass={styles.quizButtonWrong}
-                                style={{left: `${-300 * stage}px`, transition: `${0.15 + answersCounter}s ease`}}
+                                style={{left: `${((windowWidth >= 750) ? -320 : -300) * stage}px`, transition: `${0.15 + answersCounter}s ease`}}
                                 ifCorrectHandler={() => {
                                   if (lastQuestionAttended == stage) {
                            
@@ -204,7 +218,7 @@ function Quiz(qestions, curQestion, categories) {
                 )
               } else {
                 return (
-                  <div key={quizQuestions.length} className={styles.quizResultContentContainer} style={{left: `${-300 * stage}px`, transition: `${0.15}s ease`}}>
+                  <div key={quizQuestions.length} className={styles.quizResultContentContainer} style={{left: `${((windowWidth >= 750) ? -320 : -300) * stage}px`, transition: `${0.15}s ease`, opacity: (quizResultScore == null) ? 0 : 1}}>
                     <div className={styles.progressBar}></div>
                     <SideNotice content={100} color={'#2B2B2B'} backgroundColor={'#D9D9D9'} customStyle={(windowWidth >= 750) ? {top: "-6px", left:'232px'} : {top: "5px", left:'224px'}} isReversed={false}></SideNotice>
                     <SideNotice content={50} color={'#2B2B2B'} backgroundColor={'#D9D9D9'} customStyle={(windowWidth >= 750) ? {top: `${(-6 + 300) / 2}px`, left:'232px'} : {top: '5px', left:`${(227) / 2 + 16}px`}} isReversed={false}></SideNotice>
@@ -226,7 +240,7 @@ function Quiz(qestions, curQestion, categories) {
             if (currentCategory == category.id) {
 
               questionImage = (
-                <div key={category.id} className={styles.questionImage} style={{backgroundImage: `url(${category.image})`, top: `${category.top}`, animationName: `${styles.soar}`, animationDuration: "5s", animationIterationCount: "infinite"}}></div>
+                <div key={category.id} className={styles.questionImage} style={{backgroundImage: `url(${category.image})`, top: `calc(${category.top} + 0px)`, animationName: `${styles.soar}`, animationDuration: "5s", animationIterationCount: "infinite"}}></div>
               );
             } else {
               questionImage = (
@@ -243,11 +257,18 @@ function Quiz(qestions, curQestion, categories) {
 }
 
 function QuizBlockModal({offsetY, modalState, modalBodyState}) {
-  
+  const [windowWidth, setWindowWidth] = React.useState(null);
+
+  React.useEffect( () => {
+    setWindowWidth(window.innerWidth);
+    window.addEventListener('resize', () => setWindowWidth(window.innerWidth))
+  })
+
+
   const modalWindowContext = React.useContext(modalContext)
 
   return (
-  <div className={styles.quizStatic} style={{height: '510px'}}>
+  <div className={styles.quizStatic} style={(windowWidth) >= 750 ? {height: '550px'} : {height: '550px'}}>
     <button className={styles.quizCloseBtn} onClick={() => {
         setModalWindowState(UpdateWindowState({state: false, setState : modalWindowContext.setState, scrollTop:offsetY, windowContent: <QuizBlockModal offsetY={0}/>}));
       }}>
@@ -261,6 +282,7 @@ function QuizBlockModal({offsetY, modalState, modalBodyState}) {
 
 function QuizStatic({modalWindowState, setModalWindowState, setModalWindowContent}) {
   const [windowWidth, setWindowWidth] = React.useState(null);
+  console.log(modalWindowState)
   React.useEffect(() => {
     setWindowWidth(window.innerWidth);
   })
@@ -300,11 +322,12 @@ function QuizStatic({modalWindowState, setModalWindowState, setModalWindowConten
                 <span className={styles.btnArrow}></span>
               </div>}
             eventHandler={() => {
-              setModalWindowState(UpdateWindowState({prevContext: modalWindowState, state: true, scrollTop: document.documentElement.scrollTop}));
               const offsetY = document.documentElement.scrollTop;
+              setModalWindowState(UpdateWindowState({prevContext: modalWindowState, state: true, scrollTop: document.documentElement.scrollTop}));
+              
               
               setModalWindowContent((
-                <div className={styles.quizStatic} style={windowWidth >= 750 ? {height: '510px'} : {height: '514px'}}>
+                <div className={styles.quizStatic} style={windowWidth >= 750 ? {height: '550px'} : {height: '530px'}}>
                   <button className={styles.quizCloseBtn} onClick={() => {
                       
                       console.log(offsetY);
@@ -313,7 +336,7 @@ function QuizStatic({modalWindowState, setModalWindowState, setModalWindowConten
                     <span className={styles.btnLine} style={{transform: "rotate(45deg)"}}></span>
                     <span className={styles.btnLine} style={{transform: "rotate(-45deg)"}}></span>
                   </button>
-                  <Quiz></Quiz> 
+                  <Quiz modalWindowState={modalWindowState} setModalWindowState={setModalWindowState} setModalWindowContent={setModalWindowContent} scrollTop={offsetY}></Quiz> 
                 </div>
               ))
             }}

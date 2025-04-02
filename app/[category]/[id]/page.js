@@ -28,7 +28,7 @@ export default function Page() {
    const [modalWindowState, setModalWindowState] = React.useState(React.useContext(modalWindowContext));
    const [modalWindowContent, setModalWindowContent] = React.useState(null);
    const [completedBlocks, setCompletedBlocks] = React.useState(new Set());
-   const articleRel = usePathname().split('/').at(-1);
+   const articleRel = usePathname().split('/').at(-1); 
 
    React.useEffect(() => {
 

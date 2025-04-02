@@ -197,7 +197,7 @@
 .quizQuestionContainer {
     position: relative;
     display: flex;
-    width: 300px; 
+    width: 320px; 
     padding: 8px 0;  
     overflow: hidden;
 }
@@ -206,10 +206,10 @@
     position: relative;
     display: flex;
     color:#44474F;
-    flex-basis: 300px;
+    flex-basis: 320px;
     flex-shrink: 0;
     flex-grow: 0;
-    width: 300px;
+    width: 320px;
     left: 0;
     justify-content: center;
     transition: 0.5s ease;
@@ -231,9 +231,9 @@
     top: 0;
     background-color: #FF9742;
     color: #FFF;
-    font-size: 18px;
-    width: 280px;
-    height: 74px;
+    font-size: 14px;
+    width: 300px;
+    height: 80px;
     border: none;
     padding: 10px;
     border-radius: 10px;
@@ -264,13 +264,14 @@
     background: #D9D9D9;
     width:fit-content;
     height: fit-content;
-    max-width: 340px;
+    max-width: 380px;
     padding: 16px;
     top: 8px;
     border-radius: 20px;
     font-size: 18px;
     word-spacing: -8px;
-    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.25)
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.25);
+    z-index: 1;
 }
 
 .questionTitleContainer span {
@@ -289,7 +290,7 @@
 }
 
 .questionTitleContainer h5 {
-    font-size: 18px;
+    font-size: 16px;
 }
 
 .stageContainer {
@@ -435,6 +436,36 @@
     transition: 0.3s;
 }
 
+.quizConfirmButtonContainer {
+    position: absolute;
+    bottom: 0;
+    left: calc(50% - 120px);
+    z-index: -1;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: 0.3s ease;
+}
+.quizConfirmButton {
+    
+    color: #FFF;
+    font-size: 18px;
+    width: 240px;
+    padding: 10px;
+    background-color: #5EE551;
+    border: 3px #5EE551 solid;
+    border-radius: 20px;
+    word-spacing: -0.3em;
+    box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.25);
+    transition: 0.3s ease;
+    
+}
+
+.quizConfirmButton:hover {
+    border: #FFF 3px solid;
+    transform: scale(1.08);
+    transition: 0.3s ease;
+}
+
 /* Category Slider */
 
 .categorySliderSlide {
@@ -502,6 +533,15 @@
         width: 64px;
         height: 64px;
     }
+    .quizConfirmButton {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        vertical-align: center;
+        font-size: 16px;
+        width: 210px;
+        padding: 6px 2px;
+    }
 }
 
 @media screen and (max-width: 749px) {
@@ -533,7 +573,7 @@
     .stageContainer {
         flex-direction: column;
         justify-content: space-between;
-        height: 430px;
+        height: 466px;
     }
     .questionTitleContainer {
         padding: 12px;
@@ -555,7 +595,7 @@
     }
     
     .quizQuestionContainer {
-
+        margin-bottom: 8px;
     }
 
     .quizResultContentContainer .progressBar {
@@ -569,11 +609,25 @@
 
     }
 
+    .quizConfirmButtonContainer {
+        left: calc(50% - 105px);
+    }
+
     .quizQuestion button {
         width: 260px;
         height: 56px;
         font-size: 14px;
         padding: 2px;
+    }
+
+    .quizQuestion {
+        flex-basis: 300px;
+        width: 300px;
+    }
+
+    .stageContainer {
+        height: 472px;
+        
     }
 }
 @media screen and (max-width: 589px) {
