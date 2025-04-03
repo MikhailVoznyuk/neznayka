@@ -874,13 +874,94 @@
         transform: rotate(-90deg)
     }
 
-    .sideNoticeParticle.sideNoticeParticleRight{
+    .sideNoticeParticle.sideNoticeParticleRight {
         left: calc(50% - 5px);
         top: calc(-9px);
         transform: rotate(90deg)
     }
 }
 
+/* Page Components */
+
+.textAnimationRow {
+    width: 900px;
+ 
+    margin-right: -40px;
+}
+.textColumn {
+   width: 400px;
+}
+
+.animationColumn {
+    position: relative;
+    width: 500px;
+}
+
+.columnBlockText {
+    text-align: center;
+    font-size: 22px;
+    width: 280px;
+}
+
+@media screen and (max-width: 979px) {
+    
+    .textAnimationRow {
+        width: 700px;
+    }
+    .textColumn {
+        width: 340px;
+    }
+
+
+    .textColumn h4 {
+        font-size: 36px;
+        margin-bottom: 20px;
+    }
+
+    .textColumn p {
+        font-size: 18px
+    }
+}
+
+@media screen and (max-width: 739px) {
+    .columnBlockAnimation {
+        margin-bottom: 20px !important;
+    }
+    .textAnimationRowTitle {
+        font-size: 20px !important;
+    }
+    .textAnimationRow {
+        width: 400px;
+        flex-direction: column;
+        justify-content: center;
+        margin-bottom: 50px;
+        margin-right: 0;
+    }
+
+
+    .textColumn {
+        width: 320px; 
+    }
+    .textColumn h4 {
+        font-size: 28px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .textColumn p {
+        width: 100%;
+        font-size: 18px;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .textAnimationRow {
+        width: 320px;
+    }
+    
+    
+}
 @media screen and (max-width: 497px) {
     .articleContentBlockContainer {
         width: 130px;

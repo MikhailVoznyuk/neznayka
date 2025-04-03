@@ -19,6 +19,7 @@ import BookBlock from "@/components/bookBlock";
 import { BookBlockMobile } from "@/components/bookBlock";
 import StepsBlock from "@/components/userStepsBlock";
 import { StepsBlockMobile } from "@/components/userStepsBlock";
+import observeElements from "@/lib/contentObserver";
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, EffectCreative, Navigation} from 'swiper/modules';
@@ -417,6 +418,10 @@ export default function Page() {
       setIsAnchorReached(true);
     }
   })
+  React.useEffect(() => {
+    setTimeout(() => observeElements('.a-p'), 0)
+    
+  }, [])
   console.log('windowWidth', windowWidth)
   let pageContent;
   if (categories != null &&  articlesPaths != null) {
@@ -432,7 +437,7 @@ export default function Page() {
         <div className={["container justify-center section-title", RubicMonoOne.className].join(' ')}  id={'how-it-works'}>
           <h3>Как это работает</h3>
         </div>
-        <div className="container justify-center">
+        <div className="container justify-center a-p">
           {(windowWidth >= 700) ?
             <StepsBlock
               steps={[

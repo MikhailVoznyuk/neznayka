@@ -1,0 +1,150 @@
+.bookForm {
+    position: relative;
+    width: 400px;
+    height: 540px;
+    margin-bottom: 80px;
+}
+
+.bookPage {
+    position: absolute;
+    left: 0;
+    width: 380px;
+    height: calc(540px - 4px * 2);
+    background-color: #FFF0C9;
+    border-radius: 14px;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
+}
+
+.formParticle {
+    position: absolute;
+    
+    z-index: 1;
+}
+
+.bookPageContent {
+
+    position: relative;
+    padding: 30px;
+   
+    border-radius: 16px;;
+}
+
+.bookPageContent form {
+    row-gap: 26px;
+ 
+}
+
+.bookPageContent input {
+    padding: 8px;
+    max-width: 240px;
+    border: none;
+   
+    border-radius: 10px;
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.25);
+
+}
+.bookPageContent input::placeholder {
+   
+}
+.bookPageContent textarea {
+    display: block;
+    width: 240px;
+    
+
+    text-decoration-color: #2e4e80;
+    height: max-content;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 1.5px;
+    line-height: 24px;
+    border: none;
+    padding: 6px;
+    border-radius: 12px;
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+.bookPageContent textarea:focus {
+    border: none;
+}
+
+.bookPageContent button {
+    color: #FFF;
+    font-size: 22px;
+    width: 140px;
+    height: 44px;
+    background-color: #FF9742;
+    border-radius: 16px;
+    border: 2px #FF9742 solid;
+    transition: 0.3s;
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+.bookPageContent h5 {
+    width: 274px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #FFF;
+    background-color: #FF9742;
+    padding: 14px;
+    border-radius: 14px;
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.25);
+
+}
+.bookPageContent button:hover {
+    transform: scale(1.05);
+    background-color: #FF9742;
+    border-color: #FFF;
+    transition: 0.3s;
+}
+
+.testForm {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+.contactsColumn {
+    width: 360px;
+    row-gap: 30px;
+}
+
+.contactsColumn .columnRow {
+    column-gap: 10px;
+}
+
+@media screen and (max-width: 500px) {
+    .bookForm {
+        width: 328px;
+        margin-bottom: 70px;
+    }
+    .bookPage {
+        width: 314px;
+    }
+
+    .bookPageContent {
+        padding: 20px;
+    }
+
+    .formParticle {
+        width: 30px;
+        height: 60px;
+        left: -12.5px !important;
+    }
+
+    .contactsColumn h5 {
+        text-align: center;
+        font-size: 22px;
+        width: 320px;
+        margin-bottom: 10px;
+    }
+    .contactsColumn {
+        width: 330px;
+        row-gap: 24px;
+    }
+    .contactsColumn span {
+        font-size: 22px;
+    }
+
+    .contactsColumn .columnRow {
+        justify-content: center;
+    }
+}

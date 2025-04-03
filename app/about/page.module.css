@@ -1,0 +1,51 @@
+.benefits h4 {
+    color: #2E4E80;
+}
+
+.inlineLink {
+    font-weight: bold;
+    color: #2E4E80;
+    text-decoration: underline;
+    transition: 0.3s ease;
+    text-wrap: nowrap;
+}
+
+.inlineLink:hover {
+    color: #FF9742;
+    transition: 0.3s ease;
+}
+
+.columnsContainer {
+    width: 1200px;
+    column-gap: 80px;
+    row-gap: 80px;
+}
+
+.columnsContainer h2 {
+    justify-content: center;
+}
+
+
+@media screen and (max-width: 739px) {
+    
+    .textAnimationRowTitle p {
+        width: 90vw;
+        max-width: 440px;
+        font-size: 20px !important;
+    }
+}
+
+@media screen and (max-width: 500px) {
+   
+    .columnsContainer {
+        column-gap: 50px;
+        row-gap: 60px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .textAnimationRowTitle img {
+        width: 200px;
+        aspect-ratio: 300 / 60;
+    }
+}

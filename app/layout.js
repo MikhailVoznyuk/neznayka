@@ -14,6 +14,8 @@ import { UpdateWindowState } from "./modalContext";
 import { RubikBold } from "@/components/fonts/rubikMonoOne";
 import RubikMonoOne from "@/components/fonts/rubikMonoOne";
 
+import observeElements from "@/lib/contentObserver";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -87,8 +89,7 @@ export default function RootLayout({ children }) {
     }
     }, 
     [modalWindowState, isMobNavOpened]);
-
-
+    
   return (
     <html lang="en">
       <head>
@@ -134,14 +135,14 @@ export default function RootLayout({ children }) {
                       </div>
                       <span className="nav-link-particle"></span>
                     </Link>
-                    <Link href="error">
+                    <Link href="about">
                       <div className='nav-link-content'>
                         <span>О нас</span>
                         <Image src='/icons/about.svg' width={25} height={25} alt=''/>
                       </div>
                       <span className="nav-link-particle"></span>
                     </Link>
-                    <Link href="error">
+                    <Link href="contacts">
                       <div className='nav-link-content'>
                         <span>Контакты</span>
                         <Image src='/icons/contacts.svg' width={25} height={25} alt='' style={{top: '3px'}}/>
@@ -303,13 +304,13 @@ export default function RootLayout({ children }) {
                     </Link>
                   </div>
                   <div>
-                    <Link href='/error' className='footer-nav-link'>
+                    <Link href='/about' className='footer-nav-link'>
                       <span className={RubikBold.className}>О нас</span>
                       <Image src='/icons/arrow_orange.svg' className='footer-nav-link-image' width={14} height={12} alt=''></Image>
                     </Link>
                   </div>
                   <div>
-                    <Link href='/error' className='footer-nav-link'>
+                    <Link href='/contacts' className='footer-nav-link'>
                       <span className={RubikBold.className}>Связаться с нами</span>
                       <Image src='/icons/arrow_orange.svg' className='footer-nav-link-image' width={14} height={12} alt=''></Image>
                     </Link>

@@ -54,6 +54,7 @@ main {
 
 .container {
   display: flex;
+  flex-wrap: wrap;
   width: 100%;
   padding: 40px;
 }
@@ -88,10 +89,27 @@ main {
 
 .flex {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .flex-column {
   flex-direction: column;
+}
+
+.col-2 { 
+  width: 16.6%;
+}
+
+.col-4 {
+  width: 33.3%;
+}
+
+.col-5 {
+  width: 41.66%
+}
+
+.col-6 {
+  width: 50%;
 }
 
 .headerContainer {
@@ -180,6 +198,87 @@ font-size: 30px;
   padding: 20px 0;
 }
 
+.row {
+  width: 100%;
+  flex-wrap: wrap;
+  overflow: hidden;
+}
+.text-center {
+  text-align: center;
+}
+.text-xs {
+  font-size: 12px
+}
+
+.text-sm {
+  font-size: 16px;
+}
+
+.text-md {
+  font-size: 20px;
+}
+
+.text-lg {
+  font-size: 24px;
+}
+
+.text-xl {
+  font-size: 28px;
+}
+
+.text-xxl{
+  font-size: 32px;
+}
+
+.text-title-md {
+  font-size: 42px;
+}
+.mb-16 {
+  margin-bottom: 16px;
+}
+.mb-20 {
+  margin-bottom: 20px;
+}
+
+.mb-30 {
+  margin-bottom: 30px;
+}
+
+.mb-40 {
+  margin-bottom: 40px;
+}
+
+.mb-50 {
+  margin-bottom: 50px;
+}
+
+.mb-70 {
+  margin-bottom: 70px;
+}
+
+.mb-100 {
+  margin-bottom: 100px;
+}
+
+.row-lg {
+  width: fit-content;
+  max-width: 1000px;
+}
+
+
+
+
+.text-bold {
+  font-weight: bold;
+}
+
+.column-sm {
+  width: 300px;
+}
+
+.column-md {
+  width: 600px;
+}
 .section-header h2 {
   display: flex;
   align-items: center;
