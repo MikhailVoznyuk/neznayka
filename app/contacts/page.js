@@ -6,9 +6,12 @@ import RubikMonoOne from "@/components/fonts/rubikMonoOne";
 import { RubikBold } from "@/components/fonts/rubikMonoOne";
 import styles from './page.module.css';
 
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
+
 export default function Page() {
     const [windowWidth, setWindowWidth] = React.useState(null);
     const [textFieldHeight, setTextFieldHeight] = React.useState(null);
+    const [isFormSend, setIsFormSend] = React.useState(false);
     React.useEffect(() => {
         setWindowWidth(window.innerWidth);
         window.addEventListener('resize', () => setWindowWidth(window.innerWidth));
@@ -29,70 +32,78 @@ export default function Page() {
                         <div className={styles.bookPage} style={{top: '4px', left: '4px'}} ></div>
                         <div className={[styles.bookPage].join(' ')} style={{top: 0, left: 0, backgroundColor: '#2e4e80'}}>
                             <div className={[styles.bookPageContent, 'flex', 'flex-column'].join(' ')}>
-                                    <h5 className={'mb-30'}>Заполните форму и мы свяжемся с вами в ближайшее время!</h5>
-                                    <form className={'gform flex flex-column'} method="POST" action={'https://script.google.com/macros/s/AKfycbxOa-cmNTN9dQlVAGf5rwryqm8LhFVzbz8MeQNFAd9l3rozMHa9z-RB9gJpYhR_MQFUbA/exec'} onSubmit={e => {
-                                        function getFormData(form) {
-                                            var elements = form.elements;
-                                            var honeypot;
-                                        
-                                            var fields = Object.keys(elements).filter(function(k) {
-                                              if (elements[k].name === "honeypot") {
-                                                honeypot = elements[k].value;
-                                                return false;
-                                              }
-                                              return true;
-                                            }).map(function(k) {
-                                              if(elements[k].name !== undefined) {
-                                                return elements[k].name;
-                                              // special case for Edge's html collection
-                                              }else if(elements[k].length > 0){
-                                                return elements[k].item(0).name;
-                                              }
-                                            }).filter(function(item, pos, self) {
-                                              return self.indexOf(item) == pos && item;
-                                            });
-                                        
-                                            var formData = {};
-                                            fields.forEach(function(name){
-                                              var element = elements[name];
-                                              
-                                              // singular form elements just have one value
-                                              formData[name] = element.value;
-                                        
-                                              // when our element has multiple items, get their values
-                                              if (element.length) {
-                                                var data = [];
-                                                for (var i = 0; i < element.length; i++) {
-                                                  var item = element.item(i);
-                                                  if (item.checked || item.selected) {
-                                                    data.push(item.value);
-                                                  }
+                                    <h5 className={'mb-30'}>{isFormSend ? 'Спасибо! Мы получили вашу форму и свяжемся с вами как только ее обработаем!' : 'Заполните форму и мы свяжемся с вами в ближайшее время!'}</h5>
+                                    {
+                                        (isFormSend) ?
+                                        <div className={['flex justify-center align-center', styles.formAnimation].join(' ')}>
+                                            <DotLottieReact
+                                                src="/animation/email-file.json"
+                                                autoplay
+                                            />
+                                        </div> :
+                                        <form className={'gform flex flex-column'} method="POST" action={'https://script.google.com/macros/s/AKfycbxOa-cmNTN9dQlVAGf5rwryqm8LhFVzbz8MeQNFAd9l3rozMHa9z-RB9gJpYhR_MQFUbA/exec'} onSubmit={e => {
+                                            function getFormData(form) {
+                                                var elements = form.elements;
+                                                var honeypot;
+                                            
+                                                var fields = Object.keys(elements).filter(function(k) {
+                                                if (elements[k].name === "honeypot") {
+                                                    honeypot = elements[k].value;
+                                                    return false;
                                                 }
-                                                formData[name] = data.join(', ');
-                                              }
-                                            });
-                                        
-                                            // add form-specific values into the data
-                                            formData.formDataNameOrder = JSON.stringify(fields);
-                                            formData.formGoogleSheetName = form.dataset.sheet || "responses"; // default sheet name
-                                            formData.formGoogleSendEmail
-                                              = form.dataset.email || ""; // no email by default
-                                        
-                                            return {data: formData, honeypot: honeypot};
-                                          }
-                                        e.preventDefault();
-                                        const form = e.target
-                                        const formData = getFormData(form);
-                                        const data = formData.data;
+                                                return true;
+                                                }).map(function(k) {
+                                                if(elements[k].name !== undefined) {
+                                                    return elements[k].name;
+                                                }else if(elements[k].length > 0){
+                                                    return elements[k].item(0).name;
+                                                }
+                                                }).filter(function(item, pos, self) {
+                                                return self.indexOf(item) == pos && item;
+                                                });
+                                            
+                                                var formData = {};
+                                                fields.forEach(function(name){
+                                                var element = elements[name];
+                                                
+                                                // singular form elements just have one value
+                                                formData[name] = element.value;
+                                            
+                                                // when our element has multiple items, get their values
+                                                if (element.length) {
+                                                    var data = [];
+                                                    for (var i = 0; i < element.length; i++) {
+                                                    var item = element.item(i);
+                                                    if (item.checked || item.selected) {
+                                                        data.push(item.value);
+                                                    }
+                                                    }
+                                                    formData[name] = data.join(', ');
+                                                }
+                                                });
+                                            
+                                                // add form-specific values into the data
+                                                formData.formDataNameOrder = JSON.stringify(fields);
+                                                formData.formGoogleSheetName = form.dataset.sheet || "responses"; // default sheet name
+                                                formData.formGoogleSendEmail
+                                                = form.dataset.email || ""; // no email by default
+                                            
+                                                return {data: formData, honeypot: honeypot};
+                                            }
+                                            e.preventDefault();
+                                            const form = e.target
+                                            const formData = getFormData(form);
+                                            const data = formData.data;
 
-                                        const url = form.action;
-                                        const xhr = new XMLHttpRequest();
-                                        xhr.open('POST', url);
-                                        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                                        const encoded = Object.keys(data).map(function(k) {
-                                            return encodeURIComponent(k) + "=" + encodeURIComponent(data[k]);
-                                        }).join('&');
-                                        xhr.send(encoded);
+                                            const url = form.action;
+                                            const xhr = new XMLHttpRequest();
+                                            xhr.open('POST', url);
+                                            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                                            const encoded = Object.keys(data).map(function(k) {
+                                                return encodeURIComponent(k) + "=" + encodeURIComponent(data[k]);
+                                            }).join('&');
+                                            xhr.send(encoded);
+                                            setIsFormSend(true);
                                         }}>
                                         <input className={'g'}name='name' placeholder="Ваше имя"></input>
                                         <input name='phone' placeholder="Ваш номер телефона"></input>
@@ -101,6 +112,8 @@ export default function Page() {
                                         </textarea>
                                         <button type='submit'>Отправить</button>
                                     </form>
+                                    }
+                                    
                             </div>
                         </div>
                         <Image className={styles.formParticle} src='/icons/rivets.svg' width={40} height={80} alt='' style={{top: '50px', left: '-16px'}}></Image>

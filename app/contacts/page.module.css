@@ -111,6 +111,16 @@
     column-gap: 10px;
 }
 
+.formAnimation {
+    position: relative;
+    width: 424px;
+    left: -54px;
+    top: 28px;
+}
+
+.formAnimation canvas {
+
+}
 @media screen and (max-width: 500px) {
     .bookForm {
         width: 328px;

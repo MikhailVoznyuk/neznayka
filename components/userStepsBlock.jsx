@@ -5,14 +5,16 @@ import styles from "./components.module.css";
 import { RubikBold } from "./fonts/rubikMonoOne";
 import RubikMonoOne from "./fonts/rubikMonoOne";
 
+import AnimationAppearWrapper from "./animationAppearWrapper";
+
 
 export default function StepsBlock({steps}) {
     return (
-        <div className={styles.stepsBlock}>
+        <AnimationAppearWrapper className={styles.stepsBlock}>
             {steps.map((step) => {
                 return (
                    
-                    <div key={step.id} className={[styles.stepBlock, RubikBold.className].join(' ')}>
+                    <AnimationAppearWrapper key={step.id} className={[styles.stepBlock, RubikBold.className].join(' ')}>
                         <div className={styles.stepBlockColumn} style={{width: '70%'}}>
                             <div className={[styles.stepBlockTitle, RubikMonoOne.className].join(' ')}>
                                 <h4>{step.title}</h4>
@@ -32,11 +34,11 @@ export default function StepsBlock({steps}) {
                         </div>
                         <div className={styles.stepBlockParticle}></div>
                         <span className={styles.stepBlockNumber}>{step.id + 1}</span>
-                    </div>
+                    </AnimationAppearWrapper>
                 )
             })}
              <Image className={styles.scoreLine} src='/lines_dashed_blue.svg' width={10} height={560} alt=''></Image>
-        </div>
+        </AnimationAppearWrapper>
     )
 }
 
@@ -46,7 +48,7 @@ export function StepsBlockMobile({steps}) {
             {steps.map((step, ind) => {
                 return (
                    
-                    <div key={step.id} className={[styles.stepBlock, RubikBold.className].join(' ')}>
+                    <AnimationAppearWrapper key={step.id} className={[styles.stepBlock, RubikBold.className].join(' ')}>
                         <div className={[styles.stepBlockColumn, 'align-center'].join(' ')}>
                             <div className={[styles.stepBlockTitle, RubikMonoOne.className].join(' ')}>
                                 <h4>{step.title}</h4>
@@ -70,16 +72,16 @@ export function StepsBlockMobile({steps}) {
                         {
                             (ind == steps.length - 1) ? 
                             null : 
-                            <span className={styles.dottedLinePart} style={{top: 'calc(100% + 40px)'}}/>
+                            <AnimationAppearWrapper className={styles.dottedLinePart} style={{top: 'calc(100% + 40px)'}}/>
                         } 
                         {
                             (ind == steps.length - 1) ? 
                             null : 
-                            <span className={styles.dottedLinePart}  style={{top: 'calc(100% + 70px)'}}/>
+                            <AnimationAppearWrapper className={styles.dottedLinePart}  style={{top: 'calc(100% + 70px)'}}/>
                         }   
                         
 
-                    </div>
+                    </AnimationAppearWrapper>
                 )
             })}
              

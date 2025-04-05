@@ -20,6 +20,7 @@ import { BookBlockMobile } from "@/components/bookBlock";
 import StepsBlock from "@/components/userStepsBlock";
 import { StepsBlockMobile } from "@/components/userStepsBlock";
 import observeElements from "@/lib/contentObserver";
+import AnimationAppearWrapper from "@/components/animationAppearWrapper";
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, EffectCreative, Navigation} from 'swiper/modules';
@@ -283,6 +284,7 @@ function QuizBlockModal({offsetY, modalState, modalBodyState}) {
 
 function QuizStatic({modalWindowState, setModalWindowState, setModalWindowContent}) {
   const [windowWidth, setWindowWidth] = React.useState(null);
+
   console.log(modalWindowState)
   React.useEffect(() => {
     setWindowWidth(window.innerWidth);
@@ -427,100 +429,110 @@ export default function Page() {
   if (categories != null &&  articlesPaths != null) {
     pageContent = (
       <main>
-        <div className="container justify-center">
-          {(windowWidth >= 600) ? 
-            <BookBlock/> : 
-            <BookBlockMobile/>
-          }
     
-        </div>
+          <AnimationAppearWrapper className="container justify-center">
+            {(windowWidth >= 600) ? 
+              <BookBlock/> : 
+              <BookBlockMobile/>
+            }
+          </AnimationAppearWrapper>
+ 
         <div className={["container justify-center section-title", RubicMonoOne.className].join(' ')}  id={'how-it-works'}>
-          <h3>Как это работает</h3>
+          <AnimationAppearWrapper>
+            <h3>Как это работает</h3>
+          </AnimationAppearWrapper>
         </div>
         <div className="container justify-center a-p">
-          {(windowWidth >= 700) ?
-            <StepsBlock
-              steps={[
-                {id: 0, title: "Играй", description: "Бросай кубик и делай ходы, выполняя задания поля, на которое ты пришел!", animation: "/animation/dice.lottie", animationStyle: {top: '-8px'}},
-                {id: 1, title: "Учись", description: "Если ты не знаешь, как ответить на вопрос поля, то открывай этот справочник и переходи к соотвуствующему уроку!", animation: "/animation/book.lottie"},
-                {id: 2, title: "Проверяй знания", description: "В конце каждого урока тебя ждет тест, чтобы ты оценил, насколько хорошо понял тему. Также ты можешь пройти викторину из случайных вопросов, чтобы оценить свои знания сразу по всем категориям!", animation: "/animation/arrow.lottie"},
-              ]}
-            /> : 
-            <StepsBlockMobile 
-              steps={[
-                {id: 0, title: "Играй", description: "Бросай кубик и делай ходы, выполняя задания поля, на которое ты пришел!", animation: "/animation/dice.lottie", animationStyle: {top: '-16px', marginBottom: '-20px'}},
-                {id: 1, title: "Учись", description: "Если ты не знаешь, как ответить на вопрос поля, то открывай этот справочник и переходи к соотвуствующему уроку!", animation: "/animation/book.lottie", animationStyle: {top: '-10px', marginBottom: '-50px'}},
-                {id: 2, title: "Проверяй знания", description: "В конце каждого урока тебя ждет тест, чтобы ты оценил, насколько хорошо понял тему. Также ты можешь пройти викторину из случайных вопросов, чтобы оценить свои знания сразу по всем категориям!", animation: "/animation/arrow.lottie", animationStyle: {marginBottom: '10px'}} ,
-              ]}
-            />
-          }
-          
+          <AnimationAppearWrapper>
+            {(windowWidth >= 700) ?
+              <StepsBlock
+                steps={[
+                  {id: 0, title: "Играй", description: "Бросай кубик и делай ходы, выполняя задания поля, на которое ты пришел!", animation: "/animation/dice.lottie", animationStyle: {top: '-8px'}},
+                  {id: 1, title: "Учись", description: "Если ты не знаешь, как ответить на вопрос поля, то открывай этот справочник и переходи к соотвуствующему уроку!", animation: "/animation/book.lottie"},
+                  {id: 2, title: "Проверяй знания", description: "В конце каждого урока тебя ждет тест, чтобы ты оценил, насколько хорошо понял тему. Также ты можешь пройти викторину из случайных вопросов, чтобы оценить свои знания сразу по всем категориям!", animation: "/animation/arrow.lottie"},
+                ]}
+              /> : 
+              <StepsBlockMobile 
+                steps={[
+                  {id: 0, title: "Играй", description: "Бросай кубик и делай ходы, выполняя задания поля, на которое ты пришел!", animation: "/animation/dice.lottie", animationStyle: {top: '-16px', marginBottom: '-20px'}},
+                  {id: 1, title: "Учись", description: "Если ты не знаешь, как ответить на вопрос поля, то открывай этот справочник и переходи к соотвуствующему уроку!", animation: "/animation/book.lottie", animationStyle: {top: '-10px', marginBottom: '-50px'}},
+                  {id: 2, title: "Проверяй знания", description: "В конце каждого урока тебя ждет тест, чтобы ты оценил, насколько хорошо понял тему. Также ты можешь пройти викторину из случайных вопросов, чтобы оценить свои знания сразу по всем категориям!", animation: "/animation/arrow.lottie", animationStyle: {marginBottom: '10px'}} ,
+                ]}
+              />
+            }
+          </AnimationAppearWrapper>
         </div>
         <div className={["container justify-center section-title", RubicMonoOne.className].join(' ')} id={'categories'}>
+        <AnimationAppearWrapper>
           <h3>Выбери категорию</h3>
+        </AnimationAppearWrapper>
         </div>
-        <div className="container justify-center">
-          {
-            (windowWidth >= 750) ? 
-            (
-              <div className={styles.sheetsContainer}>
-                {categories.map((cat) => {
+        <AnimationAppearWrapper className="container justify-center">
+         
+            {
+              (windowWidth >= 750) ? 
+              (
+                <div className={styles.sheetsContainer}>
+                  {categories.map((cat) => {
+                    
+                    let categoryContentPath = articlesPaths[cat.rel] ? articlesPaths[cat.rel] : '/';
+                    return (
+                      <CategoryCard key={cat.id} rel={categoryContentPath} title={cat.title} backgroundColor={cat.backgroundColor} titleBackground={cat.titleColor} image={cat.image}></CategoryCard>
+                      /*<Link href={`/categories/${cat.rel}`} className={styles.sheet} key={cat.id}
+                      >
+                        {cat.title}
+                      </Link>*/
+                    )
+                  })}    
+                </div>  
+              ) : 
+              <div className="container justify-center">
+                <Swiper
+                  className={styles.categorySlider}  style={{"--swiper-pagination-color" : "#FF9742", "--swiper-pagination-bullet-size": "12px", "--swiper-pagination-bullet-inactive-color" : "#2e4e80", '--swiper-pagination-bullet-inactive-opacity': 0.2}}
+                  spaceBetween={0}
+                  slidesPerView={1}
+                  navigation={{
+                    clickable: true,
+                    nextEl: '.gallery-swiper-button-next',
+                    prevEl: '.gallery-swiper-button-prev',
+                    disabledClass: 'gallery-swiper-button-disabled'
+                  }}
+                  pagination={{
+                    clickable: true
+                  }}
                   
-                  let categoryContentPath = articlesPaths[cat.rel] ? articlesPaths[cat.rel] : '/';
-                  return (
-                    <CategoryCard key={cat.id} rel={categoryContentPath} title={cat.title} backgroundColor={cat.backgroundColor} titleBackground={cat.titleColor} image={cat.image}></CategoryCard>
-                    /*<Link href={`/categories/${cat.rel}`} className={styles.sheet} key={cat.id}
-                    >
-                      {cat.title}
-                    </Link>*/
-                  )
-                })}    
-              </div>  
-            ) : 
-            <div className="container justify-center">
-              <Swiper
-                className={styles.categorySlider}  style={{"--swiper-pagination-color" : "#FF9742", "--swiper-pagination-bullet-size": "12px", "--swiper-pagination-bullet-inactive-color" : "#2e4e80", '--swiper-pagination-bullet-inactive-opacity': 0.2}}
-                spaceBetween={0}
-                slidesPerView={1}
-                navigation={{
-                  clickable: true,
-                  nextEl: '.gallery-swiper-button-next',
-                  prevEl: '.gallery-swiper-button-prev',
-                  disabledClass: 'gallery-swiper-button-disabled'
-                }}
-                pagination={{
-                  clickable: true
-                }}
+                  modules={[Pagination, EffectCreative, Navigation]}
+                  effect={'creative'}
+                  creativeEffect={{
+                      prev: {
+                        shadow: false,
+                        translate: [0, 0, -400],
+                      },
+                      next: {
+                        translate: ['100%', 0, 0],
+                      },
+                    }}>
+                  {categories.map((cat) => {
+                    
+                    let categoryContentPath = articlesPaths[cat.rel] ? articlesPaths[cat.rel] : '/';
+                    return (
+                      <SwiperSlide key={cat.id} className={styles.categorySliderSlide} >
+                        <CategoryCard  rel={categoryContentPath} title={cat.title} backgroundColor={cat.backgroundColor} titleBackground={cat.titleColor} image={cat.image}></CategoryCard>
+                      </SwiperSlide>
                 
-                modules={[Pagination, EffectCreative, Navigation]}
-                effect={'creative'}
-                creativeEffect={{
-                    prev: {
-                      shadow: false,
-                      translate: [0, 0, -400],
-                    },
-                    next: {
-                      translate: ['100%', 0, 0],
-                    },
-                  }}>
-                {categories.map((cat) => {
-                  
-                  let categoryContentPath = articlesPaths[cat.rel] ? articlesPaths[cat.rel] : '/';
-                  return (
-                    <SwiperSlide key={cat.id} className={styles.categorySliderSlide} >
-                      <CategoryCard  rel={categoryContentPath} title={cat.title} backgroundColor={cat.backgroundColor} titleBackground={cat.titleColor} image={cat.image}></CategoryCard>
-                    </SwiperSlide>
-               
-                  )
-                })}    
-              </Swiper>
-            </div>
-          }
+                    )
+                  })}    
+                </Swiper>
+              </div>
+            }
+      
           
-        </div>
-        <div className="container justify-center" id={'test'}>
-          <QuizStatic modalWindowState={modalWindowState} setModalWindowState={setModalWindowState} setModalWindowContent={setModalWindowContent}></QuizStatic>
-        </div>
+        </AnimationAppearWrapper>
+        <AnimationAppearWrapper className="container justify-center" id={'test'}>
+          
+            <QuizStatic modalWindowState={modalWindowState} setModalWindowState={setModalWindowState} setModalWindowContent={setModalWindowContent}></QuizStatic>
+       
+        </AnimationAppearWrapper>
         <ModalWindow windowState={modalWindowState.state}>
            {modalWindowContent}
          </ModalWindow>
