@@ -75,7 +75,7 @@ export default function Page() {
                 
                 
             </div>
-            <div className={`container justify-center text-md ${(windowWidth < 500 ? 'mb-30' : '')}`} style={{marginTop: '-40px'}}>
+            <AnimationAppearWrapper className={`container justify-center text-md ${(windowWidth < 500 ? 'mb-30' : '')}`} style={{marginTop: '-40px'}}>
                 <h2 className={'mb-50 text-xxl text-center'}>Наша платформа поможет:</h2>
                 <div className={['flex justify-center', styles.columnsContainer].join(' ')}>
                     <ColumnAnimationBlock
@@ -94,10 +94,10 @@ export default function Page() {
                         animationStyle={{width: '300px', height: '120px'}}  
                     />
                 </div>
-            </div>
-            <AnimationAppearWrapper className={`container justify-center ${(windowWidth < 500 ? 'mb-30' : '')}`}>
+            </AnimationAppearWrapper >
+            <div className={`container justify-center ${(windowWidth < 500 ? 'mb-30' : '')}`}>
                 <p className="text-lg text-center" style={(windowWidth < 500 ? {fontSize: '22px'} : null)}>У вас есть какие-либо вопросы? <Link className={styles.inlineLink} href='/contacts'>Свяжитесь с нами</Link>!</p>
-            </AnimationAppearWrapper>
+            </div>
         
         </main>
        
