@@ -8,6 +8,8 @@ import styles from './page.module.css';
 
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 
+import AnimationAppearWrapper from "@/components/animationAppearWrapper";
+
 export default function Page() {
     const [windowWidth, setWindowWidth] = React.useState(null);
     const [textFieldHeight, setTextFieldHeight] = React.useState(null);
@@ -24,7 +26,7 @@ export default function Page() {
             </div>
             <div className={['container flex-column', RubikBold.className].join(' ')}>
                 <div className='flex justify-center' style={{columnGap: '140px'}}>
-                    <div className={styles.bookForm}>
+                    <AnimationAppearWrapper className={styles.bookForm}>
                     
                         <div className={[styles.bookPage, styles.bookPageContent].join(' ')} style={{top: '16px', left: '16px', backgroundColor: '#2e4e80'}}></div>
                         <div className={styles.bookPage} style={{top: '12px', left: '12px'}} ></div>
@@ -119,8 +121,8 @@ export default function Page() {
                         <Image className={styles.formParticle} src='/icons/rivets.svg' width={40} height={80} alt='' style={{top: '50px', left: '-16px'}}></Image>
                         <Image className={styles.formParticle} src='/icons/notes_sm.svg' width={30} height={50} alt='' style={{top: '0px', left: '80%', display: (windowWidth < 400) ? 'none' : null}}></Image>
 
-                    </div>
-                    <div className={[`flex flex-column ${(windowWidth <= 400) ? 'align-center' : ''}`, styles.contactsColumn].join(' ')}>
+                    </AnimationAppearWrapper>
+                    <AnimationAppearWrapper className={[`flex flex-column ${(windowWidth <= 400) ? 'align-center' : ''}`, styles.contactsColumn].join(' ')}>
                         <h5 className={'mb-20 text-xl'}>Или используйте для связи любой из наших контактов:</h5>
                         <div className={['flex text-md align-center text-xl', styles.columnRow].join(' ')}>
                             <Image src='/icons/phone.svg' width={30} height={30} alt=''></Image>
@@ -130,7 +132,7 @@ export default function Page() {
                             <Image src='/icons/email.svg' width={30} height={30} alt=''></Image>
                             <span>example@domain.com</span>
                         </div>
-                    </div>
+                    </AnimationAppearWrapper>
                         
                 </div>
             </div>

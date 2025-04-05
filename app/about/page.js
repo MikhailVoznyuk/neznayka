@@ -9,6 +9,7 @@ import { RubikBold } from "@/components/fonts/rubikMonoOne";
 
 import styles from './page.module.css'
 
+import AnimationAppearWrapper from "@/components/animationAppearWrapper";
 import TextAnimationColumns from "@/components/pageComponents";
 import { ColumnAnimationBlock } from "@/components/pageComponents";
 
@@ -37,12 +38,12 @@ export default function Page() {
         <main className={RubikBold.className}>
             
              <div className={['container justify-center align-center flex-column', styles.textAnimationRowTitle].join(' ')}>
-                <div className="mb-20">
+                <AnimationAppearWrapper className="mb-20">
                     <Image src="/logo.svg" width={300} height={60} alt="logo"></Image>
-                </div>
-                <div className={['text-lg', RubikBold.className].join(' ')}>
+                </AnimationAppearWrapper>
+                <AnimationAppearWrapper className={['text-lg', RubikBold.className].join(' ')}>
                     <p className={['column-md', 'text-center'].join(' ')}>Платформа для изучения основ безопасности жизнедеятельности в игровой форме, как для детей, так и взрослых.</p>
-                </div>
+                </AnimationAppearWrapper>
             </div>
             <div className={['container justify-center text-md ', styles.benefits].join(' ')}>
                 <TextAnimationColumns  
@@ -94,9 +95,9 @@ export default function Page() {
                     />
                 </div>
             </div>
-            <div className={`container justify-center ${(windowWidth < 500 ? 'mb-30' : '')}`}>
+            <AnimationAppearWrapper className={`container justify-center ${(windowWidth < 500 ? 'mb-30' : '')}`}>
                 <p className="text-lg text-center" style={(windowWidth < 500 ? {fontSize: '22px'} : null)}>У вас есть какие-либо вопросы? <Link className={styles.inlineLink} href='/contacts'>Свяжитесь с нами</Link>!</p>
-            </div>
+            </AnimationAppearWrapper>
         
         </main>
        
