@@ -18,7 +18,7 @@ export async function getArticleById(id) {
 }
 export default async function saveBlock(formData, pageId) {
     const db = new DataBase();
-    console.log(formData);
+    
     let block = null;
     if (+(formData.get('type')) == 0) {
         block = {
@@ -69,7 +69,7 @@ export async function getCategories() {
 }
 
 export async function getFirstArticleRel(category) {
-    console.log(category)
+    
     const db = new DataBase;
     return (await db.getFirstCategoryArticleRel(category));
 }

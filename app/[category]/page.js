@@ -13,11 +13,11 @@ async function findCategory(name) {
 async function addData() {
     "use server"
     const db = new useDataBase();
-    console.log('ye');
+    
    
     const allData = await db.readData();
     allData.articles.push({"id": 100, "category": 1, "title": "Седьмой пост", "description": "Описание статьи 7", "content": "Содержание статьи 7"});
-    console.log('Хуйня работает')
+    
     await db.saveData(allData);
 }
 

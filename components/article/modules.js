@@ -25,7 +25,7 @@ export default function ArticleBlock({articleId, component, isDev, categoryConte
         setWindowWidth(window.innerWidth);
         window.addEventListener('resize', () => setWindowWidth(window.innerWidth))
     }, []);
-    console.log('module', offsetY)
+    
     if (isDone) {
         
     }
@@ -35,7 +35,7 @@ export default function ArticleBlock({articleId, component, isDev, categoryConte
         componentContent = (<p className={[styles.articleTextContent, RubikBold.className].join(' ')}><span style={{marginLeft: '2em'}}/>{component.content}</p>);
         confirmButtonMessage = 'Я прочитал';
     } else if (component.type == 1) {
-        console.log(component);
+        
         componentContent = (<ModalGallery galleryData={component}></ModalGallery>);
         confirmButtonMessage = 'Я посмотрел';
     } else if (component.type == 2) {

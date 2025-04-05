@@ -33,7 +33,7 @@ export default function Page() {
    React.useEffect(() => {
 
     getArticleByRel(articleRel).then((articleContent) => {
-        console.log(articleContent);
+        
         getCategoryById(articleContent.category).then(category => {
             setCurrentCategory(category);
         });
@@ -46,11 +46,11 @@ export default function Page() {
     });
    }, []);
    React.useEffect(() => {
-    console.log(modalWindowState.scrollTop);
+    
     window.scroll(0, modalWindowState.scrollTop);
     
    })
-   console.log('cookies', completedBlocks);
+   
    let pageContent;
    if (articleContent != null && articlesNavRels != null && currentCategory != null) {
     pageContent = (

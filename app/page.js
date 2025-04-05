@@ -70,7 +70,7 @@ function Quiz({modalWindowState, setModalWindowState, setModalWindowContent, scr
   React.useEffect(() => {
     setWindowWidth(window.innerWidth);
   });
-  console.log(scrollTop)
+  
   const count = quizQuestions.length;
   let quizBarSections = [];
   let quizBarLines = [];
@@ -285,7 +285,7 @@ function QuizBlockModal({offsetY, modalState, modalBodyState}) {
 function QuizStatic({modalWindowState, setModalWindowState, setModalWindowContent}) {
   const [windowWidth, setWindowWidth] = React.useState(null);
 
-  console.log(modalWindowState)
+  
   React.useEffect(() => {
     setWindowWidth(window.innerWidth);
   })
@@ -333,7 +333,7 @@ function QuizStatic({modalWindowState, setModalWindowState, setModalWindowConten
                 <div className={styles.quizStatic} style={windowWidth >= 750 ? {height: '550px'} : {height: '530px'}}>
                   <button className={styles.quizCloseBtn} onClick={() => {
                       
-                      console.log(offsetY);
+                      
                       setModalWindowState(UpdateWindowState({prevContext: modalWindowState, state:false, scrollTop: offsetY}));
                     }}>
                     <span className={styles.btnLine} style={{transform: "rotate(45deg)"}}></span>
@@ -400,10 +400,10 @@ export default function Page() {
     }
     }, []);
   React.useEffect(() => {
-    console.log(document.documentElement.scrollTop, modalWindowState);
+    
     setWindowWidth(window.innerWidth);
     if (modalWindowState.scrollTop != 0) {
-      console.log('scroll', modalWindowState.scrollTop)
+      
       window.scroll(0, modalWindowState.scrollTop);
       
     }
@@ -424,7 +424,7 @@ export default function Page() {
     setTimeout(() => observeElements('.a-p'), 0)
     
   }, [])
-  console.log('windowWidth', windowWidth)
+  
   let pageContent;
   if (categories != null &&  articlesPaths != null) {
     pageContent = (

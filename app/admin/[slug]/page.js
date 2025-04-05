@@ -26,11 +26,11 @@ export default function Page({params}) {
         <div></div>
         );
         if (blockType == 0) {
-            console.log('да')
+            
             block = (
                 <div>
                     <form action={async (formData) => {
-                        console.log('дерьмо работает');
+                        
                         
                         const newComponent = await saveBlock(formData, pageId);
                         setComponents(components.concat(newComponent));
@@ -79,7 +79,7 @@ export default function Page({params}) {
 
     React.useEffect(() => {
         getArticleById(route).then((e) => {
-            console.log(e);
+            
             setComponents(e.content);
     });
     }, []);
@@ -88,7 +88,7 @@ export default function Page({params}) {
         <main>
             <div>
                 {components.map((item) => {
-                    console.log(item.content);
+                    
                     return (
                     <div key={item.id}>
                         {componentsRender.renderComponent(item)}

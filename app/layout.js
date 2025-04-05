@@ -69,18 +69,18 @@ export default function RootLayout({ children }) {
     
   })
   React.useEffect(() => {
-    console.log('yes sir', modalWindowState.scrollTop);
+    
     if (typeof(isMobNavOpened.scrollTop) == 'string' && isMobNavOpened.scrollTop.startsWith('#')) {
       const element = document.querySelector(isMobNavOpened.scrollTop);
-      console.log('ДА БЛЯТЬ', element)
+      
       if (element) {
-        console.log(true)
+        
         element.scrollIntoView({behavior: 'smooth'});
         setIsMobNavOpened({isMobNavOpened, state: false, scrollTop: 0})
       }
     } else {
       if (isMobNavOpened.scrollTop != 0 && isMobNavOpened.state == false) {
-        console.log('yes', isMobNavOpened.scrollTop)
+        
         window.scroll(0, isMobNavOpened.scrollTop)
         setIsMobNavOpened(Object.assign(isMobNavOpened, {scrollTop: 0}))
       } 
@@ -157,7 +157,7 @@ export default function RootLayout({ children }) {
                   </Link>
                   <button className={['primary-header-nav-btn-mobile', (isMobNavOpened.state) ? 'active' : ''].join(' ')} onClick={() => {
                       if (!isMobNavOpened.state) {
-                        console.log('Открыто')
+                        
                         setIsMobNavOpened (
                           {
                             state: true,
@@ -223,7 +223,7 @@ export default function RootLayout({ children }) {
                                     
                                   )
                                   if (element) {
-                                    console.log('prevented')
+                                    
                                     event.preventDefault();
                                     
                                   }
@@ -260,7 +260,7 @@ export default function RootLayout({ children }) {
                         setIsNavOpened(true)
                       } else {
 
-                        console.log('Закрыто')
+                        
                         setIsMobNavOpened (
                           {
                             state: false,

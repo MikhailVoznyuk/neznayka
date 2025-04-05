@@ -10,7 +10,7 @@ import { addCompletedBlock } from "../server/cookies/cookiesStorage";
 
 
 export default function ModalQuiz({articleId, quizContent, categoryContent, modalWindowState, setModalWindowState, setModalWindowContent, offsetY, completedBlocks, setCompletedBlocks}) {
-    console.log(completedBlocks, setCompletedBlocks)
+    
     const [stage, setStage] = React.useState(0);
     const [mistakesCounter, setMistakesCounter] = React.useState(0);
     const [totalAnswersCounter, setTotalAnswersCounter] = React.useState(0);
@@ -30,7 +30,7 @@ export default function ModalQuiz({articleId, quizContent, categoryContent, moda
     });
 
     
-    console.log(quizQuestions);
+    
     const count = quizQuestions.length;
     let quizBarSections = [];
     let quizBarLines = [];
@@ -93,7 +93,7 @@ export default function ModalQuiz({articleId, quizContent, categoryContent, moda
               <button 
                 className={[styles.quizConfirmButton, RubikMonoOne.className].join(' ')}
                 onClick={() => {
-                  console.log(quizContent.id)
+                  
                   setCompletedBlocks(completedBlocks.add(quizContent.id));
                   addCompletedBlock(articleId, quizContent.id);
                   setModalWindowState(UpdateWindowState({

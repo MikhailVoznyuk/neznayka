@@ -21,7 +21,7 @@ class UserProgressCookies {
     }
     async getArticleProgress(articleId) {
         const articlesProgress = await this.readCookies();
-        console.log('articlesProgress', articlesProgress)
+        
         if (!articlesProgress) {
             return new Set();
         } 
@@ -46,7 +46,7 @@ class UserProgressCookies {
         let articlesProgress = await this.readCookies();
         const completedBlocks = await this.getArticleProgress(articleId);
         if (completedBlocks.has(blockId)) {
-            console.log('exitsts')
+            
             return articlesProgress;
         }
         articlesProgress += `${articleId}.${blockId};`

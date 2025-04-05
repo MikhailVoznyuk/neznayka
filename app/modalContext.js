@@ -9,7 +9,7 @@ const modalWindowContext = React.createContext({
 export default modalWindowContext;
 
 export function UpdateWindowState({prevContext, state=false, scrollTop=0}) {
-    console.log(prevContext.scrollTop)
+    
     let newContext = {};
     newContext.state = state,
     newContext.scrollTop = scrollTop;
