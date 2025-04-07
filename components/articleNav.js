@@ -24,9 +24,9 @@ export default function ArticleNav({navRels, currentDirectory, currentArticleRel
                         if (rel.rel == currentArticleRel) {
                             articleItem = (
                                 <div className={styles.articleNavItemWrapper} style={{backgroundColor: articleSettings.pageColors.navLink}} key = {rel.id}>
-                                    <div className={styles.articleNavItemActiveTitle} style={{backgroundColor: articleSettings.pageColors.navLinkActive, left: ((ind == 0) ? '-6px' : (ind == navRels.length - 1) ? 'calc(100% - 184px)' : null)}}>
+                                    <div className={styles.articleNavItemActiveTitle} style={{backgroundColor: articleSettings.pageColors.navLinkActive, left: ((windowWidth < 498) ? ((ind == 0) ? '-6px' : (ind == navRels.length - 1) ? 'calc(100% - 184px)' : null) : null)}}>
                                         <h5 className={RubicMonoOne.className}>{articleSettings.title}</h5>
-                                        <span className={styles.navItemTitleParticle} style={{backgroundColor: articleSettings.pageColors.navLinkActive, left: ((ind == 0) ? '27px' : (ind == navRels.length - 1) ? '132px' : null)}}></span>
+                                        <span className={styles.navItemTitleParticle} style={{backgroundColor: articleSettings.pageColors.navLinkActive, left: ((windowWidth < 498) ? ((ind == 0) ? '27px' : (ind == navRels.length - 1) ? '132px' : null) : null)}}></span>
                                     </div>
                                     <Link 
                                         className={styles.articleNavItem} 
@@ -47,6 +47,7 @@ export default function ArticleNav({navRels, currentDirectory, currentArticleRel
                                     <Link 
                                         className={[styles.articleNavItem, styles.articleNavItemSecondary].join(' ')} 
                                         href={'/' + [currentDirectory, rel.rel].join('/')} 
+                                        style={{zIndex: 2}}
                                     >
                                         <Image src={rel.icon} width={(windowWidth >= 498 ) ? 70 : 56} height={(windowWidth >= 498 ) ? 70 : 56}  alt="Article navigation icon"></Image>
                                     </Link>
