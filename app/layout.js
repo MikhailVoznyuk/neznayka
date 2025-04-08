@@ -135,14 +135,14 @@ export default function RootLayout({ children }) {
                       </div>
                       <span className="nav-link-particle"></span>
                     </Link>
-                    <Link href="about">
+                    <Link href="/about">
                       <div className='nav-link-content'>
                         <span>О нас</span>
                         <Image src='/icons/about.svg' width={25} height={25} alt=''/>
                       </div>
                       <span className="nav-link-particle"></span>
                     </Link>
-                    <Link href="contacts">
+                    <Link href="/contacts">
                       <div className='nav-link-content'>
                         <span>Контакты</span>
                         <Image src='/icons/contacts.svg' width={25} height={25} alt='' style={{top: '3px'}}/>
