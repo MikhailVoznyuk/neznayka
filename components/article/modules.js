@@ -1,4 +1,5 @@
 import React from 'react';
+import parse from 'html-react-parser';
 import styles from './component.module.css'
 import RubikMonoOne from '../fonts/rubikMonoOne'
 import { RubikBold } from '../fonts/rubikMonoOne';
@@ -32,7 +33,24 @@ export default function ArticleBlock({articleId, component, isDev, categoryConte
     let componentContent = null;
     let confirmButtonMessage;
     if (component.type == 0) {
-        componentContent = (<p className={[styles.articleTextContent, RubikBold.className].join(' ')}><span style={{marginLeft: '2em'}}/>{component.content}</p>);
+        console.log(component.content);
+        componentContent = (
+            <div className={styles.articleTextBlock}>
+                {component.content.map((item, ind) => {
+                    if (item.type === 'title') {
+                        return (
+                            <h5 key={ind} className={RubikBold.className}>{parse(item.content)}</h5>
+                        )
+                    } else if (item.type === 'text') {
+                        return (
+                            <p key={ind} className={[ RubikBold.className].join(' ')}>{/*<span style={{marginLeft: '2em'}}/>*/parse(item.content)}</p>
+                        )
+                    }
+
+                })}
+            </div>
+        )
+
         confirmButtonMessage = 'Я прочитал';
     } else if (component.type == 1) {
         
