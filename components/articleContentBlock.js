@@ -14,7 +14,7 @@ export default function ArticleContentBlock({title, articleBlockType, background
         imageBlock = (
             <Image style={{top: '2%'}} src='/book.svg' width={(windowWidth >= 498) ? 174 : 110} height={(windowWidth >= 498) ? 174 : 110} alt="Content block icon" />
         )
-    } else if (blockType == 1) {
+    } else if (blockType == 1 || blockType == 4) {
         imageBlock = (
             <Image src='/image_cards.svg' width={(windowWidth >= 498) ? 170 : 110} height={(windowWidth >= 498) ? 170 : 110} alt="Content block icon" />
         )

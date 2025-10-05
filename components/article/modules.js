@@ -6,6 +6,7 @@ import { RubikBold } from '../fonts/rubikMonoOne';
 import Image from 'next/image';
 import ModalGallery from './modalGallery';
 import ModalQuiz from './modalQuiz';
+import ModalImage from './modalImage';
 import { UpdateWindowState } from '@/app/modalContext';
 import { addCompletedBlock } from '../server/cookies/cookiesStorage';
 
@@ -61,6 +62,9 @@ export default function ArticleBlock({articleId, component, isDev, categoryConte
         confirmButtonMessage = 'Я посмотрел';
     } else if (component.type == 3) {
         componentContent = (<ModalQuiz articleId={articleId} quizContent={component} categoryContent={categoryContent} modalWindowState={modalWindowState} setModalWindowContent={setModalWindowContent} setModalWindowState={setModalWindowState} offsetY={offsetY} completedBlocks={completedBlocks} setCompletedBlocks={setCompletedBlocks}/>);
+        confirmButtonMessage = 'Я посмотрел';
+    } else if (component.type == 4) {
+        componentContent = (<ModalImage imageSrc={''}/>);
         confirmButtonMessage = 'Я посмотрел';
     } else {
         componentContent = (<div>В разработке</div>)
