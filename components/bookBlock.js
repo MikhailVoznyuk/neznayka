@@ -98,7 +98,7 @@ export function BookBlockMobile() {
                     </div>
                     <div className={styles.bookButtonContaiener}>
                         <button className={[styles.bookButton, RubikMonoOne.className].join(' ')} onClick={(event) => {
-                            const element = document.querySelector('#how-it-works');
+                            const element = document.querySelector('#categories');
                             if (element) {
                                 element.scrollIntoView({behavior: 'smooth'});
                             }
@@ -149,7 +149,7 @@ export default function BookBlock() {
                     </div>
                     <div className={styles.bookButtonContaiener}>
                         <button className={[styles.bookButton, RubikMonoOne.className].join(' ')} onClick={(event) => {
-                            const element = document.querySelector('#how-it-works');
+                            const element = document.querySelector('#categories');
                             if (element) {
                                 element.scrollIntoView({behavior: 'smooth'});
                             }

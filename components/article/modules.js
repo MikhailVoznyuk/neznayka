@@ -64,7 +64,7 @@ export default function ArticleBlock({articleId, component, isDev, categoryConte
         componentContent = (<ModalQuiz articleId={articleId} quizContent={component} categoryContent={categoryContent} modalWindowState={modalWindowState} setModalWindowContent={setModalWindowContent} setModalWindowState={setModalWindowState} offsetY={offsetY} completedBlocks={completedBlocks} setCompletedBlocks={setCompletedBlocks}/>);
         confirmButtonMessage = 'Я посмотрел';
     } else if (component.type == 4) {
-        componentContent = (<ModalImage imageSrc={''}/>);
+        componentContent = (<ModalImage imageSrc={component.content}/>);
         confirmButtonMessage = 'Я посмотрел';
     } else {
         componentContent = (<div>В разработке</div>)

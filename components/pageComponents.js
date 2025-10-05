@@ -1,27 +1,23 @@
 import React from "react";
 import Image from "next/image";
 import styles from './components.module.css';
-
 import AnimationAppearWrapper from "./animationAppearWrapper";
 
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 
-export default function TextAnimationColumns({title, text, AnimationSrc=null, isReversed=false, customAnimationStyle={}}) {
+
+export default function TextAnimationColumns({title, text, imageSrc=null, isReversed=false, customAnimationStyle={}}) {
     
     
     return (
-        <div className={['flex justify-between align-center mb-100', styles.textAnimationRow].join(' ')} style={(isReversed) ? {flexDirection: 'row-reverse'} : null}>
+        <div className={['flex justify-center align-center mb-100', styles.textAnimationRow].join(' ')} style={(isReversed) ? {flexDirection: 'row-reverse'} : null}>
             
             <AnimationAppearWrapper className={['flex flex-column justify-center', styles.textColumn].join(' ')}>
-                <h4 className='text-title-md mb-30'>{title}</h4>
+                <h4 className='text-xl mb-30'>{title}</h4>
                 <p>{text}</p>
             </AnimationAppearWrapper>
-            <AnimationAppearWrapper className={['flex justify-end', styles.animationColumn].join(' ')} style={customAnimationStyle}>
-               <DotLottieReact
-                    src={AnimationSrc}
-                    loop
-                    autoplay
-                />
+            <AnimationAppearWrapper className={[`flex justify-center`, styles.animationColumn].join(' ')}>
+               <Image width={100} height={100} src={imageSrc} className={styles.animatedImage} alt=''></Image>
             </AnimationAppearWrapper>
         </div>
     )

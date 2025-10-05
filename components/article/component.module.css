@@ -87,8 +87,8 @@
     right: 14px;
     display: flex;
     gap: 16px;
-    padding: 6px;
     border-radius: 40px;
+    box-shadow: 0 0 3px rgba(255, 255, 255, 0.8);
 }
 .imageActionsTab {
     display: flex;
@@ -99,8 +99,13 @@
     background-color: #FFFFFF;
     border-radius: 50%;
     padding: 6px;
-    border: none;
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
+    border: 2px solid #FF9742;
+    transition: 0.3s ease;
+}
+
+.imageActionsTab:hover {
+    transform: scale(1.05)
 }
 
 .imageActionsTab img {

@@ -437,31 +437,8 @@ export default function Page() {
             }
           </AnimationAppearWrapper>
  
-        <div className={["container justify-center section-title", RubicMonoOne.className].join(' ')}  id={'how-it-works'}>
-          <AnimationAppearWrapper>
-            <h3>Как это работает</h3>
-          </AnimationAppearWrapper>
-        </div>
-        <div className="container justify-center a-p">
-          <AnimationAppearWrapper>
-            {(windowWidth >= 700) ?
-              <StepsBlock
-                steps={[
-                  {id: 0, title: "Играй", description: "Бросай кубик и делай ходы, выполняя задания поля, на которое ты пришел!", animation: "/animation/dice.lottie", animationStyle: {top: '-8px'}},
-                  {id: 1, title: "Учись", description: "Если ты не знаешь, как ответить на вопрос поля, то открывай этот справочник и переходи к соотвуствующему уроку!", animation: "/animation/book.lottie"},
-                  {id: 2, title: "Проверяй знания", description: "В конце каждого урока тебя ждет тест, чтобы ты оценил, насколько хорошо понял тему. Также ты можешь пройти викторину из случайных вопросов, чтобы оценить свои знания сразу по всем категориям!", animation: "/animation/arrow.lottie"},
-                ]}
-              /> : 
-              <StepsBlockMobile 
-                steps={[
-                  {id: 0, title: "Играй", description: "Бросай кубик и делай ходы, выполняя задания поля, на которое ты пришел!", animation: "/animation/dice.lottie", animationStyle: {top: '-16px', marginBottom: '-20px'}},
-                  {id: 1, title: "Учись", description: "Если ты не знаешь, как ответить на вопрос поля, то открывай этот справочник и переходи к соотвуствующему уроку!", animation: "/animation/book.lottie", animationStyle: {top: '-10px', marginBottom: '-50px'}},
-                  {id: 2, title: "Проверяй знания", description: "В конце каждого урока тебя ждет тест, чтобы ты оценил, насколько хорошо понял тему. Также ты можешь пройти викторину из случайных вопросов, чтобы оценить свои знания сразу по всем категориям!", animation: "/animation/arrow.lottie", animationStyle: {marginBottom: '10px'}} ,
-                ]}
-              />
-            }
-          </AnimationAppearWrapper>
-        </div>
+
+
         <div className={["container justify-center section-title", RubicMonoOne.className].join(' ')} id={'categories'}>
         <AnimationAppearWrapper>
           <h3>Выбери категорию</h3>
@@ -528,6 +505,31 @@ export default function Page() {
       
           
         </AnimationAppearWrapper>
+          <div className={["container justify-center section-title", RubicMonoOne.className].join(' ')}  id={'how-it-works'}>
+              <AnimationAppearWrapper>
+                  <h3><span style={{color: "#2E4E80"}}>Детская</span> <span style={{color: "#FF9742"}}>развивающая</span> <span style={{color: "#2E4E80"}}>игра</span> <Image className={styles.logoInline} width={130} height={52} src={'/icons/logo.svg'} alt=''/></h3>
+              </AnimationAppearWrapper>
+          </div>
+        <div className="container justify-center a-p">
+              <AnimationAppearWrapper>
+                  {(windowWidth >= 700) ?
+                      <StepsBlock
+                          steps={[
+                              {id: 0, title: "Играй", description: "Бросай кубики, делай ходы,  получай карточки, правильно отвечай на вопросы и стань победителем, набравшим больше всех очков на финише!", animation: "/animation/dice.lottie", animationStyle: {top: '-8px'}},
+                              {id: 1, title: "Учись", description: "Если ты не знаешь, как ответить на вопрос поля, то открывай этот справочник и переходи к соответствующему уроку!", animation: "/animation/book.lottie"},
+                              {id: 2, title: "Выигрывай", description: "После того как ты тщательно изучил тему, возвращайся к игре. Постарайся дойти до финиша с максимальным количеством баллов и победи всех!", animation: "/animation/arrow.lottie"},
+                          ]}
+                      /> :
+                      <StepsBlockMobile
+                          steps={[
+                              {id: 0, title: "Играй", description: "Бросай кубики, делай ходы,  получай карточки, правильно отвечай на вопросы и стань победителем, набравшим больше всех очков на финише!", animation: "/animation/dice.lottie", animationStyle: {top: '-16px', marginBottom: '-20px'}},
+                              {id: 1, title: "Учись", description: "Если ты не знаешь, как ответить на вопрос поля, то открывай этот справочник и переходи к соответствующему уроку!", animation: "/animation/book.lottie", animationStyle: {top: '-10px', marginBottom: '-50px'}},
+                              {id: 2, title: "Выигрывай", description: "После того как ты тщательно изучил тему, возвращайся к игре. Постарайся дойти до финиша с максимальным количеством баллов и победи всех!", animation: "/animation/arrow.lottie", animationStyle: {marginBottom: '10px'}} ,
+                          ]}
+                      />
+                  }
+              </AnimationAppearWrapper>
+          </div>
         <AnimationAppearWrapper className="container justify-center" id={'test'}>
           
             <QuizStatic modalWindowState={modalWindowState} setModalWindowState={setModalWindowState} setModalWindowContent={setModalWindowContent}></QuizStatic>

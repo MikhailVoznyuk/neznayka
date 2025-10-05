@@ -25,6 +25,27 @@
     justify-content: center;
 }
 
+.textSection {
+    gap: 24px;
+    padding: 18px;
+    margin-bottom: 30px;
+}
+
+.textSection h3 {
+    color: #2e4e80;
+    font-size: 34px;
+}
+
+.textSection p {
+    font-size: 22px;
+    text-align: center;
+}
+
+.sectionHeader {
+    color: #2e4e80;
+    font-size: 34px;
+}
+
 
 @media screen and (max-width: 739px) {
     
