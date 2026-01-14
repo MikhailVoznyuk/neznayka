@@ -93,7 +93,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        <title>Выживай-ка</title>
+        <title>ОБЖШКА</title>
         <meta description="true" content="Обучающая игра"></meta>
       </head>
       
