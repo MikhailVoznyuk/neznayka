@@ -103,7 +103,7 @@ export default function RootLayout({ children }) {
               {(windowWidth > 1010) ? 
                 <header className="primaryHeader" style={Object.assign(isNavOpened ? {} : {transform: 'translateY(-100px)'}, (modalWindowState) ? {zIndex: 11}: {})}>
                 <Link href='/' className="logo">
-                  <Image src={'/logo.svg'} width={205} height={47} alt=''/>
+                  <Image src={'/icons/logo.svg'} width={130} height={52} alt=''/>
                 </Link>
                   
                   <nav className="primaryNav">
@@ -137,7 +137,7 @@ export default function RootLayout({ children }) {
                     </Link>
                     <Link href="/about">
                       <div className='nav-link-content'>
-                        <span>О нас</span>
+                        <span>Об игре</span>
                         <Image src='/icons/about.svg' width={25} height={25} alt=''/>
                       </div>
                       <span className="nav-link-particle"></span>
@@ -153,7 +153,7 @@ export default function RootLayout({ children }) {
                 </header> : 
                 <header className="primaryHeader" style={Object.assign(isNavOpened ? {} : {transform: 'translateY(-100px)'}, (modalWindowState) ? {zIndex: 11}: {})}>
                   <Link href='/' className="logo">
-                    <Image src={'/logo.svg'} width={150} height={40} alt=''/>
+                    <Image src={'/icons/logo.svg'} width={100} height={40} alt=''/>
                   </Link>
                   <button className={['primary-header-nav-btn-mobile', (isMobNavOpened.state) ? 'active' : ''].join(' ')} onClick={() => {
                       if (!isMobNavOpened.state) {
@@ -230,7 +230,7 @@ export default function RootLayout({ children }) {
                                 }}
                               >
                                 <Image style={{top: '1px'}} src='/icons/about.svg' width={25} height={25} alt=''></Image>
-                                <span className={RubicMonoOne.className}>О нас</span>
+                                <span className={RubicMonoOne.className}>Об игре</span>
                               </Link>
                               <Link className={'nav-link-mob'} href='/contacts' onClick={(event) => 
                                 {
@@ -305,7 +305,7 @@ export default function RootLayout({ children }) {
                   </div>
                   <div>
                     <Link href='/about' className='footer-nav-link'>
-                      <span className={RubikBold.className}>О нас</span>
+                      <span className={RubikBold.className}>Об игре</span>
                       <Image src='/icons/arrow_orange.svg' className='footer-nav-link-image' width={14} height={12} alt=''></Image>
                     </Link>
                   </div>
@@ -337,8 +337,8 @@ export default function RootLayout({ children }) {
                 
                 </nav>
                 <div className={'flex flex-column align-center'} style={{marginBottom: '40px'}}>
-                  <Image src='/logo_dark.svg' width={200} height={45} alt=''></Image>
-                  <p className={RubikBold.className} style={{color: '#FFF', fontSize: '18px', textAlign: 'center'}}>Выживайка - настольная игра, направленная на обучение детей основам безопасности жизнедятельности в игровой форме.</p>
+                  <Image src='icons/logo.svg' width={134} height={54} alt=''></Image>
+                  <p className={RubikBold.className} style={{color: '#FFF', fontSize: '18px', textAlign: 'center'}}>"ОБЖШКА" – это настольная игра, созданная педагогами и экспертами по детской безопасности, целью которой является обучение детей основам безопасности жизнедеятельности. </p>
                 </div>
                 <div className={'flex flex-column align-start'} style={{marginBottom: '40px'}}>
                   <span className={RubikBold.className} style={{marginBottom: '14px'}}>Создано при поддержке:</span>
@@ -346,7 +346,7 @@ export default function RootLayout({ children }) {
                 </div>
               </div>
               <div className='flex justify-center align-center'>
-                <span>© Выживай-ка 2025.</span>
+                <span>© ОБЖШКА 2025.</span>
               </div>
             </footer>
             <ModalWindow windowState={isMobNavOpened.state} containerStyle={{position: 'fixed', top: '50px', transform: "translateY(0px)"}}>
