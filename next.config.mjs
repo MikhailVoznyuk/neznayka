@@ -3,7 +3,6 @@ const nextConfig = {
     eslint: {
         ignoreDuringBuilds: true,
       },
-    output: "export",
     experimental: {
         serverActions: {
           bodySizeLimit: '100mb',
