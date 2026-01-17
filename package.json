@@ -12,7 +12,7 @@
     "@lottiefiles/dotlottie-react": "^0.13.2",
     "fs": "^0.0.1-security",
     "html-react-parser": "^5.2.6",
-    "next": "^15.2.3",
+    "next": "15.2.8",
     "photoswipe": "^5.4.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
