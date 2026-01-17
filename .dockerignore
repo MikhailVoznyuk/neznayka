@@ -1,0 +1,9 @@
+node_modules
+.next
+out
+.git
+.DS_Store
+__MACOSX
+npm-debug.log*
+yarn-error.log*
+*.zip
