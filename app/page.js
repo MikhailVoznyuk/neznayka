@@ -453,8 +453,11 @@ export default function Page() {
                   {categories.map((cat) => {
                     
                     let categoryContentPath = articlesPaths[cat.rel] ? articlesPaths[cat.rel] : '/';
+                    src={(cat.image || "").trim();
+                    const v = "2"; // любая строка, лишь бы менялась при обновлении
+                    src = src.includes("?") ? `${src}&v=${v}` : `${src}?v=${v}`;
                     return (
-                      <CategoryCard key={cat.id} rel={categoryContentPath} title={cat.title} backgroundColor={cat.backgroundColor} titleBackground={cat.titleColor} image={cat.image}></CategoryCard>
+                      <CategoryCard key={cat.id} rel={categoryContentPath} title={cat.title} backgroundColor={cat.backgroundColor} titleBackground={cat.titleColor} image={cat.src}></CategoryCard>
                       /*<Link href={`/categories/${cat.rel}`} className={styles.sheet} key={cat.id}
                       >
                         {cat.title}
