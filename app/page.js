@@ -35,13 +35,16 @@ const RubicMonoOne = Rubik_Mono_One({
 })
 
 function CategoryCard({rel, title, image, backgroundColor, titleBackground}) {
+  const src={(image || "").trim()
+  const v = "2"; 
+  const src = src.includes("?") ? `${src}&v=${v}` : `${src}?v=${v}`;
   return (
     <Link href={rel} className={[styles.sheet, RubicMonoOne.className].join(' ')} style={{backgroundColor: `${backgroundColor}`}}>
       <div className={styles.sheetTitleContainer} style={{backgroundColor: `${titleBackground}`}}>
         <h3>{title}</h3>
       </div>
       <div className={styles.gradient} style={{boxShadow: `inset 0 0 100px 30px ${backgroundColor}`}}></div>
-      <Image className={styles.sheetImage} src={image} width={300} height={250} alt="Категория" unoptimized></Image>
+      <Image className={styles.sheetImage} src={src} width={300} height={250} alt="Категория" unoptimized></Image>
 
     </Link>
   )
@@ -453,11 +456,8 @@ export default function Page() {
                   {categories.map((cat) => {
                     
                     let categoryContentPath = articlesPaths[cat.rel] ? articlesPaths[cat.rel] : '/';
-                    src={(cat.image || "").trim();
-                    const v = "2"; // любая строка, лишь бы менялась при обновлении
-                    src = src.includes("?") ? `${src}&v=${v}` : `${src}?v=${v}`;
                     return (
-                      <CategoryCard key={cat.id} rel={categoryContentPath} title={cat.title} backgroundColor={cat.backgroundColor} titleBackground={cat.titleColor} image={cat.src}></CategoryCard>
+                      <CategoryCard key={cat.id} rel={categoryContentPath} title={cat.title} backgroundColor={cat.backgroundColor} titleBackground={cat.titleColor} image={cat.image}></CategoryCard>
                       /*<Link href={`/categories/${cat.rel}`} className={styles.sheet} key={cat.id}
                       >
                         {cat.title}
