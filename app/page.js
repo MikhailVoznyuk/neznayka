@@ -41,7 +41,7 @@ function CategoryCard({rel, title, image, backgroundColor, titleBackground}) {
         <h3>{title}</h3>
       </div>
       <div className={styles.gradient} style={{boxShadow: `inset 0 0 100px 30px ${backgroundColor}`}}></div>
-      <Image className={styles.sheetImage} src={image} width={300} height={250} alt="Категория"></Image>
+      <Image className={styles.sheetImage} src={image} width={300} height={250} alt="Категория" unoptimized></Image>
 
     </Link>
   )
