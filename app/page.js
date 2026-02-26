@@ -36,16 +36,13 @@ const RubicMonoOne = Rubik_Mono_One({
 })
 
 function CategoryCard({rel, title, image, backgroundColor, titleBackground}) {
-  const src={(image || "").trim()
-  const v = "2"; 
-  const src = src.includes("?") ? `${src}&v=${v}` : `${src}?v=${v}`;
   return (
     <Link href={rel} className={[styles.sheet, RubicMonoOne.className].join(' ')} style={{backgroundColor: `${backgroundColor}`}}>
       <div className={styles.sheetTitleContainer} style={{backgroundColor: `${titleBackground}`}}>
         <h3>{title}</h3>
       </div>
       <div className={styles.gradient} style={{boxShadow: `inset 0 0 100px 30px ${backgroundColor}`}}></div>
-      <Image className={styles.sheetImage} src={src} width={300} height={250} alt="Категория" unoptimized></Image>
+      <Image className={styles.sheetImage} src={image} width={300} height={250} alt="Категория"></Image>
 
     </Link>
   )
