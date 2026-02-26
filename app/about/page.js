@@ -47,9 +47,9 @@ export default function Page() {
                     <p className={['column-xl', 'text-center'].join(' ')}>Знакомим вас с уникальной развивающей настольной игрой "ОБЖШКА", которая превратит важные уроки безопасности в увлекательное приключение для всей семьи! Теперь правила поведения в опасных ситуациях легко запомнятся детям в процессе весёлой игры.</p>
                 </AnimationAppearWrapper>
             </div>
-            <div className='container justify-center align-center'>
+            <AnimationAppearWrapper className='container justify-center align-center'>
                 <PartnerBlock />
-            </div>
+            </AnimationAppearWrapper>
             <div className={['container justify-center align-center flex-column', styles.textSection].join(' ')}>
                 <AnimationAppearWrapper>
                     <h3>Что такое "ОБЖШКА"?</h3>
