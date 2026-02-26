@@ -337,7 +337,7 @@ export default function RootLayout({ children }) {
                 
                 </nav>
                 <div className={'flex flex-column align-center'} style={{marginBottom: '40px'}}>
-                  <Image src='icons/logo.svg' width={134} height={54} alt=''></Image>
+                  <Image src='/icons/logo.svg' width={134} height={54} alt=''></Image>
                   <p className={RubikBold.className} style={{color: '#FFF', fontSize: '18px', textAlign: 'center'}}>"ОБЖШКА" – это настольная игра, созданная педагогами и экспертами по детской безопасности, целью которой является обучение детей основам безопасности жизнедеятельности. </p>
                 </div>
                 <div className={'flex flex-column align-start'} style={{marginBottom: '40px'}}>
