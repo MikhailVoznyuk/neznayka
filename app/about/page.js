@@ -7,6 +7,8 @@ import Link from "next/link";
 import RubikMonoOne from "@/components/fonts/rubikMonoOne";
 import { RubikBold } from "@/components/fonts/rubikMonoOne";
 
+import PartnerBlock from "@/components/PartnerBlock";
+
 import styles from './page.module.css'
 
 import AnimationAppearWrapper from "@/components/animationAppearWrapper";
@@ -44,6 +46,9 @@ export default function Page() {
                 <AnimationAppearWrapper className={['text-lg', RubikBold.className].join(' ')}>
                     <p className={['column-xl', 'text-center'].join(' ')}>Знакомим вас с уникальной развивающей настольной игрой "ОБЖШКА", которая превратит важные уроки безопасности в увлекательное приключение для всей семьи! Теперь правила поведения в опасных ситуациях легко запомнятся детям в процессе весёлой игры.</p>
                 </AnimationAppearWrapper>
+            </div>
+            <div className='container justify-center align-center'>
+                <PartnerBlock />
             </div>
             <div className={['container justify-center align-center flex-column', styles.textSection].join(' ')}>
                 <AnimationAppearWrapper>

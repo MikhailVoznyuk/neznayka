@@ -21,6 +21,7 @@ import StepsBlock from "@/components/userStepsBlock";
 import { StepsBlockMobile } from "@/components/userStepsBlock";
 import observeElements from "@/lib/contentObserver";
 import AnimationAppearWrapper from "@/components/animationAppearWrapper";
+import PartnerBlock from "@/components/PartnerBlock";
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, EffectCreative, Navigation} from 'swiper/modules';
@@ -435,6 +436,9 @@ export default function Page() {
               <BookBlock/> : 
               <BookBlockMobile/>
             }
+          </AnimationAppearWrapper>
+          <AnimationAppearWrapper className="container justify-center">
+              <PartnerBlock />
           </AnimationAppearWrapper>
  
 
